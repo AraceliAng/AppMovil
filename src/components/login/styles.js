@@ -6,7 +6,16 @@ const styles3= StyleSheet.create({
         color:'#000000',
         fontSize: 20,
     },
-    loginTextSection: {
+    inputs:{
+      height:40,
+      backgroundColor:'rgba(255, 255, 255, 0.9)',
+      marginBottom:20,
+      borderRadius:10
+  },
+  container:{
+      padding:10,
+  },
+   /*  loginTextSection: {
       width: '100%',
       height: '80%',
       alignItems: 'center',
@@ -25,13 +34,8 @@ const styles3= StyleSheet.create({
    loginButton: {
      backgroundColor: '#D86B6B',
      color: 'black'
-   },
-   inputs:{
-      height:40,
-      backgroundColor:'rgba(255, 255, 255, 0.9)',
-      marginBottom:20,
-      borderRadius:10
-  },
+   },*/
+   
         
     
 });
