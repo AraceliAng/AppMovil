@@ -3,6 +3,7 @@ import { View, TouchableOpacity } from 'react-native';
 import { Container, Content, Text, Toast } from 'native-base';
 import styles3 from './Styles';
 import Banner from './Banner';
+import FormLogin from './FormLogin';
 
 export default class ComponentLogin extends Component{
     state={

@@ -39,7 +39,7 @@ export const FormLogin = ({login, onChange})=>(
         </View>
     </KeyboardAvoidingView>
 );
-
+export default  FormLogin;
 
 
 
