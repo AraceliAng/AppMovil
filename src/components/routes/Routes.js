@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Router, Scene } from 'react-native-router-flux';
-import ComponentLogin from './src/components/login/LoginComponent';
 import FormLocation from './src/components/location/Location';
 import Recovery from './src/components/login/Recovery'
-import Banner from '../login/Banner';
+import ComponentLogin from '../login/ComponentLogin';
 
 
 const Routes = () => {
