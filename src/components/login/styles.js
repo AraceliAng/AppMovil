@@ -2,25 +2,34 @@ import { StyleSheet } from 'react-native';
 
 
 const styles3= StyleSheet.create({
-    texto:{
+    textoF:{
         color:'#000000',
         fontSize: 20,
+    },
+    textoL:{
+        padding:20,
+        color:'#000000',
+        justifyContent:'center',
+        alignItems:'center',
     },
     inputs:{
       height:40,
       backgroundColor:'rgba(255, 255, 255, 0.9)',
       marginBottom:20,
       borderRadius:10
-  },
-  container:{
-      padding:10,
-  },
-  img: {
-   flex: 1,
-   height: null,
-   width: null,
-   opacity:0.85
-}
+    },
+    containerF:{
+        padding:20,
+    },
+    img: {
+        flex: 1,
+        height: null,
+        width: null,
+        opacity:0.85
+    },
+    containerR:{
+        padding:10
+    }
 });
 
 

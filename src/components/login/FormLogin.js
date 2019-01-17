@@ -1,38 +1,42 @@
-import React, { Component } from 'react';
-//import { TouchableOpacity, TextInput, View, Text } from 'react-native'
-//import { Container, Header, Content, Form, Item, Input, Label, Button } from 'native-base';
+import React from 'react';
 import styles3 from './Styles';
-import { KeyboardAvoidingView} from 'react-native';
-import { Input, Button, Item, Form,Text} from 'native-base';
+import { Image, KeyboardAvoidingView} from 'react-native';
+import { Input, Button, Item, Form,Text, View} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import imgLogo from '../../assets/m.jpg'
 
 export const FormLogin = ({login, onChange})=>(
     <KeyboardAvoidingView behavior="padding">
-        <Form>
-            <Item regular style={styles3.inputs}>
-                <Icon active name='user' size={15} style={{marginLeft:12}} />
-                <Input 
-                    name='correo'
-                    placeholder='Correo electrónico'
-                    keyboardType='email-address'
-                    style={styles3.texto}
-                    onChangeText={Value=>onChange('email',Value)}
-                />
-            </Item>
-            <Item regular style={styles3.inputs}> 
-                <Icon active name='unlock-alt' size={15} style={{marginLeft:12}}/>
-                <Input 
-                    name='password'
-                    placeholder='Contraseña'
-                    secureTextEntry={true}
-                    style={styles3.texto}
-                    onChangeText={value=>onChange('password',value)}
-                />
-            </Item>
-            <Button full bordered dark onPress={login} style={{borderRadius:25}}>
-                <Text>Entrar</Text>
-            </Button>
-        </Form>
+        <View style={styles3.containerF}>
+            <Image source={imgLogo} style={styles3.img} />
+        </View>
+        <View>
+            <Form style={styles3.containerF}>
+                <Item regular style={styles3.inputs}>
+                    <Icon active name='user' size={15} style={{marginLeft:12}} />
+                    <Input 
+                        name='correo'
+                        placeholder='Correo electrónico'
+                        keyboardType='email-address'
+                        style={styles3.textoF}
+                        onChangeText={Value=>onChange('email',Value)}
+                    />
+                </Item>
+                <Item regular style={styles3.inputs}> 
+                    <Icon active name='unlock-alt' size={15} style={{marginLeft:12}}/>
+                    <Input 
+                        name='password'
+                        placeholder='Contraseña'
+                        secureTextEntry={true}
+                        style={styles3.textoF}
+                        onChangeText={value=>onChange('password',value)}
+                    />
+                </Item>
+                <Button full bordered dark onPress={login} style={{borderRadius:25}}>
+                    <Text>Entrar</Text>
+                </Button>
+            </Form>
+        </View>
     </KeyboardAvoidingView>
 );
 

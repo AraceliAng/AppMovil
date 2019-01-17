@@ -8,13 +8,15 @@
 
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
+import FormLocation from './src/components/location/FormLocation';
 import { FormLogin } from './src/components/login/FormLogin';
+import ComponentLogin from './src/components/login/ComponentLogin';
  
 export default class App extends Component {
   render() {
     return (
       <View style={style1.container}>
-        <FormLogin />
+        <ComponentLogin/>
         
       </View>
     );
