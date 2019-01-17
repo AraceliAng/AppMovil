@@ -15,29 +15,12 @@ const styles3= StyleSheet.create({
   container:{
       padding:10,
   },
-   /*  loginTextSection: {
-      width: '100%',
-      height: '80%',
-      alignItems: 'center',
-   },
-   loginButtonSection: {
-      width: '110%',
-      height: '20%',
-      justifyContent: 'center',
-      alignItems: 'center',
-   },
-   inputText: {
-      marginLeft: '20%',
-      width: '10%',
-      color: 'black',
-   },
-   loginButton: {
-     backgroundColor: '#D86B6B',
-     color: 'black'
-   },*/
-   
-        
-    
+  img: {
+   flex: 1,
+   height: null,
+   width: null,
+   opacity:0.85
+}
 });
 
 

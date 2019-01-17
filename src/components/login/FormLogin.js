@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import { TouchableOpacity, TextInput, View, Text } from 'react-native'
 //import { Container, Header, Content, Form, Item, Input, Label, Button } from 'native-base';
-import styles3 from './styles';
+import styles3 from './Styles';
 import { KeyboardAvoidingView} from 'react-native';
 import { Input, Button, Item, Form,Text} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
