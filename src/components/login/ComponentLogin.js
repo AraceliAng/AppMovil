@@ -57,7 +57,7 @@ export default class ComponentLogin extends Component{
                 <Banner/>
                 <FormLogin />
                 <View style={styles3.containerF}>
-                    <TouchableOpacity onPress={()=>Actions.recover()} >
+                    <TouchableOpacity onPress={()=>Actions.recovery()} >
                         <Text style={styles3.textoF}>¿Olvidaste tu contraseña?</Text>
                     </TouchableOpacity>
                     <TouchableOpacity >
