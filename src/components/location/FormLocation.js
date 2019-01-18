@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { View, ImageBackground, KeyboardAvoidingView, StatusBar} from 'react-native';
 import { Header, Left, Button, Icon, Body,Right} from 'native-base';
 import style4 from './Styles';
-import imgFondo from '../../assets/images/m.jpg'
-
+import imgFondo from '../../assets/fondito.jpg'
 export default class FormLocation extends Component{
     render(){
         return(
