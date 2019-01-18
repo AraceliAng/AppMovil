@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { Container, Content, Text, Toast } from 'native-base';
 import styles3 from './Styles';
-import Banner from './Banner';
 import FormLogin from './FormLogin';
 
 export default class ComponentLogin extends Component{
@@ -54,7 +53,6 @@ export default class ComponentLogin extends Component{
         return(
             <Container>
                 <Content>
-                <Banner/>
                 <FormLogin />
                 <View style={styles3.containerF}>
                     <TouchableOpacity onPress={()=>Actions.recover()} >
