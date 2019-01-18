@@ -10,13 +10,14 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import ComponentLogin from './src/components/login/ComponentLogin';
 import Menu from './src/components/main/Menu';
+import FormLogin from './src/components/login/FormLogin';
  
 type Props = {};
 export default class App extends Component <Props> {
   render() {
     return (
       <View style={style1.container}>
-        <Menu/>
+        <ComponentLogin/>
       </View>
     );
   }
