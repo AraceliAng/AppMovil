@@ -8,7 +8,7 @@ import imgLogo from '../../assets/m.jpg'
 export const FormLogin = ({login, onChange})=>(
     <KeyboardAvoidingView behavior="padding">
         <Header
-                    style={{ backgroundColor: '#000565' }}
+                    style={{ backgroundColor: '#DADADA' }}
                     androidStatusBarColor="black"
         ></Header>
         <View style={styles3.containerF}>

@@ -4890,6 +4890,11 @@ react-native-material-design@^0.3.7:
     react-native-material-design-styles "git+https://github.com/react-native-material-design/react-native-material-design-styles.git"
     react-native-vector-icons "^2.0.1"
 
+react-native-off-canvas-menu@^0.1.32:
+  version "0.1.32"
+  resolved "https://registry.yarnpkg.com/react-native-off-canvas-menu/-/react-native-off-canvas-menu-0.1.32.tgz#af1143f9b1a3dfa89b5465f2a054084cac144003"
+  integrity sha512-oHYYqECXf63ndQsHItCRkiAGgPNoWPjiTQO+4t6zahDKEmS1KkwG5fhzucr8sSMthZx4qXo+qZyQwv90vMjCeQ==
+
 react-native-router-flux@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-4.0.6.tgz#e4723f5ce89cb5822e0c9bb6d0a8d4de6179eb58"
