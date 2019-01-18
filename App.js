@@ -8,15 +8,14 @@
 
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import ComponentLogin from './src/components/login/ComponentLogin';
-import FormLocation from './src/components/location/FormLocation';
+import FormReports from './src/components/reports/FormReports';
  
 type Props = {};
 export default class App extends Component <Props> {
   render() {
     return (
       <View style={style1.container}>
-        <FormLocation/>
+        <FormReports/>
       </View>
     );
   }
