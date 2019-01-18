@@ -1,12 +1,16 @@
 import React from 'react';
 import styles3 from './Styles';
 import { Image, KeyboardAvoidingView} from 'react-native';
-import { Input, Button, Item, Form,Text, View} from 'native-base';
+import { Header, Input, Button, Item, Form,Text, View} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import imgLogo from '../../assets/m.jpg'
 
 export const FormLogin = ({login, onChange})=>(
     <KeyboardAvoidingView behavior="padding">
+        <Header
+                    style={{ backgroundColor: '#000565' }}
+                    androidStatusBarColor="black"
+        ></Header>
         <View style={styles3.containerF}>
             <Image source={imgLogo} style={styles3.img} />
         </View>
@@ -15,7 +19,7 @@ export const FormLogin = ({login, onChange})=>(
                 <Item regular style={styles3.inputs}>
                     <Icon active name='user' size={15} style={{marginLeft:12}} />
                     <Input 
-                        name='correo'
+                        name='email'
                         placeholder='Correo electrónico'
                         keyboardType='email-address'
                         style={styles3.textoF}

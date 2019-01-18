@@ -20,15 +20,17 @@ const styles3= StyleSheet.create({
     },
     containerF:{
         padding:20,
+        alignItems:'center'
     },
     img: {
         flex: 1,
         height: null,
-        width: null,
-        opacity:0.85
+        opacity:0.85,
+        padding: 100,
+        resizeMode: 'contain',
     },
     containerR:{
-        padding:10
+        padding:10,
     }
 });
 

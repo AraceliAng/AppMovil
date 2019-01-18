@@ -2,12 +2,13 @@ import { StyleSheet} from 'react-native';
 
 const style4 = StyleSheet.create({
     containerF:{
-        padding:20,
+        padding:10,
     },
     img: { 
+        flex: 1,
+        height: null,
         width: null,
-        resizeMode: 'contain',
-        height: 220,
+        opacity:0.85
      } 
 });
 
