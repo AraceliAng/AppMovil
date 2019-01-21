@@ -66,12 +66,12 @@ export default class ComponentLogin extends Component{
                 <Content>
                 <FormLogin login={this.login} onChange={this.handleChange}/>
                 <View style={styles3.containerF}>
-                    <TouchableOpacity onPress={()=>Actions.recover()} >
+                    {/*<TouchableOpacity onPress={()=>Actions.recover()} >
                         <Text style={styles3.textoF}>¿Olvidaste tu contraseña?</Text>
                     </TouchableOpacity>
                     <TouchableOpacity >
                         <Text style={styles3.textoF}>Registrate</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity>*/}
                 </View>
                 </Content>
             </Container>
