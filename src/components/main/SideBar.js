@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import stylesM from './Styles';
 
+
 export default class SideBar extends Component {
     state={
         profile:false,

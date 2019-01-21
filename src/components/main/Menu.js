@@ -19,11 +19,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
       let {user,logged }=this.state
       return (
           <Container >
-          
               <Drawer ref={(ref) => { this.drawer = ref; }}
                     content={<SideBar navigator={this.navigator} logged={logged}/>}
                     onClose={this.closeDrawer} >
-
                   <Header transparent>
                       <Left>
                           <Button transparent onPress={openDrawer}>
@@ -43,9 +41,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
                   
                   <Content style={{padding:20}}>
                       <FormLocation open={FormLocation} close={this.closeDetalle}/>
-                      
                   </Content>
-                
               </Drawer>
               <StatusBar backgroundColor="rgb(239,239,244)" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
           </Container>
