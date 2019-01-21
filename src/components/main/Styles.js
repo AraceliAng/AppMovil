@@ -7,7 +7,7 @@ const stylesM = StyleSheet.create({
         color:'white',
         marginBottom:20,
     },
-    texito:{
+    textito:{
         color:'white'
     },
     boton:{

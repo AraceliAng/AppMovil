@@ -8,14 +8,14 @@
 
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import Menu from './src/components/main/Menu';
+import ComponentLogin from './src/components/login/ComponentLogin';
  
 
 export default class App extends Component{
   render() {
     return (
       <View style={style1.container}>
-        <Menu />
+        <ComponentLogin />
       </View>
     )
   }

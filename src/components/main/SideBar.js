@@ -4,8 +4,9 @@ import { Container, Header, Content, ListItem, Text,Body,Title,Left,Thumbnail,Ri
 import logo from '../../assets/m.jpg';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import stylesM from './Styles';
 
-export default class ListHeaderExample extends Component {
+export default class SideBar extends Component {
     state={
         profile:false,
         location:false,
@@ -85,7 +86,7 @@ export default class ListHeaderExample extends Component {
                             <Thumbnail source={logo}/>
                         </Left>
                         <Body>
-                            <Title style={styles.title}>Transportes Muciño </Title>
+                            <Title style={stylesM.title}>Transportes Muciño </Title>
                         </Body>
                         <Right/>
                     </Header>
@@ -170,7 +171,7 @@ export default class ListHeaderExample extends Component {
                         :null
                     }
                 </Content>
-                <View style={styles.boton}>
+                <View style={stylesM.boton}>
                     {!this.props.logged ?
                         <Button full bordered light onPress={()=>Actions.login()}>
                             <Text>INICIAR SESIÓN</Text>
