@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { Container, Content, Text, Toast } from 'native-base';
+import {Actions} from 'react-native-router-flux';
 import styles3 from './Styles';
 import FormLogin from './FormLogin';
+
 
 export default class ComponentLogin extends Component{
     state={

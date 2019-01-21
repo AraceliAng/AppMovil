@@ -32,7 +32,8 @@ const styles3= StyleSheet.create({
     },
     containerR:{
         padding:10,
-    }
+    },
+    
 });
 
 
