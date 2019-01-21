@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View} from 'react-native';
 import { Header, Left, Button, Body,Right, Container, Title} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
 export default class FormLocation extends Component{
     render(){
         return(

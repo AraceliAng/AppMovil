@@ -58,9 +58,6 @@ export default class ComponentLogin extends Component{
                     <TouchableOpacity onPress={()=>Actions.recover()} >
                         <Text style={styles3.textoF}>¿Olvidaste tu contraseña?</Text>
                     </TouchableOpacity>
-                    {/*<TouchableOpacity >
-                        <Text style={styles3.textoF}>Registrate</Text>
-                    </TouchableOpacity>*/}
                 </View>
                 </Content>
             </Container>
