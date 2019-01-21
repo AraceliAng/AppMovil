@@ -4,7 +4,7 @@ const stylesP = StyleSheet.create({
     thub: {
         margin: 10,
         height: 100,
-        width: 100, borderRadius:50
+        width: 100, borderRadius: 30
     },
     h1: {
         //marginLeft: 20,
@@ -20,13 +20,14 @@ const stylesP = StyleSheet.create({
         flex: 5,
         height: 200,
         width: null,
+        
     },
     container: {
         backgroundColor: 'white'
     },
     view: {
         alignSelf: 'center',
-        marginTop: -30,
+        marginTop: -40,
         justifyContent:'center',
         alignItems:'center'
     },

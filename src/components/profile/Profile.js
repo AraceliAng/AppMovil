@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, StatusBar,AsyncStorage} from 'react-native';
+import {View, Text, Image, StatusBar,AsyncStorage, } from 'react-native';
 import {Container, Content, Button, H1, Card, Left, Body, Title, ListItem,Header,Right} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import {Actions} from 'react-native-router-flux';
@@ -39,7 +39,7 @@ export default class Profile extends Component {
 
                 </Header>
                 <Content>
-                    <StatusBar backgroundColor="black" barStyle="light-content" />
+                    <StatusBar backgroundColor={"#4D4D4D"} barStyle="light-content" />
                     <Image source={imgFondo} style={stylesP.img}/>
                     <View style={stylesP.view}>
                         <View style={stylesP.view}>
@@ -72,80 +72,10 @@ export default class Profile extends Component {
                                 </Body>
                             </ListItem>
                         </Card>
-
-                        {/*<Text style={{fontWeight: 'bold'}}>Experiencia</Text>
-                        <Card>
-                            <ListItem>
-                                <Icon name="bookmark" style={{marginRight: 20}}/>
-                                <Body>
-                                <Text style={{fontWeight: 'bold'}}>Backend Developer</Text>
-                                <Text note>Mirak Solutions</Text>
-                                <Text note>oct de 2017 -actualidad . 2 meses</Text>
-                                </Body>
-                            </ListItem>
-
-                            <ListItem>
-                                <Icon name="bookmark" style={{marginRight: 20}}/>
-                                <Body>
-                                <Text style={{fontWeight: 'bold'}}>FullStack Developer</Text>
-                                <Text note>Fixter Geek</Text>
-                                <Text note>oct de 2016 -actualidad . 1 mes</Text>
-                                </Body>
-                            </ListItem>
-                        </Card>*/}
                     </View>
-
-                   {/* <View>
-                        <Text style={{fontWeight: 'bold'}}>Educacion</Text>
-                        <Card>
-                            <ListItem>
-                                <Icon name="bookmark" style={{marginRight: 20}}/>
-                                <Body>
-                                <Text style={{fontWeight: 'bold'}}>Unidad Profesional Interdiciplinaria</Text>
-                                <Text note>Ingenieria en Telematica</Text>
-                                <Text note>oct de 2017 -actualidad . 2 meses</Text>
-                                </Body>
-                            </ListItem>
-
-                            <ListItem>
-                                <Icon name="bookmark" style={{marginRight: 20}}/>
-                                <Body>
-                                <Text style={{fontWeight: 'bold'}}>Unidad Profesional Interdiciplinaria</Text>
-                                <Text note>Ingenieria en Mecatronica</Text>
-                                <Text note>oct de 2017 -actualidad . 2 meses</Text>
-                                </Body>
-                            </ListItem>
-                        </Card>
-                    </View>
-
-                    <Card>
-                        <Text style={{margin: 20, fontWeight: 'bold'}}>Aptitudes y validaciones destacadas</Text>
-                        <ListItem>
-                            <Text style={{fontWeight: 'bold'}}>Django</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text style={{fontWeight: 'bold'}}>React</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text style={{fontWeight: 'bold'}}>Firebase</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text style={{fontWeight: 'bold'}}>2 APTITUDES MAS</Text>
-                        </ListItem>
-                    </Card>
-
-                    <Card>
-                        <Text style={{margin: 20, fontWeight: 'bold'}}>Contactar</Text>
-                        <ListItem>
-                            <Icon name="bookmark" style={{marginRight: 20}}/>
-                            <Body>
-                            <Text style={{fontWeight: 'bold'}}>contacto@fixter.org</Text>
-                            </Body>
-                        </ListItem>
-                    </Card>
-                   */}
                 </Content>
             </Container>
+            
         );
     }
 }
