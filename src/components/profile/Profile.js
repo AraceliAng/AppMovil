@@ -6,7 +6,7 @@ import {Actions} from 'react-native-router-flux';
 import stylesP from './Styles';
 import imgPerfil from '../../assets/photo.jpg';
 import imgFondo from '../../assets/fondo.jpg';
-
+import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
 export default class Profile extends Component {
 
     logOut=()=>{
@@ -18,7 +18,7 @@ export default class Profile extends Component {
     render() {
         return (
             <Container style={stylesP.container}>
-                <Header
+               <Header
                     style={{ backgroundColor: '#000000' }}
                     androidStatusBarColor="black"
                 >
@@ -34,10 +34,32 @@ export default class Profile extends Component {
                         <Button transparent  onPress={this.logOut}>
                             <Text style={{color:'#DCDCDC', fontSize: 17}}>Cerrar sesión</Text>
                         </Button>
-
                     </Right>
+                </Header> 
 
-                </Header>
+{/* <HeaderImageScrollView
+                    maxHeight={200}
+                    headerImage={imgFondo}
+                    renderFixedForeground={() => (
+                      <View> 
+                            <Left >
+                                <Button transparent onPress={()=>Actions.pop()}>
+                                    <Icon name='menu' style={{marginRight: 30, fontSize: 20, color:'#DCDCDC'}} />
+                                </Button>
+                            </Left>
+                            <Body>
+                                <Title style={{color:'#DCDCDC', fontSize: 20}}>Perfil</Title>
+                            </Body>
+                            <Right>
+                                <Button transparent  onPress={this.logOut}>
+                                    <Text style={{color:'#DCDCDC', fontSize: 17}}>Cerrar sesión</Text>
+                                </Button>
+                            </Right>
+                    </View>
+                    )}
+                    
+                > */}
+                
                 <Content>
                     <StatusBar backgroundColor={"#4D4D4D"} barStyle="light-content" />
                     <Image source={imgFondo} style={stylesP.img}/>
@@ -51,7 +73,17 @@ export default class Profile extends Component {
                             <Text style={stylesP.texto}>más información del operador</Text>
                         </View>
                     </View>
-
+                   
+                    {/* <View style={stylesP.view}>
+                        <View style={stylesP.view}>
+                            <Image source={imgPerfil} style={stylesP.thub}/>
+                        </View>
+                        <H1 style={stylesP.h1}>Nombre operador</H1>
+                        <Text style={stylesP.text}>correo_operdor@mucino.com</Text>
+                        <View>
+                            <Text style={stylesP.texto}>más información del operador</Text>
+                        </View>
+                    </View>  */}
                     <View>
                         <Card>
                             <ListItem>
@@ -72,8 +104,39 @@ export default class Profile extends Component {
                                 </Body>
                             </ListItem>
                         </Card>
+
+                        <Card>
+                            <ListItem>
+                                <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
+                                <Body>
+                                <Text style={{fontWeight: 'bold'}}>Lugar del proyecto2</Text>
+                                <Text note>descripcion del lugar</Text>
+                                </Body>
+                            </ListItem>
+                        </Card>
+
+                        <Card>
+                            <ListItem>
+                                <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
+                                <Body>
+                                <Text style={{fontWeight: 'bold'}}>Lugar del proyecto3</Text>
+                                <Text note>descripcion del lugar</Text>
+                                </Body>
+                            </ListItem>
+                        </Card>
+
+                        <Card>
+                            <ListItem>
+                                <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
+                                <Body>
+                                <Text style={{fontWeight: 'bold'}}>Lugar del proyecto4</Text>
+                                <Text note>descripcion del lugar</Text>
+                                </Body>
+                            </ListItem>
+                        </Card>
                     </View>
                 </Content>
+                {/* </HeaderImageScrollView> */}
             </Container>
             
         );

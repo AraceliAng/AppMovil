@@ -4865,6 +4865,13 @@ react-native-gesture-handler@^1.0.0:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
+react-native-image-header-scroll-view@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-header-scroll-view/-/react-native-image-header-scroll-view-0.10.0.tgz#285c20f8057c2d21cf87b1e3bfcbc83e9a0935cc"
+  integrity sha512-ScXmAevQEzu22isvAuFHAmjrN+qG3+xGBSSK/pugm5px5zan2gU6/+v8xmNwHvWIy8JOqvSiMaTe8e5gsnaxZg==
+  dependencies:
+    prop-types "^15.6.0"
+
 react-native-iphone-x-helper@^1.0.3:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.0.tgz#9f8a376eb00bc712115abff4420318a0063fa796"

@@ -6,6 +6,19 @@ const stylesP = StyleSheet.create({
         height: 100,
         width: 100, borderRadius: 30
     },
+    title:{
+        flex: 1,
+        alignSelf: 'stretch',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    textito:{
+        color: 'white',
+        fontWeight:'bold',
+        backgroundColor: 'transparent',
+        fontSize: 24,
+    },
     h1: {
         //marginLeft: 20,
         color: 'black',
