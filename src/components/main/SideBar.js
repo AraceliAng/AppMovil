@@ -133,7 +133,7 @@ export default class SideBar extends Component {
                     }
                     <ListItem icon onPress={this.tickets}>
                         <Left>
-                            <Icon name="file-o" style={{color:'white'}}/>
+                            <Icon name="file-text" style={{color:'white'}}/>
                         </Left>
                         <Body>
                         <Text style={{color:'white'}}>tickets</Text>
