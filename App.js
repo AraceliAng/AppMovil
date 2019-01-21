@@ -9,13 +9,14 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import ComponentLogin from './src/components/login/ComponentLogin';
+import Profile from './src/components/profile/Profile';
  
 
 export default class App extends Component{
   render() {
     return (
       <View style={style1.container}>
-        <ComponentLogin />
+        <Profile />
       </View>
     )
   }
