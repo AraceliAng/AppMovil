@@ -52,4 +52,3 @@ import {Container,Content,Header,Left,Right,Body,Title,Button,Icon,Drawer} from 
   }
 }
     
-}
