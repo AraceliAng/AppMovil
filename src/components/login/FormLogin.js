@@ -46,37 +46,3 @@ export const FormLogin = ({login, onChange})=>(
         <StatusBar backgroundColor="#00194B" barStyle="light-content" />
     </KeyboardAvoidingView>
 );
-export default  FormLogin;
-
-/*
-https://codeburst.io/linear-gradient-for-border-color-in-react-native-5bcab3eea1c9
-
-export default class FormLogin extends Component{
-    //state = { isLoggedIn: false, otherState: '' }
-    doLoginStuff = () => {
-      this.setState({ isLoggedIn: true });
-    }
-    render(){
-        return (
-            <Container> 
-               <Header/>
-                <Content>
-                    <Form>
-                        <View style={styles3.loginTextSection}>
-                            <TextInput placeholder='UserName' style={styles3.inputText} />
-                            <TextInput placeholder='Password' style={styles3.inputText} secureTextEntry={true}/>
-                        </View>
-
-                        <View style={styles3.loginButtonSection}>
-                            <TouchableOpacity  onPress={() => doLoginStuff()} >
-                                <Button style={styles3.loginButton}>
-                                    <Text style={styles3.texto}>Iniciar Sesiòn</Text>
-                                </Button>
-                            </TouchableOpacity >
-                        </View>
-                    </Form>
-                </Content>
-            </Container>
-        );
-    }
-}*/
