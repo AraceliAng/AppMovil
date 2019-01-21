@@ -17,7 +17,7 @@ export default class App extends Component <Props> {
       <View style={style1.container}>
         <ComponentLogin/>
       </View>
-    );
+    )
   }
 }
 

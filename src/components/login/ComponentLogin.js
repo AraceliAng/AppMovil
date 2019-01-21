@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { Container, Content, Text, Toast } from 'native-base';
-import FormLogin from './FormLogin';
 import styles3 from './Styles';
+import FormLogin from './FormLogin';
 
 export default class ComponentLogin extends Component{
     state={
@@ -58,6 +58,9 @@ export default class ComponentLogin extends Component{
                     <TouchableOpacity onPress={()=>Actions.recover()} >
                         <Text style={styles3.textoF}>¿Olvidaste tu contraseña?</Text>
                     </TouchableOpacity>
+                    {/*<TouchableOpacity >
+                        <Text style={styles3.textoF}>Registrate</Text>
+                    </TouchableOpacity>*/}
                 </View>
                 </Content>
             </Container>
