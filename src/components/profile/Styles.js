@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const stylesP = StyleSheet.create({
     thub: {
-        margin: 10,
+        margin: 20,
         height: 100,
         width: 100, borderRadius: 30
     },
@@ -20,7 +20,7 @@ const stylesP = StyleSheet.create({
         fontSize: 24,
     },
     h1: {
-        //marginLeft: 20,
+        marginTop: 20,
         color: 'black',
         alignSelf: 'center'
     },
@@ -40,7 +40,7 @@ const stylesP = StyleSheet.create({
     },
     view: {
         alignSelf: 'center',
-        marginTop: -40,
+        marginTop: -9,
         justifyContent:'center',
         alignItems:'center'
     },

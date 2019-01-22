@@ -8,7 +8,7 @@
 
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import ProfileBanner from './src/components/profile/Profile';
+import ProfileBanner from './src/components/profile/ProfileBanner';
 import ProfileContent from './src/components/profile/ProfileContent';
  
 
@@ -16,7 +16,7 @@ export default class App extends Component{
   render() {
     return (
       <View style={style1.container}>
-        <ProfileContent />
+        <ProfileBanner />
       </View>
     )
   }
