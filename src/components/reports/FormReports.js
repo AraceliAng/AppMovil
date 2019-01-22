@@ -1,30 +1,94 @@
 import React, { Component } from 'react';
-import { View} from 'react-native';
-import { Header, Left, Button, Body,Right, Container, Title} from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, Text } from 'react-native';
+import { Header, Left, Button, Body,Right, Container, Title, H1, ListItem, Card, Content, Image} from 'native-base';
+import Icon from 'react-native-vector-icons/Entypo';
 import style5 from './Styles';
 export default class FormReports extends Component{
     render(){
         return(
            <Container>
                 <Header
-                    style={{ backgroundColor: '#DADADA' }}
+                    style={{ backgroundColor: '#000000' }}
                     androidStatusBarColor="black"
                 >
-                    <Left>
+                    <Left >
                         <Button transparent onPress={()=>Actions.pop()}>
-                            <Icon name='navicon' style={{color:'#000000'}} size={20} />
+                            <Icon name='menu' style={{marginRight: 30, fontSize: 20, color:'#DCDCDC'}} />
                         </Button>
                     </Left>
                     <Body>
-                        <Title style={style5.textoRs}>Reports</Title>
-                        </Body>
-                    <Right/>
-                </Header>
-            <View >
+                        <Title style={{color:'#DCDCDC', fontSize: 20}}>Reporte</Title>
+                    </Body>
+                    <Right>
+                        <Button transparent  onPress={this.logOut}>
+                            <Text style={{color:'#DCDCDC', fontSize: 17}}>Cerrar sesión</Text>
+                        </Button>
+                    </Right>
+                </Header> 
             
-                
+            <Content>
+            <View style={style5.view}>
+            
+            <H1 style={style5.h1}>Nombre operador</H1>
+            <Text style={style5.text}>correo_operdor@mucino.com</Text>
+            <View>
+                <Text style={style5.texto}>más información del operador</Text>
             </View>
+        </View>
+        <View>
+            <Card>
+                <ListItem>
+                    <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
+                    <Body>
+                    <Text style={{fontWeight: 'bold'}}>Proyecto</Text>
+                    <Text note>descripcion del proyecto</Text>
+                    </Body>
+                </ListItem>
+            </Card>
+   
+            <Card>
+                <ListItem>
+                    <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
+                    <Body>
+                    <Text style={{fontWeight: 'bold'}}>Lugar del proyecto</Text>
+                    <Text note>descripcion del lugar</Text>
+                    </Body>
+                </ListItem>
+            </Card>
+   
+            <Card>
+                <ListItem>
+                    <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
+                    <Body>
+                    <Text style={{fontWeight: 'bold'}}>Lugar del proyecto2</Text>
+                    <Text note>descripcion del lugar</Text>
+                    </Body>
+                </ListItem>
+            </Card>
+   
+            <Card>
+                <ListItem>
+                    <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
+                    <Body>
+                    <Text style={{fontWeight: 'bold'}}>Lugar del proyecto3</Text>
+                    <Text note>descripcion del lugar</Text>
+                    </Body>
+                </ListItem>
+            </Card>
+   
+            <Card>
+                <ListItem>
+                    <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
+                    <Body>
+                    <Text style={{fontWeight: 'bold'}}>Lugar del proyecto4</Text>
+                    <Text note>descripcion del lugar</Text>
+                    </Body>
+                </ListItem>
+            </Card>
+        </View>
+        </Content> 
+                
+        <StatusBar backgroundColor="black" barStyle="light-content" />
         </Container>
         );
     }
