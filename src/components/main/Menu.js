@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 
   export default class Menu extends Component{
-    ender(){
+    render(){
       closeDrawer = () => {
           this.drawer._root.close()
       };
@@ -22,23 +22,28 @@ import Icon from 'react-native-vector-icons/FontAwesome';
               <Drawer ref={(ref) => { this.drawer = ref; }}
                     content={<SideBar navigator={this.navigator} logged={logged}/>}
                     onClose={this.closeDrawer} >
-                  <Header transparent>
-                      <Left>
-                          <Button transparent onPress={openDrawer}>
-                              <Icon name='menu' style={{color:'black'}} />
-                          </Button>
-                      </Left>
-                      <Body>
-                          <Title style={{color:'black'}}>
-                              {logged ?
-                                  user.username :
-                                  "Bienvenido"
-                              }
-                          </Title>
-                      </Body>
-                      <Right/>
-                  </Header>
                   
+                  
+                  <Header
+                    style={{ backgroundColor: '#000000' }}
+                    androidStatusBarColor="black"
+                >
+                    <Left >
+                        <Button transparent onPress={()=>Actions.pop()}>
+                            <Icon name='menu' style={{marginRight: 30, fontSize: 20, color:'#DCDCDC'}} />
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Title style={{color:'#DCDCDC', fontSize: 20}}>Reporte</Title>
+                    </Body>
+                    <Right>
+                        <Button transparent  onPress={this.logOut}>
+                            <Text style={{color:'#DCDCDC', fontSize: 17}}>Cerrar sesión</Text>
+                        </Button>
+                    </Right>
+                </Header> 
+                  
+
                   <Content style={{padding:20}}>
                       <FormLocation open={FormLocation} close={this.closeDetalle}/>
                   </Content>
