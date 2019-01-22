@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
 import { Header, Left, Button, Body,Right, Container, Title, H1, ListItem, Card, Content, Image} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import style5 from './Styles';
