@@ -8,7 +8,6 @@
 
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import ComponentLogin from './src/components/login/ComponentLogin';
 import Profile from './src/components/profile/Profile';
  
 
