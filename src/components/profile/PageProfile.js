@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { StatusBar, View, Header} from 'react-native';
+import { StatusBar, View } from 'react-native';
 import { Content,Text, Left,Button,Icon,Body,Title,Right } from 'native-base'
 import {Actions} from "react-native-router-flux";
 import imgFondo from '../../assets/fondo.jpg'
