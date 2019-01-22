@@ -1,6 +1,6 @@
 import React,{ Component } from 'react'
-import { View,TouchableOpacity } from 'react-native'
-import { Container, Content, Text } from 'native-base';
+import { View,TouchableOpacity, StatusBar } from 'react-native'
+import { Container, Content, Text} from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import styles3 from './Styles';
 import { FormLogin } from './FormLogin';
@@ -63,6 +63,7 @@ export default class ComponentLogin extends Component{
 
         return(
             <Container>
+                <StatusBar backgroundColor="black" barStyle="light-content" />
                 <Content>
                 <FormLogin login={this.login} onChange={this.handleChange}/>
                 <View style={styles3.containerF}>
