@@ -7,7 +7,7 @@ import stylesP from './Styles';
 import imgPerfil from '../../assets/photo.jpg';
 import imgFondo from '../../assets/fondo.jpg';
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
-export default class Profile extends Component {
+export default class ProfileContent extends Component {
 
     logOut=()=>{
         AsyncStorage.removeItem("user");
@@ -18,24 +18,32 @@ export default class Profile extends Component {
     render() {
         return (
             <Container style={stylesP.container}>
-               <Header
-                    style={{ backgroundColor: '#000000' }}
-                    androidStatusBarColor="black"
-                >
-                    <Left >
-                        <Button transparent onPress={()=>Actions.pop()}>
-                            <Icon name='menu' style={{marginRight: 30, fontSize: 20, color:'#DCDCDC'}} />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title style={{color:'#DCDCDC', fontSize: 20}}>Perfil</Title>
-                    </Body>
-                    <Right>
-                        <Button transparent  onPress={this.logOut}>
-                            <Text style={{color:'#DCDCDC', fontSize: 17}}>Cerrar sesión</Text>
-                        </Button>
-                    </Right>
-                </Header> 
+{/* // ///aqui empieza el banner negro tipo fb
+
+
+//             <Container style={stylesP.container}>
+//                <Header
+//                     style={{ backgroundColor: '#000000' }}
+//                     androidStatusBarColor="black"
+//                 >
+//                     <Left >
+//                         <Button transparent onPress={()=>Actions.pop()}>
+//                             <Icon name='menu' style={{marginRight: 30, fontSize: 20, color:'#DCDCDC'}} />
+//                         </Button>
+//                     </Left>
+//                     <Body>
+//                         <Title style={{color:'#DCDCDC', fontSize: 20}}>Perfil</Title>
+//                     </Body>
+//                     <Right>
+//                         <Button transparent  onPress={this.logOut}>
+//                             <Text style={{color:'#DCDCDC', fontSize: 17}}>Cerrar sesión</Text>
+//                         </Button>
+//                     </Right>
+//                 </Header> 
+// aqui termina el banner negro tipo fb */}
+
+
+
 
 {/* <HeaderImageScrollView
                     maxHeight={200}
