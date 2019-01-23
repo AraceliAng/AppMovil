@@ -8,6 +8,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 
   export default class Menu extends Component{
+    state={
+        user:{},
+        logged:false,
+        modalDetalle:false,
+        detalle:{},
+        // promos:[]
+    }
+
     render(){
       closeDrawer = () => {
           this.drawer._root.close()
@@ -45,7 +53,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
                   
 
                   <Content style={{padding:20}}>
-                      <FormLocation open={FormLocation} close={this.closeDetalle}/>
+                      <FormLocation open={modalDetalle} close={this.closeDetalle}/>
                   </Content>
               </Drawer>
               <StatusBar backgroundColor="rgb(239,239,244)" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
