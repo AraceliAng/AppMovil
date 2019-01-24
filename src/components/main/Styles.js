@@ -15,7 +15,14 @@ const stylesM = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center'
     },
-    
+    container: {
+        flex: 1,
+        backgroundColor:'#ebecf2'
+    },
+    textito2:{
+
+        color:'black'
+    },
 })
 
 export default stylesM;

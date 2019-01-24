@@ -13,14 +13,14 @@ import FormLocation from './src/components/location/FormLocation';
 import ComponentLogin from './src/components/login/ComponentLogin';
 import FormReports from './src/components/reports/FormReports';
 import FormTickets from './src/components/tickets/FormTickets';
-import Menu from './src/components/main/Menu';
+import MainPage from './src/components/main/MainPage';
  
 
 export default class App extends Component{
   render() {
     return (
       <View style={style1.container}>
-        <Menu/>
+        <MainPage/>
       </View>
     )
   }
