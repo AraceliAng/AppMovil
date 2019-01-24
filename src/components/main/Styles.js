@@ -5,7 +5,7 @@ const stylesM = StyleSheet.create({
     title:{
         width:'100%',
         color:'white',
-        marginBottom:20,
+        marginBottom:0,
     },
     textito:{
         color:'white'

@@ -11,7 +11,7 @@ export const PageWelcome =({open,created_at})=> (
             <Left>
                 <Thumbnail source={logo}/>
                 <Body>
-                <Text note>Bienvenidos</Text>
+                <Text note>Aplicación móvil para el monitoreo y control de los operadores de tractocamión</Text>
                 </Body>
             </Left>
         </CardItem>
@@ -26,7 +26,7 @@ export const PageWelcome =({open,created_at})=> (
             </Left>
             <Body/>
             <Right>
-                <Text>Hola otra vez</Text>
+                <Text>Prueba</Text>
             </Right>
         </CardItem>
     </Card>

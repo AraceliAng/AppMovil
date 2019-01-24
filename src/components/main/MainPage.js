@@ -86,7 +86,7 @@ export default class MainPage extends Component<Props>{
                     </Header>
 
                     <Content style={{padding:20}}>
-                    <PageWelcome key={i} open={this.openDetalle} {...promo}/>
+                    <PageWelcome  open={this.openDetalle} />
                     
                     </Content>
                 </Drawer>

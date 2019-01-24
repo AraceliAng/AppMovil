@@ -87,7 +87,8 @@ export default class SideBar extends Component {
                             <Thumbnail source={logo}/>
                         </Left>
                         <Body>
-                            <Title style={stylesM.title}>Transportes Muciño </Title>
+                            <Title style={stylesM.title}>Transportes</Title>
+                            <Title style={stylesM.title}> muciño</Title>
                         </Body>
                         <Right/>
                     </Header>
