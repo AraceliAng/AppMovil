@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {View, StyleSheet, StatusBar, Platform, AsyncStorage} from 'react-native';
 import {Container,Content,Header,Left,Right,Body,Text,Title,Button,Icon,Drawer} from 'native-base';
 import SideBar from './SideBar';
+import { PageWelcome } from './PageWelcome';
 
 
 type Props={};
@@ -85,7 +86,8 @@ export default class MainPage extends Component<Props>{
                     </Header>
 
                     <Content style={{padding:20}}>
-                        <Text>Hola</Text>
+                    <PageWelcome key={i} open={this.openDetalle} {...promo}/>
+                    
                     </Content>
                 </Drawer>
                 <StatusBar backgroundColor="rgb(239,239,244)" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
