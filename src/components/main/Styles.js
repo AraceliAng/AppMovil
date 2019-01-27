@@ -3,9 +3,10 @@ import { StyleSheet } from 'react-native';
 const stylesM = StyleSheet.create({
 
     title:{
-        width:'100%',
+        textAlign: "center",
         color:'white',
         marginBottom:0,
+        width:100,
     },
     textito:{
         color:'white'

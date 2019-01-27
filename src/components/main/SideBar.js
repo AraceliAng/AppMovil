@@ -83,12 +83,11 @@ export default class SideBar extends Component {
             <Container style={{backgroundColor:"rgba(0,0,0,0.8)",flex:1}}>
 
                     <Header transparent style={{marginBottom:20}}>
-                        <Left>
+                        <Left style={{flex:1, paddingTop:10 }}>
                             <Thumbnail source={logo}/>
                         </Left>
-                        <Body>
-                            <Title style={stylesM.title}>Transportes</Title>
-                            <Title style={stylesM.title}> muciño</Title>
+                        <Body style={{flex:1, alignItems:"center",justifyContent:'center' }} >
+                            <Text style={stylesM.title}>Transportes Muciño</Text>
                         </Body>
                         <Right/>
                     </Header>
