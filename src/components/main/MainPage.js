@@ -11,23 +11,7 @@ export default class MainPage extends Component<Props>{
     state={
         user:{},
         logged:false,
-        // modalDetalle:false,
-        // detalle:{},
-        // promos:[]
     }
-
-    // componentWillMount(){
-
-    //     this._retrieveData()
-    //     getPromo()
-    //         .then(r=>{
-    //             console.log("que esto",r)
-    //             this.setState({promos:r})
-
-    //         }).catch(e=>{
-    //         console.log("el error",e)
-    //     })
-    // }
     _retrieveData = async () => {
         try {
             const userLocal = await AsyncStorage.getItem('user');
@@ -39,16 +23,10 @@ export default class MainPage extends Component<Props>{
                 console.log("no hay nada")
             }
         } catch (error) {
-            // Error retrieving data
+            
         }
     }
-    // openDetalle = ()=>{
-    //     this.setState({modalDetalle:true})
-
-    // }
-    // closeDetalle = ()=>{
-    //     this.setState({modalDetalle:false,detalle:{}})
-    // }
+   
 
 
     render(){
@@ -90,7 +68,7 @@ export default class MainPage extends Component<Props>{
                     
                     </Content>
                 </Drawer>
-                <StatusBar backgroundColor="rgb(239,239,244)" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
+                <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
             </Container>
 
         );
