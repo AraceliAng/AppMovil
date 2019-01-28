@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, Image, StatusBar,Platform } from 'react-native';
-import { Content, Button, H1, Card, Left, Body, Title, ListItem,Header,Right} from 'native-base';
+import { Content, Button, H1, Left, Body, Title, Header,Right} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import {Actions} from 'react-native-router-flux';
 import stylesP from './Styles';
@@ -17,6 +17,7 @@ export default class ProfileBanner extends Component {
     render() {
         let {user}=this.state
         return (
+
             <View style={{flex:1}}>
                 
                 <Header
@@ -25,7 +26,7 @@ export default class ProfileBanner extends Component {
                 >
                     <Left >
                         <Button transparent onPress={()=>Actions.pop()}>
-                            <Icon name='menu' style={{marginRight: 30, fontSize: 20, color:'#DCDCDC'}} />
+                            <Icon name='menu' style={{marginRight: 30, fontSize: 30, color:'#DCDCDC'}} />
                         </Button>
                     </Left>
                     <Body>

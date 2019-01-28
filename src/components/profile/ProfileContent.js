@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {View, Text, Image, StatusBar,AsyncStorage, } from 'react-native';
-import {Container, Content, Button, H1, Card, Left, Body, Title, ListItem,Header,Right} from 'native-base';
+import {View, Text } from 'react-native';
+import { Content, Card,Body, ListItem } from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 export default class ProfileContent extends Component {
 
