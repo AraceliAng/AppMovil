@@ -5,7 +5,7 @@ import { Header, Input, Button, Item, Form,Text, View} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import imgLogo from '../../assets/m.jpg';
 
-export const FormLogin = ({login, onChange})=>(
+export const FormLogin = ({login, onChange, email, password})=>(
     
     <KeyboardAvoidingView behavior="padding">
         <Header
@@ -37,7 +37,9 @@ export const FormLogin = ({login, onChange})=>(
                         onChangeText={value=>onChange('password',value)}
                     />
                 </Item>
-                <Button full bordered dark onPress={login} style={{borderRadius:25, borderColor:'#5F0003'}}>
+                <Button 
+                    disabled={email.length !== 0 && password.length !== 0 ? false:true}
+                    full bordered dark onPress={login} style={{borderRadius:25, borderColor:'#5F0003'}}>
                     <Text>Entrar</Text>
                 </Button>
             </Form>

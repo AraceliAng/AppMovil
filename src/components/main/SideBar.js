@@ -172,17 +172,10 @@ export default class SideBar extends Component {
                         :null
                     }
                 </Content>
-                <View style={stylesM.boton}>
-                    {!this.props.logged ?
-                        <Button full bordered light onPress={()=>Actions.login()}>
-                            <Text>INICIAR SESIÓN</Text>
-                        </Button>
-                        :
+                <View style={stylesM.boton}>                                                                                                                                                                                                                                                                                                                                                                        
                         <Button full bordered light onPress={this.logOut}>
                             <Text>CERRAR SESIÓN</Text>
                         </Button>
-
-                    }
                 </View>
 
             </Container>
