@@ -6,7 +6,7 @@ import ComponentLogin from './src/components/login/ComponentLogin';
 import FormLocation from './src/components/location/FormLocation';
 import FormReports from './src/components/reports/FormReports';
 import FormTickets from './src/components/tickets/FormTickets';
-import ProfileContent from './src/components/profile/ProfileContent';
+import ProfileBanner from './src/components/profile/ProfileBanner';
 const Routes = () => {
     return (
         <Root>
@@ -18,7 +18,7 @@ const Routes = () => {
 */ }
                     <Scene key="login" header={null} component={ComponentLogin}  inital />
                     <Scene key="main" header={null} component={MainPage}/>
-                    <Scene key="profile" header={null} component={ProfileContent}  />
+                    <Scene key="profile" header={null} component={ProfileBanner}  />
                     <Scene key="check" header={null} component={FormLocation} />
                     <Scene key="tickets" header={null} component={FormTickets}/>
                     <Scene key="reports" header={null} component={FormReports}/>
