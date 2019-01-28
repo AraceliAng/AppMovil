@@ -14,14 +14,14 @@ import ComponentLogin from './src/components/login/ComponentLogin';
 import FormReports from './src/components/reports/FormReports';
 import FormTickets from './src/components/tickets/FormTickets';
 import MainPage from './src/components/main/MainPage';
-import Routes from './Routes';
+//import Routes from './Routes';
  
 
 export default class App extends Component{
   render() {
     return (
       <View style={style1.container}>
-        <Routes/>
+        <ProfileBanner/>
       </View>
     )
   }
