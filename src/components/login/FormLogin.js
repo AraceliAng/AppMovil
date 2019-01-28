@@ -1,6 +1,6 @@
 import React from 'react';
 import styles3 from './Styles';
-import { Image, KeyboardAvoidingView, StatusBar} from 'react-native';
+import { Image, KeyboardAvoidingView, StatusBar, Platform} from 'react-native';
 import { Header, Input, Button, Item, Form,Text, View} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import imgLogo from '../../assets/m.jpg';
@@ -44,6 +44,6 @@ export const FormLogin = ({login, onChange, email, password})=>(
                 </Button>
             </Form>
         </View>
-        <StatusBar backgroundColor="black" barStyle="light-content" />
+        <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
     </KeyboardAvoidingView>
 );
