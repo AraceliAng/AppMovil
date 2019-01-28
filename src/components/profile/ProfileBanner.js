@@ -5,9 +5,9 @@ import Icon from 'react-native-vector-icons/Entypo';
 import {Actions} from 'react-native-router-flux';
 import stylesP from './Styles';
 import imgPerfil from '../../assets/photo.jpg';
-import imgFondo from '../../assets/negro.jpg';
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
 import ProfileContent from './ProfileContent';
+//import imgFondo from '../../assets/negro.jpg';
 
 export default class ProfileBanner extends Component {
     state={
@@ -38,16 +38,16 @@ export default class ProfileBanner extends Component {
                 
                 <HeaderImageScrollView
                     maxHeight={120}
-                    headerImage={imgFondo}
+                    // headerImage={imgFondo}
                     renderFixedForeground={() => (
                         <View style={{
-                            flexDirection: 'row',
-                           
+                            flexDirection:'row',
+                            backgroundColor: "black"
                           }}>
                             <View >
                                 <Image source={imgPerfil} style={stylesP.thub}/> 
                             </View> 
-                            <View style={{flexDirection: 'column'}}>
+                            <View style={{flexDirection:'column'}}>
                                 <H1 style={stylesP.h1}>Nombre operador</H1>
                                 <Text style={stylesP.text}>correo_operdor@mucino.com</Text>
                                 <Text style={stylesP.texto}>más información del operador</Text>
