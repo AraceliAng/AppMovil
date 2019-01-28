@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, Image, StatusBar,AsyncStorage, } from 'react-native';
-import {Container, Content, Button, H1, Card, Left, Body, Title, ListItem,Header,Right} from 'native-base';
+import {View, Text, Image, StatusBar,Platform } from 'react-native';
+import { Content, Button, H1, Card, Left, Body, Title, ListItem,Header,Right} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import {Actions} from 'react-native-router-flux';
 import stylesP from './Styles';
 import imgPerfil from '../../assets/photo.jpg';
-import imgFondo from '../../assets/fondo.jpg';
+import imgFondo from '../../assets/negro.jpg';
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
 import ProfileContent from './ProfileContent';
 
@@ -31,29 +31,33 @@ export default class ProfileBanner extends Component {
                     <Body>
                         <Title style={{color:'#DCDCDC', fontSize: 20}}>Mi perfil</Title>
                     </Body>
-                    <Right>
-                        <Button transparent  onPress={this.logOut}>
-                            <Text style={{color:'#DCDCDC', fontSize: 17}}>Cerrar sesión</Text>
-                        </Button>
-                    </Right>
+                    <Right/>
                 </Header> 
             
 
                 
                 <HeaderImageScrollView
-                    maxHeight={200}
+                    maxHeight={120}
                     headerImage={imgFondo}
-                    // renderFixedForeground={() => (
-                    //     <View style={stylesP.view}>
-                    //         <View style={stylesP.view}>
-                    //             <H1 style={stylesP.h1}>Nombre operador</H1>
-                    //         </View>
-                    //     </View>
-                    // )}
+                    renderFixedForeground={() => (
+                        <View style={{
+                            flexDirection: 'row',
+                           
+                          }}>
+                            <View >
+                                <Image source={imgPerfil} style={stylesP.thub}/> 
+                            </View> 
+                            <View style={{flexDirection: 'column'}}>
+                                <H1 style={stylesP.h1}>Nombre operador</H1>
+                                <Text style={stylesP.text}>correo_operdor@mucino.com</Text>
+                                <Text style={stylesP.texto}>más información del operador</Text>
+                            </View>
+                        </View>
+                    )}
 
                 >
                     <Content>
-                        <StatusBar backgroundColor="black" barStyle="light-content" />
+                    <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
                         <ProfileContent {...user}/>
                     </Content>
                 </HeaderImageScrollView>

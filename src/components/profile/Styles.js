@@ -21,12 +21,12 @@ const stylesP = StyleSheet.create({
     },
     h1: {
         marginTop: 20,
-        color: 'black',
+        color: 'white',
         alignSelf: 'center'
     },
     text: {
         //marginLeft: 20,
-        color: 'black',
+        color: 'white',
         alignSelf: 'center'
     },
     img: {
@@ -53,13 +53,15 @@ const stylesP = StyleSheet.create({
         flexDirection: 'row'
     },
     texto: {
-        margin: 10
+        margin: 10,
+        color: 'white',
     },
     img2: {
         height: 200, width: '100%'
     },
     color: {
         color: '#87838B'
-    }
+    },
+
 });
 export default stylesP;

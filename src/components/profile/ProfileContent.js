@@ -2,11 +2,6 @@ import React, {Component} from 'react';
 import {View, Text, Image, StatusBar,AsyncStorage, } from 'react-native';
 import {Container, Content, Button, H1, Card, Left, Body, Title, ListItem,Header,Right} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
-import {Actions} from 'react-native-router-flux';
-import stylesP from './Styles';
-import imgPerfil from '../../assets/photo.jpg';
-import imgFondo from '../../assets/fondo.jpg';
-import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
 export default class ProfileContent extends Component {
 
     // logOut=()=>{
@@ -18,23 +13,14 @@ export default class ProfileContent extends Component {
     render() {
         return (
         <Content>
-            <View style={stylesP.view}>
-            <View style={stylesP.view}>
-                <Image source={imgPerfil} style={stylesP.thub}/>
-            </View>
-            <H1 style={stylesP.h1}>Nombre operador</H1>
-            <Text style={stylesP.text}>correo_operdor@mucino.com</Text>
-            <View>
-                <Text style={stylesP.texto}>más información del operador</Text>
-            </View>
-        </View>
+           
         <View>
             <Card>
                 <ListItem>
                     <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
                     <Body>
                     <Text style={{fontWeight: 'bold'}}>Proyecto</Text>
-                    <Text note>descripcion del proyecto</Text>
+                    <Text note>descripción del proyecto</Text>
                     </Body>
                 </ListItem>
             </Card>
@@ -44,7 +30,7 @@ export default class ProfileContent extends Component {
                     <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
                     <Body>
                     <Text style={{fontWeight: 'bold'}}>Lugar del proyecto</Text>
-                    <Text note>descripcion del lugar</Text>
+                    <Text note>descripción del lugar</Text>
                     </Body>
                 </ListItem>
             </Card>
@@ -54,7 +40,7 @@ export default class ProfileContent extends Component {
                     <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
                     <Body>
                     <Text style={{fontWeight: 'bold'}}>Lugar del proyecto2</Text>
-                    <Text note>descripcion del lugar</Text>
+                    <Text note>descripción del lugar</Text>
                     </Body>
                 </ListItem>
             </Card>
@@ -64,7 +50,7 @@ export default class ProfileContent extends Component {
                     <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
                     <Body>
                     <Text style={{fontWeight: 'bold'}}>Lugar del proyecto3</Text>
-                    <Text note>descripcion del lugar</Text>
+                    <Text note>descripción del lugar</Text>
                     </Body>
                 </ListItem>
             </Card>
@@ -74,7 +60,34 @@ export default class ProfileContent extends Component {
                     <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
                     <Body>
                     <Text style={{fontWeight: 'bold'}}>Lugar del proyecto4</Text>
-                    <Text note>descripcion del lugar</Text>
+                    <Text note>descripción del lugar</Text>
+                    </Body>
+                </ListItem>
+            </Card>
+            <Card>
+                <ListItem>
+                    <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
+                    <Body>
+                    <Text style={{fontWeight: 'bold'}}>Lugar del proyecto5</Text>
+                    <Text note>descripción del lugar</Text>
+                    </Body>
+                </ListItem>
+            </Card>
+            <Card>
+                <ListItem>
+                    <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
+                    <Body>
+                    <Text style={{fontWeight: 'bold'}}>Lugar del proyecto6</Text>
+                    <Text note>descripción del lugar</Text>
+                    </Body>
+                </ListItem>
+            </Card>
+            <Card>
+                <ListItem>
+                    <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
+                    <Body>
+                    <Text style={{fontWeight: 'bold'}}>Lugar del proyecto7</Text>
+                    <Text note>descripción del lugar</Text>
                     </Body>
                 </ListItem>
             </Card>
