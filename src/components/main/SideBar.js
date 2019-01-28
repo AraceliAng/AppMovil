@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View,Alert,AsyncStorage} from 'react-native';
 import { Container, Header, Content, ListItem, Text,Body,Title,Left,Thumbnail,Right,Button } from 'native-base';
 import logo from '../../assets/m.jpg';
-import { Actions } from 'react-native-router-flux';
+import { Actions, Drawer } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import stylesM from './Styles';
 
@@ -21,35 +21,15 @@ export default class SideBar extends Component {
 
         this.setState({profile, location:false, tickets:false, reports:false})
     }
-    noUser=()=>{
-        const message = 'Si quieres acceder a este apartado';
-        Alert.alert(
-            '¡Inicia sessión!',
-            message,
-            [
-                {
-                    text: 'Ir',
-                    onPress:Actions.login
-                },
-                {
-                    text: 'Cancelar',
-                    onPress: null
-                }
-            ]
-        )
-    }
+    
     location=()=>{
-       if (!this.props.logged ){
-            this.noUser()
-        }else{
+    //    if (!this.props.logged ){
+    //         this.noUser()
+    //     }else{
             let {location}=this.state;
             location =! location
 
-            this.setState({location, profile:false, tickets:false, reports:false})
-        }
-
-
-
+            this.setState({location,  profile:false, tickets:false, reports:false})
     }
     tickets=()=>{
         let {tickets}=this.state;
@@ -58,13 +38,13 @@ export default class SideBar extends Component {
         this.setState({tickets, profile:false, reports:false, location:false})
     }
     reports=()=>{
-       if (!this.props.logged ){
-            this.noUser()
-        }else{
+    //    if (!this.props.logged ){
+    //         this.noUser()
+    //     }else{
             let {reports}=this.state;
             reports=! reports
-            this.setState({reports, profile:false, tickets:false, location:false})
-        }
+            this.setState({reports,  profile:false, tickets:false, location:false})
+        
 
     }
 
@@ -77,7 +57,7 @@ export default class SideBar extends Component {
 
     render() {
 
-        let {profile, location, reports, tickets}=this.state;
+        let { profile, location, reports, tickets}=this.state;
 
         return (
             <Container style={{backgroundColor:"rgba(0,0,0,0.8)",flex:1}}>
@@ -86,12 +66,13 @@ export default class SideBar extends Component {
                         <Left style={{flex:1, paddingTop:10 }}>
                             <Thumbnail source={logo}/>
                         </Left>
-                        <Body style={{flex:1, alignItems:"center",justifyContent:'center' }} >
+                        <Body style={{flex:1, alignItems:"center",justifyContent:'center' }}>
                             <Text style={stylesM.title}>Transportes Muciño</Text>
                         </Body>
                         <Right/>
                     </Header>
                 <Content>
+
                         <ListItem icon onPress={this.profile}>
                             <Left>
                                 <Icon name="user" style={{color:'white'}}/>
@@ -100,7 +81,7 @@ export default class SideBar extends Component {
                                 <Text style={{color:'white'}}>Perfil</Text>
                             </Body>
                             <Right>
-                                <Icon name={profile? "chevrons-left":"chevrons-right"} />
+                                <Icon name={profile? "chevron-left":"chevron-right"} />
                             </Right>
                         </ListItem>
                         {profile ?
@@ -110,7 +91,8 @@ export default class SideBar extends Component {
                                 </ListItem>
 
                             </View>
-                            : null}
+                            : null
+                        }
 
                     <ListItem icon onPress={this.location}>
                         <Left>
@@ -120,7 +102,7 @@ export default class SideBar extends Component {
                         <Text style={{color:'white'}}>Checador</Text>
                         </Body>
                         <Right>
-                            <Icon name={location ? "chevrons-left":"chevrons-right"} />
+                            <Icon name={location? "chevron-left":"chevron-right"} />
                         </Right>
                     </ListItem>
                     {location ?
@@ -139,7 +121,7 @@ export default class SideBar extends Component {
                         <Text style={{color:'white'}}>tickets</Text>
                         </Body>
                         <Right>
-                            <Icon name={tickets ? "chevrons-left":"chevrons-right"} />
+                            <Icon name={tickets? "chevron-left":"chevron-right"} />
                         </Right>
                     </ListItem>
                     {tickets ?
@@ -148,7 +130,7 @@ export default class SideBar extends Component {
                                 <Text style={{color:'white'}}>Agregar fatcura o ticket</Text>
                             </ListItem>
                         </View>
-                    :null
+                        :null
                     }
 
                     <ListItem icon onPress={this.reports}>
@@ -159,13 +141,13 @@ export default class SideBar extends Component {
                         <Text style={{color:'white'}}>Reporte</Text>
                         </Body>
                         <Right>
-                            <Icon name={reports ? "chevrons-left":"chevrons-right"} />
+                            <Icon name={reports? "chevron-left":"chevron-right"} />
                         </Right>
                     </ListItem>
                     {reports ?
                         <View style={{backgroundColor:"#555555"}}>
 
-                            <ListItem onPress={()=>Actions.reports()} >
+                            <ListItem onPress={()=> Actions.reports()} >
                                 <Text style={{color:'white'}}>Ver reporte</Text>
                             </ListItem>
                         </View>

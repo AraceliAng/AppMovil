@@ -27,8 +27,6 @@ export default class MainPage extends Component<Props>{
         }
     }
    
-
-
     render(){
         closeDrawer = () => {
             this.drawer._root.close()
@@ -46,14 +44,15 @@ export default class MainPage extends Component<Props>{
                     content={<SideBar navigator={this.navigator} logged={logged}/>}
                     onClose={this.closeDrawer} >
 
-                    <Header transparent>
+                    <Header style={{ backgroundColor: '#000000' }}
+                    androidStatusBarColor="black">
                         <Left>
                             <Button transparent onPress={openDrawer}>
-                                <Icon name='menu' style={{color:'black'}} />
+                                <Icon name='menu' style={{marginRight: 30, fontSize: 30, color:'#DCDCDC'}} />
                             </Button>
                         </Left>
                         <Body>
-                            <Title style={{color:'black'}}>
+                            <Title style={{color:'#DCDCDC'}}>
                                 {logged ?
                                     user.username :
                                     "Bienvenido"
@@ -64,7 +63,7 @@ export default class MainPage extends Component<Props>{
                     </Header>
 
                     <Content style={{padding:20}}>
-                    <PageWelcome  open={this.openDetalle} />
+                    <PageWelcome  open={this.user} />
                     
                     </Content>
                 </Drawer>
