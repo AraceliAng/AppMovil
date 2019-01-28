@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Alert } from 'react-native';
+import { View, Image, Alert, Platform, StatusBar} from 'react-native';
 import { Header, Left, Button, Body,Right, Container, Title, Card, Text, ListItem} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import imgLocation from '../../assets/localizador.png';
@@ -10,18 +10,21 @@ export default class FormLocation extends Component{
         Actions.main()
     }
     
-    showAlert = () =>{
-        Alert.alert(
-           'Tu ubicación es: '
-        )
-     }
+    // showAlert = () =>{
+    //     Alert.alert(
+    //        'Tu ubicación es: '
+    //     )
+    //  }
 
     render(){
+
+        
         return(
            <Container>
                 <Header
-                    style={{ backgroundColor: '#000000' }}
+                    style={{ backgroundColor: '#000000'}}
                     androidStatusBarColor="black"
+                    
                 >
                     <Left>
                         <Button transparent onPress={()=>Actions.pop()}>
@@ -53,11 +56,10 @@ export default class FormLocation extends Component{
                     <Text>Entrar</Text>
                 </Button>
             </View>
-           
+            <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
           
         </Container>
         );
     }
 }
 
-//<Icon name='chevron-left' style={{color:'white'}} size={20} />
