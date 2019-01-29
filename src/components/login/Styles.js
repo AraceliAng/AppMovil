@@ -21,7 +21,6 @@ const styles3= StyleSheet.create({
     containerF:{
         padding:20,
         alignItems:'center',
-        
     },
     img: {
         flex: 1,
