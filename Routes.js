@@ -1,13 +1,14 @@
 import React from 'react';
 import {Root} from 'native-base';
 import { StyleSheet } from 'react-native';
-import {Router, Scene, Drawer} from 'react-native-router-flux';
+import {Router, Scene } from 'react-native-router-flux';
 import MainPage from './src/components/main/MainPage';
 import ComponentLogin from './src/components/login/ComponentLogin';
 import FormLocation from './src/components/location/FormLocation';
 import FormReports from './src/components/reports/FormReports';
 import FormTickets from './src/components/tickets/FormTickets';
 import ProfileBanner from './src/components/profile/ProfileBanner';
+
 const Routes = () => {
     return (
             
@@ -25,6 +26,7 @@ const Routes = () => {
                     <Scene key="location"   header={null} component={FormLocation} />
                     <Scene key="tickets"    header={null} component={FormTickets}/>
                     <Scene key="reports"    header={null} component={FormReports}/> 
+                    
 
                 </Scene>
                
