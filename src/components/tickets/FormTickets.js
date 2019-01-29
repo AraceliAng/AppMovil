@@ -7,8 +7,10 @@ import SideBar from '../main/SideBar';
 
 export default class FormTickets extends Component{
     state={
-        user:{},
-        logged:false,
+        descripcion:{
+            desc:""
+        },
+        
     }
     _retrieveData = async () => {
         try {
@@ -24,6 +26,13 @@ export default class FormTickets extends Component{
             
         }
     }
+
+    handleChange = (field, value) => {
+        let {descripcion} = this.state;
+        descripcion[field] = value;
+        this.setState({descripcion});
+        console.log("hola", descripcion)
+    };
    
     render(){
         closeDrawer = () => {
@@ -64,7 +73,7 @@ export default class FormTickets extends Component{
                             name='desc'
                             placeholder='Descripción'
                             style={styles6.textoF}
-                            onChangeText={Value=>onChange('desc',Value)}
+                            onChange={this.handleChange}
                         />
                     </Item>
                     <Button full bordered dark  style={{borderRadius:25, borderColor:'#5F0003'}}>
