@@ -3,7 +3,7 @@ import { View, AsyncStorage} from 'react-native';
 import { Container, Header, Content, ListItem, Text,Body, Left,Thumbnail,Right,Button } from 'native-base';
 import logo from '../../assets/m.jpg';
 import { Actions } from 'react-native-router-flux';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/EvilIcons';
 import stylesM from './Styles';
 
 
@@ -80,13 +80,13 @@ export default class SideBar extends Component {
                     <Content>
                          <ListItem icon onPress={this.main}>
                             <Left>
-                                <Icon name="user" style={{color:'white'}}/>
+                                <Icon name="heart" style={{color:'white', fontSize:30}}/>
                             </Left>
                             <Body>
                                 <Text style={{color:'white'}}>Bienvenido</Text>
                             </Body>
                             <Right>
-                                <Icon name={main? "chevron-left":"chevron-right"} />
+                                {/* <Icon name={main? "angle-double-up":"angle-double-down"} /> */}
                             </Right>
                         </ListItem>
                         {main ?
@@ -100,13 +100,13 @@ export default class SideBar extends Component {
                         }
                         <ListItem icon onPress={this.profile}>
                             <Left>
-                                <Icon name="user" style={{color:'white'}}/>
+                                <Icon name="user" style={{color:'white', fontSize:30}}/>
                             </Left>
                             <Body>
                                 <Text style={{color:'white'}}>Perfil</Text>
                             </Body>
                             <Right>
-                                <Icon name={profile? "chevron-left":"chevron-right"} />
+                                {/* <Icon name={profile? "angle-double-up":"angle-double-down"} /> */}
                             </Right>
                         </ListItem>
                         {profile ?
@@ -121,32 +121,32 @@ export default class SideBar extends Component {
 
                     <ListItem icon onPress={this.location}>
                         <Left>
-                            <Icon name="clock-o" style={{color:'white'}}/>
+                            <Icon name="location" style={{color:'white', fontSize:30}}/>
                         </Left>
                         <Body>
-                        <Text style={{color:'white'}}>Localizador</Text>
+                        <Text style={{color:'white'}}>Checador</Text>
                         </Body>
                         <Right>
-                            <Icon name={location? "chevron-left":"chevron-right"} />
+                            {/* <Icon name={location? "angle-double-up":"angle-double-down"} /> */}
                         </Right>
                     </ListItem>
                     {location ?
                         <View style={{backgroundColor:"#555555"}}>
                             <ListItem onPress={()=>Actions.location()} >
-                                <Text style={{color:'white'}}>Mi localización</Text>
+                                <Text style={{color:'white'}}>Ir a checador</Text>
                             </ListItem>
                         </View>
                         :null
                     }
                     <ListItem icon onPress={this.tickets}>
                         <Left>
-                            <Icon name="file-text" style={{color:'white'}}/>
+                            <Icon name="camera" style={{color:'white', fontSize:30}}/>
                         </Left>
                         <Body>
                         <Text style={{color:'white'}}>Tickets / facturas</Text>
                         </Body>
                         <Right>
-                            <Icon name={tickets? "chevron-left":"chevron-right"} />
+                            {/* <Icon name={tickets? "angle-double-up":"angle-double-down"} /> */}
                         </Right>
                     </ListItem>
                     {tickets ?
@@ -160,13 +160,13 @@ export default class SideBar extends Component {
 
                     <ListItem icon onPress={this.reports}>
                         <Left>
-                            <Icon name="list-alt" style={{color:'white'}}/>
+                            <Icon name="archive" style={{color:'white', fontSize:30}}/>
                         </Left>
                         <Body>
                         <Text style={{color:'white'}}>Reporte</Text>
                         </Body>
                         <Right>
-                            <Icon name={reports? "chevron-left":"chevron-right"} />
+                            {/* <Icon name={reports? "angle-double-up":"angle-double-down"} /> */}
                         </Right>
                     </ListItem>
                     {reports ?
