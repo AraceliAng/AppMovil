@@ -9,23 +9,24 @@ import stylesM from './Styles';
 
 export default class SideBar extends Component {
     state={
+        main:false,
         profile:false,
         location:false,
         tickets:false,
         reports:false,
     }
 
-    welcome=()=>{
-        let {welcome}=this.state;
-        welcome =! welcome
+    main=()=>{
+        let {main}=this.state;
+        main =! main
 
-        this.setState({welcome, profile:false, location:false, tickets:false, reports:false})
+        this.setState({main, profile:false, location:false, tickets:false, reports:false})
     }
     profile=()=>{
         let {profile}=this.state;
         profile =! profile
 
-        this.setState({profile, location:false, tickets:false, reports:false})
+        this.setState({profile, main:false, location:false, tickets:false, reports:false})
     }
     
     location=()=>{
@@ -35,13 +36,13 @@ export default class SideBar extends Component {
             let {location}=this.state;
             location =! location
 
-            this.setState({location,  profile:false, tickets:false, reports:false})
+            this.setState({location,  main:false, profile:false, tickets:false, reports:false})
     }
     tickets=()=>{
         let {tickets}=this.state;
         tickets =! tickets
 
-        this.setState({tickets, profile:false, reports:false, location:false})
+        this.setState({tickets, main:false, profile:false, reports:false, location:false})
     }
     reports=()=>{
     //    if (!this.props.logged ){
@@ -49,7 +50,7 @@ export default class SideBar extends Component {
     //     }else{
             let {reports}=this.state;
             reports=! reports
-            this.setState({reports,  profile:false, tickets:false, location:false})
+            this.setState({reports,  main:false, profile:false, tickets:false, location:false})
         
 
     }
@@ -63,11 +64,10 @@ export default class SideBar extends Component {
 
     render() {
 
-        let { profile, location, reports, tickets}=this.state;
+        let { main, profile, location, reports, tickets}=this.state;
 
         return (
             <Container style={{backgroundColor:"rgba(0,0,0,0.8)",flex:1}}>
-
                     <Header transparent style={{marginBottom:20}}>
                         <Left style={{flex:1, paddingTop:10 }}>
                             <Thumbnail source={logo}/>
@@ -77,8 +77,27 @@ export default class SideBar extends Component {
                         </Body>
                         <Right/>
                     </Header>
-                <Content>
+                    <Content>
+                         <ListItem icon onPress={this.main}>
+                            <Left>
+                                <Icon name="user" style={{color:'white'}}/>
+                            </Left>
+                            <Body>
+                                <Text style={{color:'white'}}>Bienvenido</Text>
+                            </Body>
+                            <Right>
+                                <Icon name={main? "chevron-left":"chevron-right"} />
+                            </Right>
+                        </ListItem>
+                        {main ?
+                            <View style={{backgroundColor:"#555555"}} >
+                                <ListItem onPress={()=>Actions.main()} >
+                                    <Text style={{color:'white'}}>Ir a principal</Text>
+                                </ListItem>
 
+                            </View>
+                            : null
+                        }
                         <ListItem icon onPress={this.profile}>
                             <Left>
                                 <Icon name="user" style={{color:'white'}}/>
@@ -93,7 +112,7 @@ export default class SideBar extends Component {
                         {profile ?
                             <View style={{backgroundColor:"#555555"}} >
                                 <ListItem onPress={()=>Actions.profile()} >
-                                    <Text style={{color:'white'}}>Ver Perfil</Text>
+                                    <Text style={{color:'white'}}>Mi perfil</Text>
                                 </ListItem>
 
                             </View>
@@ -105,7 +124,7 @@ export default class SideBar extends Component {
                             <Icon name="clock-o" style={{color:'white'}}/>
                         </Left>
                         <Body>
-                        <Text style={{color:'white'}}>Checador</Text>
+                        <Text style={{color:'white'}}>Localizador</Text>
                         </Body>
                         <Right>
                             <Icon name={location? "chevron-left":"chevron-right"} />
@@ -114,7 +133,7 @@ export default class SideBar extends Component {
                     {location ?
                         <View style={{backgroundColor:"#555555"}}>
                             <ListItem onPress={()=>Actions.location()} >
-                                <Text style={{color:'white'}}>ir a checador</Text>
+                                <Text style={{color:'white'}}>Mi localización</Text>
                             </ListItem>
                         </View>
                         :null
@@ -124,7 +143,7 @@ export default class SideBar extends Component {
                             <Icon name="file-text" style={{color:'white'}}/>
                         </Left>
                         <Body>
-                        <Text style={{color:'white'}}>tickets</Text>
+                        <Text style={{color:'white'}}>Tickets / facturas</Text>
                         </Body>
                         <Right>
                             <Icon name={tickets? "chevron-left":"chevron-right"} />
@@ -133,7 +152,7 @@ export default class SideBar extends Component {
                     {tickets ?
                         <View style={{backgroundColor:"#555555"}}>
                             <ListItem onPress={()=> Actions.tickets()}>
-                                <Text style={{color:'white'}}>Agregar fatcura o ticket</Text>
+                                <Text style={{color:'white'}}>Agregar tickets / facturas</Text>
                             </ListItem>
                         </View>
                         :null
@@ -154,7 +173,7 @@ export default class SideBar extends Component {
                         <View style={{backgroundColor:"#555555"}}>
 
                             <ListItem onPress={()=> Actions.reports()} >
-                                <Text style={{color:'white'}}>Ver reporte</Text>
+                                <Text style={{color:'white'}}> Generar reporte</Text>
                             </ListItem>
                         </View>
                         :null
