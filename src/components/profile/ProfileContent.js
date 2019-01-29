@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text } from 'react-native';
+import {View, Text, StatusBar, Platform } from 'react-native';
 import { Content, Card,Body, ListItem } from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 export default class ProfileContent extends Component {
@@ -13,7 +13,7 @@ export default class ProfileContent extends Component {
     render() {
         return (
         <Content>
-           
+           <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
         <View>
             <Card>
                 <ListItem>

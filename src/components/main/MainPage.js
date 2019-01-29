@@ -38,13 +38,11 @@ export default class MainPage extends Component<Props>{
         let {user,logged}=this.state
         return (
             <Container >
-
                 <Drawer
                     ref={(ref) => { this.drawer = ref; }}
                     content={<SideBar navigator={this.navigator} logged={logged}/>}
                     onClose={this.closeDrawer} >
-
-                    <Header style={{ backgroundColor: '#000000' }}
+                    <Header style={{ backgroundColor: '#000000', paddingTop:22, height:80}}
                     androidStatusBarColor="black">
                         <Left>
                             <Button transparent onPress={openDrawer}>
@@ -61,10 +59,8 @@ export default class MainPage extends Component<Props>{
                         </Body>
                         <Right/>
                     </Header>
-
                     <Content style={{padding:20}}>
                     <PageWelcome  open={this.user} />
-                    
                     </Content>
                 </Drawer>
                 <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />

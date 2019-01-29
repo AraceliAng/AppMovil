@@ -1,26 +1,60 @@
 import React, { Component } from 'react';
-import { View, KeyboardAvoidingView, Image, StatusBar} from 'react-native';
-import { Header, Text, Form, Item, Left, Input, Button, Body,Right, Container, Title} from 'native-base';
+import { View, KeyboardAvoidingView, Image, StatusBar,Platform} from 'react-native';
+import { Header, Text, Form, Item, Left, Input, Button, Body,Right, Container, Title, Drawer} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import styles6 from './Styles';
+import SideBar from '../main/SideBar';
+
 export default class FormTickets extends Component{
+    state={
+        user:{},
+        logged:false,
+    }
+    _retrieveData = async () => {
+        try {
+            const userLocal = await AsyncStorage.getItem('user');
+            let user = JSON.parse(userLocal)
+            if(user){
+                console.log("hay usuario",user)
+                this.setState({user:user,logged:true})
+            }else{
+                console.log("no hay nada")
+            }
+        } catch (error) {
+            
+        }
+    }
+   
     render(){
+        closeDrawer = () => {
+            this.drawer._root.close()
+        };
+        openDrawer = () => {
+            this.drawer._root.open()
+        };
+
+        let {user,logged}=this.state
         return(
-           <Container >
-            <Header
-                        style={{ backgroundColor: '#000000' }}
-                        androidStatusBarColor="black"
-            >
-                <Left>
-                    <Button transparent onPress={()=>Actions.pop()}>
-                        <Icon name='menu' style={{color:'white'}} size={20} />
-                    </Button>
-                </Left>
-                    <Body>
-                        <Title>Tickets o facturas</Title>
+            <Container >
+                <Drawer
+                    ref={(ref) => { this.drawer = ref; }}
+                    content={<SideBar navigator={this.navigator} logged={logged}/>}
+                    onClose={this.closeDrawer} >
+
+                    <Header style={{ backgroundColor: '#000000', paddingTop:22, height:80}}
+                    androidStatusBarColor="black">
+                        <Left>
+                            <Button transparent onPress={openDrawer}>
+                                <Icon name='menu' style={{marginRight: 30, fontSize: 30, color:'#DCDCDC'}} />
+                            </Button>
+                        </Left>
+                        <Body>
+                            <Title style={{color:'#DCDCDC'}}>
+                                {logged ? user.username : "Tickets o Facturas" }
+                            </Title>
                         </Body>
-                    <Right/>
-            </Header>
+                        <Right/>
+                    </Header>
             
           
                 <Form style={styles6.containerF}>
@@ -37,11 +71,9 @@ export default class FormTickets extends Component{
                         <Text>Tomar foto</Text>
                     </Button>
                 </Form>
-           
-            <StatusBar backgroundColor="black" barStyle="light-content" />
+                </Drawer>
+                <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
             </Container>
         );
     }
 }
-
-//<Icon name='chevron-left' style={{color:'white'}} size={20} />

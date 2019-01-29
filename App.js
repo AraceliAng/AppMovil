@@ -8,7 +8,7 @@
 
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import MainLocation from './src/components/location/MainLocation';
+import Routes from './Routes';
 
  
 
@@ -16,9 +16,7 @@ export default class App extends Component{
   render() {
     return (
       <View style={style1.container}>
-
-          <MainLocation/>
-   
+          <Routes/>
       </View>
     )
   }

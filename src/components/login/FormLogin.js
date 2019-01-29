@@ -9,7 +9,7 @@ export const FormLogin = ({login, onChange, email, password})=>(
     
     <KeyboardAvoidingView behavior="padding">
         <Header
-                    style={{ backgroundColor: '#000000' }}
+                    style={{ backgroundColor: '#000000'}}
                     androidStatusBarColor="black"
         ></Header>
         <View style={styles3.containerF}>
