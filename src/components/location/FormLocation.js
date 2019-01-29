@@ -4,6 +4,7 @@ import { Header, Left, Button, Body,Right, Container, Title, Card, Text, ListIte
 // import Icon from 'react-native-vector-icons/FontAwesome';
 import imgLocation from '../../assets/localizador.png';
 import style4 from './Styles';
+import {Actions} from "react-native-router-flux";
 import SideBar from '../main/SideBar';
 
 export default class FormLocation extends Component{
@@ -41,7 +42,7 @@ export default class FormLocation extends Component{
                     
                 >
                     <Left>
-                        <Button transparent onPress={openDrawer}>
+                        <Button transparent onPress={()=>Actions.profile()}>
                             <Icon name='menu' style={{marginRight: 30, fontSize: 30, color:'#DCDCDC'}} />
                         </Button>
                     </Left>
