@@ -8,12 +8,7 @@
 
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import FormLocation from './src/components/location/FormLocation';
-import Routes from './Routes';
-import { Drawer } from 'react-native-router-flux';
-import ComponentLogin from './src/components/login/ComponentLogin';
-import { FormLogin } from './src/components/login/FormLogin';
-import ProfileBanner from './src/components/profile/ProfileBanner';
+import MainLocation from './src/components/location/MainLocation';
 
  
 
@@ -22,7 +17,7 @@ export default class App extends Component{
     return (
       <View style={style1.container}>
 
-          <FormLocation/>
+          <MainLocation/>
    
       </View>
     )
