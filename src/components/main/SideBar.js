@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View,Alert,AsyncStorage} from 'react-native';
-import { Container, Header, Content, ListItem, Text,Body,Title,Left,Thumbnail,Right,Button } from 'native-base';
+import { View, AsyncStorage} from 'react-native';
+import { Container, Header, Content, ListItem, Text,Body, Left,Thumbnail,Right,Button } from 'native-base';
 import logo from '../../assets/m.jpg';
-import { Actions, Drawer } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import stylesM from './Styles';
 
@@ -15,6 +15,12 @@ export default class SideBar extends Component {
         reports:false,
     }
 
+    welcome=()=>{
+        let {welcome}=this.state;
+        welcome =! welcome
+
+        this.setState({welcome, profile:false, location:false, tickets:false, reports:false})
+    }
     profile=()=>{
         let {profile}=this.state;
         profile =! profile
