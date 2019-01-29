@@ -13,6 +13,8 @@ export default class FormLocation extends Component <Props>{
         user:{},
         logged:false,
     }
+
+
     _retrieveData = async () => {
         try {
             const userLocal = await AsyncStorage.getItem('user');
@@ -29,6 +31,7 @@ export default class FormLocation extends Component <Props>{
     }
    
     render(){
+
         closeDrawer = () => {
             this.drawer._root.close()
         };
@@ -37,6 +40,9 @@ export default class FormLocation extends Component <Props>{
         };
 
         let {user,logged}=this.state
+        
+        
+       
        return(
            <Container>
                    <Drawer
@@ -55,7 +61,7 @@ export default class FormLocation extends Component <Props>{
                             <Title style={{color:'#DCDCDC'}}>
                                 {logged ?
                                     user.username :
-                                    "Localizador"
+                                    "Checador"
                                 }
                             </Title>
                         </Body>
@@ -76,8 +82,17 @@ export default class FormLocation extends Component <Props>{
                         </Card>
                     </View>
                     <View style={style4.textos}>
-                        <Button full bordered dark onPress={this.showAlert} style={style4.boton}>
-                            <Text>Entrar</Text>
+                        <Button full bordered dark onPress={() => Alert.alert(
+                                'Tu ubicación es: ',
+                                'se ha guardado correctamente',
+                                [
+                                    {text: 'Ok', onPress: () => console.log('Ok')},
+                                ],
+                                { cancel: null }
+                            )} style={style4.boton}
+                        >
+                        
+                            <Text>Guardar</Text>
                         </Button>
                     </View>
                 </Drawer>
