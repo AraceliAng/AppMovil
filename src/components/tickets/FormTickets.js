@@ -2,16 +2,23 @@ import React, { Component } from 'react';
 import { View, KeyboardAvoidingView, Image, StatusBar,Platform} from 'react-native';
 import { Header, Text, Form, Item, Left, Input, Button, Body,Right, Container, Title, Drawer} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
+import ImagePicker from 'react-native-image-picker';
 import styles6 from './Styles';
 import SideBar from '../main/SideBar';
 
+const options={
+    title: 'my pic app',
+    takePhotoButtonTitle: 'Take photo with your camera',
+    chooseFromLibraryButtonTitle: 'Choose photo from library',
+  }
+
 export default class FormTickets extends Component{
-    state={
-        descripcion:{
-            desc:""
-        },
-        
-    }
+    // state={
+    //     descripcion:{
+    //         desc:""
+    //     },
+    // }
+
     _retrieveData = async () => {
         try {
             const userLocal = await AsyncStorage.getItem('user');
@@ -26,6 +33,38 @@ export default class FormTickets extends Component{
             
         }
     }
+// aquí empieza el codigo de foto e imagenes
+    constructor(props){
+        super(props);
+        this.state={
+            avatarSource: null,
+            pic:null,
+            descripcion:{
+                desc:""
+            },
+        }
+      }
+
+    myfun=()=>{
+      //alert('clicked');
+    
+      ImagePicker.showImagePicker(options, (response) => {
+        console.log('Response = ', response);
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+        } else if (response.error) {
+          console.log('Image Picker Error: ', response.error);
+        } else {
+          let source = { uri: response.uri };
+          // Tambien se puede poner asi: let source = { uri: 'data:image/jpeg;base64,' + response.data };
+          this.setState({
+            avatarSource: source,
+            pic:response.data
+          });
+        }
+      });
+    }
+//aquí termina la parte de fotos    
 
     handleChange = (field, value) => {
         let {descripcion} = this.state;
@@ -76,7 +115,9 @@ export default class FormTickets extends Component{
                             onChange={this.handleChange}
                         />
                     </Item>
-                    <Button full bordered dark  style={{borderRadius:25, borderColor:'#5F0003'}}>
+                    <Image source={this.state.avatarSource}
+                            style={{width:'100%',height:300,margin:10}}/>
+                    <Button full bordered dark  onPress={this.myfun} style={{borderRadius:25, borderColor:'#5F0003'}}>
                         <Text>Tomar foto</Text>
                     </Button>
                 </Form>
