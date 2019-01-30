@@ -41,7 +41,8 @@ export const FormLogin = ({login, onChange, email, password})=>(
                     disabled={email.length !== 0 && password.length !== 0 ? false:true}
                     full bordered dark onPress={login} style={{borderRadius:25, borderColor:'#5F0003'}}>
                     <Text>Entrar</Text>
-                </Button>
+                </Button> 
+                 
             </Form>
         </View>
         <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
