@@ -23,7 +23,6 @@ const style4 = StyleSheet.create({
         alignItems:'center'
     },
     boton: {
-        
         borderColor:'#5F0003',
         borderRadius:10,
         marginBottom:5

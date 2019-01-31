@@ -39,7 +39,7 @@ export const FormLogin = ({login, onChange, email, password})=>(
                 </Item>
                 <Button 
                     disabled={email.length !== 0 && password.length !== 0 ? false:true}
-                    full bordered dark onPress={login} style={{borderRadius:25, borderColor:'#5F0003'}}>
+                    full bordered dark onPress={login} style={styles3.boton}>
                     <Text>Entrar</Text>
                 </Button> 
                  

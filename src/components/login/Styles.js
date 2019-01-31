@@ -32,6 +32,11 @@ const styles3= StyleSheet.create({
     containerR:{
         padding:10,
     },
+    boton: {
+        borderColor:'#5F0003',
+        borderRadius:10,
+        marginBottom:5
+    },
     
 });
 

@@ -129,10 +129,12 @@ export default class FormTickets extends Component{
                                 </Body>     
                             </CardItem>
                         </Card>
-                        <Button full bordered dark   style={{borderRadius:25, borderColor:'#5F0003'}} onPress={() => alert("¿Se ha agregado ?")}>
-                            <Text>Guardar</Text> 
-                            {/* agregar una condicion con alerta */}
-                        </Button>
+                        <View style={styles6.containerR}>
+                            <Button full bordered dark   style={styles6.boton} onPress={() => alert("¿Se ha agregado ?")}>
+                                <Text>Guardar</Text> 
+                                {/* agregar una condicion con alerta */}
+                            </Button>
+                        </View>
                     </Content>
                 </Drawer>
                 <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" } />

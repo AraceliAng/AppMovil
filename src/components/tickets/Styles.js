@@ -20,14 +20,17 @@ const styles6= StyleSheet.create({
     containerF:{
         padding:20,
         alignItems:'center',
-       
-        
     },
-    
+    boton: {
+        borderColor:'#5F0003',
+        borderRadius:10,
+        marginBottom:5
+    },
     containerR:{
-        padding:10,
+        padding:40,
+        justifyContent:'center',
+        alignItems:'center',
     },
-    
 });
 
 
