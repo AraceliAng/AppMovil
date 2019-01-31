@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, KeyboardAvoidingView, Image, StatusBar,Platform} from 'react-native';
-import { Header, Text, Form, Item, Left, Input, Button, Body,Right, Container, Title, Drawer} from 'native-base';
+import { Header, Text, Form, Item, Left, Input, Button, Body,Right, Container, Title, Drawer, ListItem, Card, CardItem, Content} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import ImagePicker from 'react-native-image-picker';
 import styles6 from './Styles';
@@ -103,27 +103,40 @@ export default class FormTickets extends Component{
                         </Body>
                         <Right/>
                     </Header>
-            
-          
-                <Form style={styles6.containerF}>
-                    <Item regular style={styles6.inputs}>
-                        <Icon active name='edit' size={15} style={{marginLeft:12}} />
-                        <Input 
-                            name='desc'
-                            placeholder='Descripción'
-                            style={styles6.textoF}
-                            onChange={this.handleChange}
-                        />
-                    </Item>
-                    <Image source={this.state.avatarSource}
-                            style={{width:'100%',height:300,margin:10}}/>
-                    <Button full bordered dark  onPress={this.myfun} style={{borderRadius:25, borderColor:'#5F0003'}}>
-                        <Text>Tomar foto</Text>
-                    </Button>
-                </Form>
+
+                    <Content>
+                        <Card style={styles6.containerF}>
+                            <CardItem>
+                                <Left>
+                                    <Text>Precione el botón para elegir una opción</Text>
+                                    {/* <Text note>tomar una foto o elegir de la galería</Text> */}
+                                </Left>
+                                <Right>
+                                    <Button full bordered dark  onPress={this.myfun} style={{borderRadius:25, borderColor:'#5F0003'}}>
+                                        <Text>Presioname</Text>
+                                    </Button>
+                                </Right>
+                            </CardItem>
+                            <CardItem cardBody>
+                                <Image source={this.state.avatarSource} style={{height: 200, width: null, flex: 1}}/>
+                            </CardItem>
+                            <CardItem>
+                                <Body>
+                                    <Item regular style={styles6.inputs}>
+                                        <Icon active name='edit' size={15} style={{marginLeft:12}} />
+                                            <Input name='desc' placeholder='Descripción' style={styles6.textoF} onChange={this.handleChange} />
+                                    </Item>
+                                </Body>     
+                            </CardItem>
+                        </Card>
+                        <Button full bordered dark   style={{borderRadius:25, borderColor:'#5F0003'}} onPress={() => alert("¿Se ha agregado ?")}>
+                            <Text>Guardar</Text> 
+                            {/* agregar una condicion con alerta */}
+                        </Button>
+                    </Content>
                 </Drawer>
-                <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
+                <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" } />
             </Container>
-        );
+        )
     }
 }
