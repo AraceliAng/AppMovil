@@ -124,5 +124,3 @@ export default class FormReports extends Component{
         );
     }
 }
-
-//<Icon name='chevron-left' style={{color:'white'}} size={20} />
