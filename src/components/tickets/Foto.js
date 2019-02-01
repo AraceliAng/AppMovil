@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,TouchableOpacity,Button,Image} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
 const options={
@@ -7,32 +7,29 @@ const options={
   takePhotoButtonTitle: 'Take photo with your camera',
   chooseFromLibraryButtonTitle: 'Choose photo from library',
 }
+
 export default class Foto extends Component<Props> {
-    constructor(props){
+    
+  constructor(props){
         super(props);
         this.state={
             avatarSource: null,
             pic:null,
         }
       }
-myfun=()=>{
-  //alert('clicked');
 
+myfun=()=>{
   ImagePicker.showImagePicker(options, (response) => {
     console.log('Response = ', response);
-
     if (response.didCancel) {
       console.log('User cancelled image picker');
     }
     else if (response.error) {
       console.log('Image Picker Error: ', response.error);
-    }
-
-    else {
+    } else {
       let source = { uri: response.uri };
 
-      // You can also display the image using data:
-      // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+      // Tambien se puede hacer asi:  let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
       this.setState({
         avatarSource: source,
@@ -41,9 +38,11 @@ myfun=()=>{
     }
   });
 }
-  render() {
+  render(){
     return (
+
         <View style={styles.container}>
+        
             <Text style={styles.welcome}>Welcome to React Native!</Text>
                 <Image source={this.state.avatarSource}
                         style={{width:'100%',height:300,margin:10}}/>

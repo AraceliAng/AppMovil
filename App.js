@@ -23,11 +23,10 @@ export default class App extends Component{
 }
 
 const style1= StyleSheet.create({
-    container: {
-      flex: 5,
-      justifyContent: 'center',
-      //alignItems: 'center',
-      backgroundColor: '#ffffff',
-    },
+  container: {
+    flex: 5,
+    justifyContent: 'center',
+    backgroundColor: '#ffffff',
+  },
 
 });

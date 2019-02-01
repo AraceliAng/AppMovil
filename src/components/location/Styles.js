@@ -32,7 +32,6 @@ const style4 = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
     },
-
 });
 
 export default style4;

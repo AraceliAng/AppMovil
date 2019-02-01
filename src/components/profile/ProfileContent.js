@@ -2,18 +2,15 @@ import React, {Component} from 'react';
 import {View, Text, StatusBar, Platform } from 'react-native';
 import { Content, Card,Body, ListItem } from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
-export default class ProfileContent extends Component {
 
-    // logOut=()=>{
-    //     AsyncStorage.removeItem("user");
-    //     //AsyncStorage.removeItem("token");
-    //     Actions.login()
-    // }
+export default class ProfileContent extends Component {
 
     render() {
         return (
+
         <Content>
            <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
+        
         <View>
             <Card>
                 <ListItem>
@@ -64,6 +61,7 @@ export default class ProfileContent extends Component {
                     </Body>
                 </ListItem>
             </Card>
+            
             <Card>
                 <ListItem>
                     <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
@@ -73,6 +71,7 @@ export default class ProfileContent extends Component {
                     </Body>
                 </ListItem>
             </Card>
+            
             <Card>
                 <ListItem>
                     <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
@@ -82,6 +81,7 @@ export default class ProfileContent extends Component {
                     </Body>
                 </ListItem>
             </Card>
+            
             <Card>
                 <ListItem>
                     <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>

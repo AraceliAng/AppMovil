@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, Alert, Platform, StatusBar} from 'react-native';
-import { Header, Left, Button, Body,Right, Container, Title, Card, Text, ListItem, Icon, Drawer} from 'native-base';
-// import Icon from 'react-native-vector-icons/FontAwesome';
+import { Header, Left, Button, Body,Right, Container, Title, Card, Text, ListItem, Drawer} from 'native-base';
+import Icon from 'react-native-vector-icons/Entypo';
 import imgLocation from '../../assets/localizador.png';
 import SideBar from '../main/SideBar';
 import style4 from './Styles';
@@ -14,7 +14,6 @@ export default class FormLocation extends Component <Props>{
         logged:false,
     }
 
-
     _retrieveData = async () => {
         try {
             const userLocal = await AsyncStorage.getItem('user');
@@ -22,7 +21,7 @@ export default class FormLocation extends Component <Props>{
             if(user){
                 console.log("hay usuario",user)
                 this.setState({user:user,logged:true})
-            }else{
+            } else{
                 console.log("no hay nada")
             }
         } catch (error) {
@@ -31,32 +30,30 @@ export default class FormLocation extends Component <Props>{
     }
    
     render(){
-
         closeDrawer = () => {
             this.drawer._root.close()
         };
         openDrawer = () => {
             this.drawer._root.open()
         };
-
         let {user,logged}=this.state
         
-        
-       
        return(
            <Container>
-                   <Drawer
+                <Drawer
                     ref={(ref) => { this.drawer = ref; }}
                     content={<SideBar navigator={this.navigator} logged={logged}/>}
                     onClose={this.closeDrawer} >
 
                     <Header style={{ backgroundColor: '#000000',paddingTop:22, height:80}}
-                    androidStatusBarColor="black">
+                            androidStatusBarColor="black">
+                    
                         <Left>
                             <Button transparent onPress={openDrawer}>
-                                <Icon name='menu' style={{marginRight: 30, fontSize: 30, color:'#DCDCDC'}} />
+                                <Icon name='menu' style={{marginRight: 5, fontSize: 30, color:'#DCDCDC'}} />
                             </Button>
                         </Left>
+                    
                         <Body>
                             <Title style={{color:'#DCDCDC'}}>
                                 {logged ?
@@ -65,12 +62,15 @@ export default class FormLocation extends Component <Props>{
                                 }
                             </Title>
                         </Body>
+                       
                         <Right/>
+                    
                     </Header>
             
                     <View style={style4.view}>
                         <Image source={imgLocation} style={style4.thub}/>
                     </View>
+                    
                     <View>
                         <Card>
                             <ListItem>
@@ -81,22 +81,27 @@ export default class FormLocation extends Component <Props>{
                             </ListItem>
                         </Card>
                     </View>
+                    
                     <View style={style4.textos}>
                         <Button full bordered dark onPress={() => Alert.alert(
-                                'Tu ubicación es: ',
-                                'se ha guardado correctamente',
-                                [
-                                    {text: 'Ok', onPress: () => console.log('Ok')},
-                                ],
-                                { cancel: null }
-                            )} style={style4.boton}
+                                    'Tu ubicación es: ',
+                                    'se ha guardado correctamente',
+                                    [
+                                        {text: 'Ok', onPress: () => console.log('Ok')},
+                                    ],
+                                    { cancel: null }
+                                )} style={style4.boton}
                         >
                         
                             <Text>Guardar</Text>
                         </Button>
+                    
                     </View>
+                
                 </Drawer>
+                
                 <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
+            
             </Container>
         );
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, KeyboardAvoidingView, Image, StatusBar,Platform} from 'react-native';
-import { Header, Text, Form, Item, Left, Input, Button, Body,Right, Container, Title, Drawer, ListItem, Card, CardItem, Content} from 'native-base';
+import { View, Image, StatusBar,Platform} from 'react-native';
+import { Header, Text, Item, Left, Input, Button, Body,Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import ImagePicker from 'react-native-image-picker';
 import styles6 from './Styles';
@@ -23,14 +23,14 @@ export default class FormTickets extends Component{
         try {
             const userLocal = await AsyncStorage.getItem('user');
             let user = JSON.parse(userLocal)
+
             if(user){
                 console.log("hay usuario",user)
                 this.setState({user:user,logged:true})
-            }else{
+            } else{
                 console.log("no hay nada")
             }
         } catch (error) {
-            
         }
     }
 // aquí empieza el codigo de foto e imagenes
@@ -46,23 +46,21 @@ export default class FormTickets extends Component{
       }
 
     myfun=()=>{
-      //alert('clicked');
-    
-      ImagePicker.showImagePicker(options, (response) => {
-        console.log('Response = ', response);
-        if (response.didCancel) {
-          console.log('User cancelled image picker');
-        } else if (response.error) {
-          console.log('Image Picker Error: ', response.error);
-        } else {
-          let source = { uri: response.uri };
-          // Tambien se puede poner asi: let source = { uri: 'data:image/jpeg;base64,' + response.data };
-          this.setState({
-            avatarSource: source,
-            pic:response.data
-          });
-        }
-      });
+        ImagePicker.showImagePicker(options, (response) => {
+            console.log('Response = ', response);
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            } else if (response.error) {
+                console.log('Image Picker Error: ', response.error);
+            } else {
+                let source = { uri: response.uri };
+                // Tambien se puede poner asi: let source = { uri: 'data:image/jpeg;base64,' + response.data };
+                this.setState({
+                avatarSource: source,
+                pic:response.data
+                });
+            }
+        });
     }
 //aquí termina la parte de fotos    
 
@@ -74,38 +72,45 @@ export default class FormTickets extends Component{
     };
    
     render(){
+
         closeDrawer = () => {
             this.drawer._root.close()
         };
+
         openDrawer = () => {
             this.drawer._root.open()
         };
 
         let {user,logged}=this.state
         return(
+
             <Container >
+
                 <Drawer
                     ref={(ref) => { this.drawer = ref; }}
                     content={<SideBar navigator={this.navigator} logged={logged}/>}
                     onClose={this.closeDrawer} >
 
                     <Header style={{ backgroundColor: '#000000', paddingTop:22, height:80}}
-                    androidStatusBarColor="black">
+                            androidStatusBarColor="black">
                         <Left>
                             <Button transparent onPress={openDrawer}>
-                                <Icon name='menu' style={{marginRight: 30, fontSize: 30, color:'#DCDCDC'}} />
+                                <Icon name='menu' style={{marginRight: 5, fontSize: 30, color:'#DCDCDC'}} />
                             </Button>
                         </Left>
+
                         <Body>
                             <Title style={{color:'#DCDCDC'}}>
-                                {logged ? user.username : "Tickets o Facturas" }
+                                {logged ? user.username : "Tickets/Facturas" }
                             </Title>
                         </Body>
-                        <Right/>
+
                     </Header>
 
                     <Content>
+
                         <Card style={styles6.containerF}>
+
                             <CardItem>
                                 <Left>
                                     <Text>Precione el botón para elegir una opción</Text>
@@ -117,9 +122,11 @@ export default class FormTickets extends Component{
                                     </Button>
                                 </Right>
                             </CardItem>
+
                             <CardItem cardBody>
                                 <Image source={this.state.avatarSource} style={{height: 200, width: null, flex: 1}}/>
                             </CardItem>
+
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
@@ -128,16 +135,18 @@ export default class FormTickets extends Component{
                                     </Item>
                                 </Body>     
                             </CardItem>
+                                <Button full bordered dark   style={styles6.boton} onPress={() => alert("¿Se ha agregado ?")}>
+                                    <Text>Guardar</Text> 
+                                    {/* agregar una condicion con alerta */}
+                                </Button>
                         </Card>
-                        <View style={styles6.containerR}>
-                            <Button full bordered dark   style={styles6.boton} onPress={() => alert("¿Se ha agregado ?")}>
-                                <Text>Guardar</Text> 
-                                {/* agregar una condicion con alerta */}
-                            </Button>
-                        </View>
+
                     </Content>
+
                 </Drawer>
+
                 <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" } />
+                
             </Container>
         )
     }

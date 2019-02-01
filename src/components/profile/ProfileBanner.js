@@ -7,13 +7,13 @@ import stylesP from './Styles';
 import imgPerfil from '../../assets/photo.jpg';
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
 import ProfileContent from './ProfileContent';
-//import imgFondo from '../../assets/negro.jpg';
 
 export default class ProfileBanner extends Component {
     state={
         user:{},
         logged:false,
     }
+
     _retrieveData = async () => {
         try {
             const userLocal = await AsyncStorage.getItem('user');
@@ -21,13 +21,15 @@ export default class ProfileBanner extends Component {
             if(user){
                 console.log("hay usuario",user)
                 this.setState({user:user,logged:true})
-            }else{
+            } else{
                 console.log("no hay nada")
             }
         } catch (error) {   
         }
     }
+
     render() {
+
         closeDrawer = () => {
             this.drawer._root.close()
         };
@@ -39,6 +41,7 @@ export default class ProfileBanner extends Component {
         return (
 
             <View style={{flex:1}}>
+
                 <Drawer
                     ref={(ref) => { this.drawer = ref; }}
                     content={<SideBar navigator={this.navigator} logged={logged}/>}
@@ -46,11 +49,13 @@ export default class ProfileBanner extends Component {
 
                     <Header style={{ backgroundColor: '#000000',paddingTop:22, height:80 }} 
                             androidStatusBarColor="black">
+
                         <Left>
                             <Button transparent onPress={openDrawer}>
-                                <Icon name='menu' style={{marginRight: 30, fontSize: 30, color:'#DCDCDC'}} />
+                                <Icon name='menu' style={{marginRight: 5, fontSize: 30, color:'#DCDCDC'}} />
                             </Button>
                         </Left>
+
                         <Body>
                             <Title style={{color:'#DCDCDC'}}>
                                 {logged ?
@@ -59,17 +64,17 @@ export default class ProfileBanner extends Component {
                                 }
                             </Title>
                         </Body>
-                        <Right/>
+
+                        
                     </Header>
                
                 <HeaderImageScrollView
                     maxHeight={120}
-                    // headerImage={imgFondo}
                     renderFixedForeground={() => (
                         <View style={{
-                            flexDirection:'row',
-                            backgroundColor: "black"
-                          }}>
+                                flexDirection:'row',
+                                backgroundColor: "black"
+                            }}>
                             <View >
                                 <Image source={imgPerfil} style={stylesP.thub}/> 
                             </View> 
@@ -81,12 +86,17 @@ export default class ProfileBanner extends Component {
                         </View>
                     )}
                 >   
+
                     <Content>
                         <ProfileContent {...user}/>
                     </Content>
+
                 </HeaderImageScrollView>
-                  </Drawer>  
-                  <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />   
+
+                </Drawer>  
+
+                <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />  
+                 
             </View>
             
         );
