@@ -9,8 +9,8 @@ export const FormLogin = ({login, onChange, email, password})=>(
     
     <KeyboardAvoidingView behavior="padding">
         <Header
-                    style={{ backgroundColor: '#000000'}}
-                    androidStatusBarColor="black"
+            style={{ backgroundColor: '#000000'}}
+            androidStatusBarColor="black"
         ></Header>
         <View style={styles3.containerF}>
             <Image source={imgLogo} style={styles3.img} />

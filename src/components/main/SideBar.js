@@ -8,43 +8,6 @@ import stylesM from './Styles';
 
 
 export default class SideBar extends Component {
-    state={
-        main:false,
-        profile:false,
-        location:false,
-        tickets:false,
-        reports:false,
-    }
-
-    main=()=>{
-        let {main}=this.state;
-        main =! main
-        this.setState({main, profile:false, location:false, tickets:false, reports:false})
-    }
-
-    profile=()=>{
-        let {profile}=this.state;
-        profile =! profile
-        this.setState({profile, main:false, location:false, tickets:false, reports:false})
-    }
-    
-    location=()=>{
-        let {location}=this.state;
-        location =! location
-        this.setState({location,  main:false, profile:false, tickets:false, reports:false})
-    }
-
-    tickets=()=>{
-        let {tickets}=this.state;
-        tickets =! tickets
-        this.setState({tickets, main:false, profile:false, reports:false, location:false})
-    }
-
-    reports=()=>{
-        let {reports}=this.state;
-        reports=! reports
-        this.setState({reports,  main:false, profile:false, tickets:false, location:false})
-    }
 
     logOut=()=>{
         AsyncStorage.removeItem("user");
@@ -54,8 +17,6 @@ export default class SideBar extends Component {
 
     render() {
 
-        let { main, profile, location, reports, tickets}=this.state;
-
         return (
             <Container style={{backgroundColor:"rgba(0,0,0,0.8)",flex:1}}>
 
@@ -63,117 +24,67 @@ export default class SideBar extends Component {
                     <Left style={{flex:1, paddingTop:10 }}>
                         <Thumbnail source={logo}/>
                     </Left>
-
                     <Body style={{flex:1, alignItems:"center",justifyContent:'center' }}>
                         <Text style={stylesM.title}>Transportes Muciño</Text>
                     </Body>
-
                     <Right/>
-
                 </Header>
 
                 <Content>
-                    <ListItem icon onPress={this.main}>
+
+                    <ListItem icon onPress={()=>Actions.main()}>
                         <Left>
                             <Icon name="heart" style={{color:'white', fontSize:30}}/>
                         </Left>
 
                         <Body>
-                            <Text style={{color:'white'}}>Bienvenido</Text>
+                            <Text style={{color:'white'}}>Ir a vista principal</Text>
                         </Body>
                     </ListItem>
-                    {main ?
-                        <View style={{backgroundColor:"#555555"}} >
-                            <ListItem onPress={()=>Actions.main()} >
-                                <Text style={{color:'white'}}>Ir a principal</Text>
-                            </ListItem>
-                        </View>
-                        : null
-                    }
-                    <ListItem icon onPress={this.profile}>
+
+                    <ListItem icon onPress={()=>Actions.profile()}>
                         <Left>
                             <Icon name="user" style={{color:'white', fontSize:30}}/>
                         </Left>
-
                         <Body>
-
-                            <Text style={{color:'white'}}>Perfil</Text>
+                            <Text style={{color:'white'}}>Mi perfil</Text>
                         </Body>
                     </ListItem>
-                
-                    {profile ?
-                        <View style={{backgroundColor:"#555555"}} >
-                            <ListItem onPress={()=>Actions.profile()} >
-                                <Text style={{color:'white'}}>Mi perfil</Text>
-                            </ListItem>
-                        </View>
-                        : null
-                    }
 
-                    <ListItem icon onPress={this.location}>
+                    <ListItem icon onPress={()=>Actions.location()}>
                         <Left>
                             <Icon name="location" style={{color:'white', fontSize:30}}/>
                         </Left>
 
                         <Body>
-                            <Text style={{color:'white'}}>Checador</Text>
+                            <Text style={{color:'white'}}>Ir a checador</Text>
                         </Body>
-
                     </ListItem>
 
-                    {location ?
-                        <View style={{backgroundColor:"#555555"}}>
-                            <ListItem onPress={()=>Actions.location()} >
-                                <Text style={{color:'white'}}>Ir a checador</Text>
-                            </ListItem>
-                        </View>
-                        :null
-                    }
-
-                    <ListItem icon onPress={this.tickets}>
+                    <ListItem icon onPress={()=> Actions.tickets()}>
                         <Left>
                             <Icon name="camera" style={{color:'white', fontSize:30}}/>
                         </Left>
-
-                        <Body>
-                        <Text style={{color:'white'}}>Tickets / facturas</Text>
+                        <Body >
+                            <Text style={{color:'white'}}>Agregar tickets / facturas</Text>
                         </Body>
-
                     </ListItem>
 
-                    {tickets ?
-                        <View style={{backgroundColor:"#555555"}}>
-                            <ListItem onPress={()=> Actions.tickets()}>
-                                <Text style={{color:'white'}}>Agregar tickets / facturas</Text>
-                            </ListItem>
-                        </View>
-                        :null
-                    }
-
-                    <ListItem icon onPress={this.reports}>
+                    <ListItem icon onPress={()=> Actions.reports()} >
                         <Left>
                             <Icon name="archive" style={{color:'white', fontSize:30}}/>
                         </Left>
 
                         <Body>
-                            <Text style={{color:'white'}}>Reporte</Text>
+                            <Text style={{color:'white'}}> Generar reporte</Text>
                         </Body>
-
                     </ListItem>
 
-                    {reports ?
-                        <View style={{backgroundColor:"#555555"}}>
-                            <ListItem onPress={()=> Actions.reports()} >
-                                <Text style={{color:'white'}}> Generar reporte</Text>
-                            </ListItem>
-                        </View>
-                        :null
-                    }
                 </Content>
                 
                 <View style={stylesM.boton}>                                                                                                                                                                                                                                                                                                                                                                        
                         <Button full bordered light onPress={this.logOut}>
-                            <Text>CERRAR SESIÓN</Text>
+                            <Text>Cerrar Sesión</Text>
                         </Button>
                 </View>
 

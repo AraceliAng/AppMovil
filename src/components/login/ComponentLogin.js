@@ -14,11 +14,9 @@ export default class ComponentLogin extends Component{
             email:"",
             password:""
         },
-        
     }
     
     login=()=>{
-
         let {userLog}=this.state;
         // if(userLog.email == "ara@gmail.com" && userLog.password == "12345"){
         //     Actions.main()
@@ -59,10 +57,7 @@ export default class ComponentLogin extends Component{
                     })
                     console.log(error);
                 })
-        // }
-
-
-
+        //}
         // // console.log("Datos",this.state.login)
     }
     handleChange = (field, value) => {
