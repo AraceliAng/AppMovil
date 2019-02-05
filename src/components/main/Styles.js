@@ -21,7 +21,6 @@ const stylesM = StyleSheet.create({
         backgroundColor:'#ebecf2'
     },
     textito2:{
-
         color:'black'
     },
 })

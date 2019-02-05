@@ -7,12 +7,12 @@ import styles6 from './Styles';
 import SideBar from '../main/SideBar';
 
 const options={
-    title: 'my pic app',
-    takePhotoButtonTitle: 'Take photo with your camera',
-    chooseFromLibraryButtonTitle: 'Choose photo from library',
+    title: 'Elige una opción:',
+    takePhotoButtonTitle: 'Tomar  foto con su cámara',
+    chooseFromLibraryButtonTitle: 'Elegir una foto de su galería',
   }
 
-export default class FormTickets extends Component{
+export default class FormEvidence extends Component{
     // state={
     //     descripcion:{
     //         desc:""
@@ -101,7 +101,7 @@ export default class FormTickets extends Component{
 
                         <Body>
                             <Title style={{color:'#DCDCDC'}}>
-                                {logged ? user.username : "Tickets/Facturas" }
+                                {logged ? user.username : "Evidencias" }
                             </Title>
                         </Body>
 
@@ -113,7 +113,7 @@ export default class FormTickets extends Component{
 
                             <CardItem>
                                 <Left>
-                                    <Text>Precione el botón para elegir una opción</Text>
+                                    <Text>Presione el botón para elegir una opción</Text>
                                     {/* <Text note>tomar una foto o elegir de la galería</Text> */}
                                 </Left>
                                 <Right>

@@ -6,7 +6,6 @@ import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import stylesM from './Styles';
 
-
 export default class SideBar extends Component {
 
     logOut=()=>{
@@ -22,7 +21,7 @@ export default class SideBar extends Component {
 
                 <Header transparent style={{marginBottom:20}}>
                     <Left style={{flex:1, paddingTop:10 }}>
-                        <Thumbnail source={logo}/>
+                        <Thumbnail source={logo} style={stylesM.logo}/>
                     </Left>
                     <Body style={{flex:1, alignItems:"center",justifyContent:'center' }}>
                         <Text style={stylesM.title}>Transportes Muciño</Text>
@@ -61,12 +60,12 @@ export default class SideBar extends Component {
                         </Body>
                     </ListItem>
 
-                    <ListItem icon onPress={()=> Actions.tickets()}>
+                    <ListItem icon onPress={()=> Actions.evidence()}>
                         <Left>
                             <Icon name="camera" style={{color:'white', fontSize:30}}/>
                         </Left>
                         <Body >
-                            <Text style={{color:'white'}}>Agregar tickets / facturas</Text>
+                            <Text style={{color:'white'}}>Agregar Evidencia</Text>
                         </Body>
                     </ListItem>
 

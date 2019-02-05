@@ -18,7 +18,7 @@ export const PageWelcome =({ open })=> (
         </CardItem>
 
         <CardItem cardBody>
-            <Image source={fondo} style={{height: 200, width: null, flex: 1}}/>
+            <Image source={fondo}/>
         </CardItem>
 
         <CardItem>
