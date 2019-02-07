@@ -43,7 +43,7 @@ export default class ComponentLogin extends Component{
                     Actions.main()
                     Toast.show({
                         text: "Bienvenido!",
-                        position: "top",
+                        position: "bottom",
                         type: "success"
                     })
                     console.log("si se pudo",r)
