@@ -2,7 +2,7 @@ import * as firebase from 'firebase';
 
 class Helpers {
     static setUserDesc(userId, desc){
-        let userNamePath = "/user/" + userId + "/details/name"
+        let userNamePath = "/user/" + userId + "/details/desc"
         return firebase.database().ref(userNamePath).set(desc)
     }
 

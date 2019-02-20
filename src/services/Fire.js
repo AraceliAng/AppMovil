@@ -1,14 +1,16 @@
-
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
 
 // Initializacion de Firebase
-const firebaseConfig = {  
+const config = {
     apiKey: "AIzaSyD3zquo4QBuD0_y7fqYRihhZ7myxFqamxg",
     authDomain: "firecast-app-5c373.firebaseapp.com",
     databaseURL: "https://firecast-app-5c373.firebaseio.com",
+    projectId: "firecast-app-5c373",
     storageBucket: "firecast-app-5c373.appspot.com",
-    messagingSenderId: "858605576470",
+    messagingSenderId: "858605576470"
   };
-  const firebaseApp = firebase.initializeApp(firebaseConfig);
+  const fire = firebase.initializeApp(config);
+  export default fire;
+
   

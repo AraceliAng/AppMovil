@@ -5,9 +5,11 @@ import Icon from 'react-native-vector-icons/Entypo';
 import ImagePicker from 'react-native-image-picker';
 import styles6 from './Styles';
 import SideBar from '../main/SideBar';
-import Helpers from '../../../Helpers';
-import * as firebase from 'firebase';
+import Helpers from '../../services/Helpers';
+import firebase from '../../services/Fire';
 import RNFetchBlob from 'react-native-fetch-blob';
+import 'core-js/es6/symbol'; 
+import 'core-js/fn/symbol/iterator';
 
 const options={
     title: 'Elige una opción:',
@@ -20,7 +22,7 @@ const options={
   window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
   window.Blob = Blob
 
-  const uploadImage=(uri, imageName, mime='image/jpg')=>{
+  const uploadImage=(uri, imageName, mime='images/jpg')=>{
       return new Promise((resolve, reject)=>{
           const uploadUri = Platform.OS === 'ios' ? uri.replace('file://',''): uri
           let uploadBlob = null
