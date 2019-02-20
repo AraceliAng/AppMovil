@@ -31,13 +31,23 @@ export default class SideBar extends Component {
 
                 <Content>
 
-                    <ListItem icon onPress={()=>Actions.main()}>
+                    {/* <ListItem icon onPress={()=>Actions.main()}>
                         <Left>
                             <Icon name="heart" style={{color:'white', fontSize:30}}/>
                         </Left>
 
                         <Body>
                             <Text style={{color:'white'}}>Ir a vista principal</Text>
+                        </Body>
+                    </ListItem> */}
+
+                    <ListItem icon onPress={()=>Actions.location()}>
+                        <Left>
+                            <Icon name="location" style={{color:'white', fontSize:30}}/>
+                        </Left>
+
+                        <Body>
+                            <Text style={{color:'white'}}>Ir a checador</Text>
                         </Body>
                     </ListItem>
 
@@ -47,16 +57,6 @@ export default class SideBar extends Component {
                         </Left>
                         <Body>
                             <Text style={{color:'white'}}>Mi perfil</Text>
-                        </Body>
-                    </ListItem>
-
-                    <ListItem icon onPress={()=>Actions.location()}>
-                        <Left>
-                            <Icon name="location" style={{color:'white', fontSize:30}}/>
-                        </Left>
-
-                        <Body>
-                            <Text style={{color:'white'}}>Ir a checador</Text>
                         </Body>
                     </ListItem>
 
@@ -76,6 +76,16 @@ export default class SideBar extends Component {
 
                         <Body>
                             <Text style={{color:'white'}}> Generar reporte</Text>
+                        </Body>
+                    </ListItem>
+
+                    <ListItem icon onPress={()=> Actions.registry()} >
+                        <Left>
+                            <Icon name="pencil" style={{color:'white', fontSize:30}}/>
+                        </Left>
+
+                        <Body>
+                            <Text style={{color:'white'}}> Registro</Text>
                         </Body>
                     </ListItem>
 
