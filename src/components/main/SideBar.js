@@ -3,16 +3,30 @@ import { View, AsyncStorage} from 'react-native';
 import { Container, Header, Content, ListItem, Text,Body, Left,Thumbnail,Right,Button } from 'native-base';
 import logo from '../../assets/m.jpg';
 import { Actions } from 'react-native-router-flux';
+import firebase,{firebaseAuth} from '../firebase/Firebase';
+
 import Icon from 'react-native-vector-icons/EvilIcons';
 import stylesM from './Styles';
 
 export default class SideBar extends Component {
 
-    logOut=()=>{
-        AsyncStorage.removeItem("user");
-        AsyncStorage.removeItem("token");
-        Actions.login()
-    }
+    constructor(props) {
+        super(props);
+        this.salir = this.salir.bind(this);
+       }
+       // para el boton cerrar sesion del menu
+       salir() {
+        firebaseAuth.signOut()
+        .then(r=>Toast.show({text: 'Adios \(^_^)/', position: 'bottom', type: 'success'}))
+        Actions.login();
+      }
+            
+
+    // logOut=()=>{
+    //     AsyncStorage.removeItem("user");
+    //     AsyncStorage.removeItem("token");
+    //     Actions.login()
+    // }
 
     render() {
 
@@ -31,7 +45,7 @@ export default class SideBar extends Component {
 
                 <Content>
 
-                    <ListItem icon onPress={()=>Actions.main()}>
+                    {/* <ListItem icon onPress={()=>Actions.main()}>
                         <Left>
                             <Icon name="heart" style={{color:'white', fontSize:30}}/>
                         </Left>
@@ -39,7 +53,7 @@ export default class SideBar extends Component {
                         <Body>
                             <Text style={{color:'white'}}>Ir a vista principal</Text>
                         </Body>
-                    </ListItem>
+                    </ListItem> */}
 
                     <ListItem icon onPress={()=>Actions.profile()}>
                         <Left>
@@ -79,10 +93,20 @@ export default class SideBar extends Component {
                         </Body>
                     </ListItem>
 
+                    <ListItem icon onPress={()=> Actions.registry()} >
+                        <Left>
+                            <Icon name="pencil" style={{color:'white', fontSize:30}}/>
+                        </Left>
+
+                        <Body>
+                            <Text style={{color:'white'}}> Registro</Text>
+                        </Body>
+                    </ListItem>
+
                 </Content>
                 
                 <View style={stylesM.boton}>                                                                                                                                                                                                                                                                                                                                                                        
-                        <Button full bordered light onPress={this.logOut}>
+                        <Button full bordered light onPress={this.salir}>
                             <Text>Cerrar Sesión</Text>
                         </Button>
                 </View>
