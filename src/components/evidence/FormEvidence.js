@@ -5,11 +5,47 @@ import Icon from 'react-native-vector-icons/Entypo';
 import ImagePicker from 'react-native-image-picker';
 import styles6 from './Styles';
 import SideBar from '../main/SideBar';
+import Helpers from '../../services/Helpers';
+import firebase from '../../services/Fire';
+import RNFetchBlob from 'react-native-fetch-blob';
+import 'core-js/es6/symbol'; 
+import 'core-js/fn/symbol/iterator';
 
 const options={
     title: 'Elige una opción:',
     takePhotoButtonTitle: 'Tomar  foto con su cámara',
     chooseFromLibraryButtonTitle: 'Elegir una foto de su galería',
+  }
+
+  const Blob = RNFetchBlob.polyfill.Blob
+  const fs = RNFetchBlob.fs
+  window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
+  window.Blob = Blob
+
+  const uploadImage=(uri, imageName, mime='images/jpg')=>{
+      return new Promise((resolve, reject)=>{
+          const uploadUri = Platform.OS === 'ios' ? uri.replace('file://',''): uri
+          let uploadBlob = null
+          const imageRef = firebase.storage().ref('images').child(imageName)
+          fs.readFile(uploadUri,'base64')
+            .then((data)=>{
+                return Blob.build(data, {type: `${mime};BASE64`})
+            })
+            .then((blob) => {
+                uploadBlob = blob
+                return imageRef.put(blob, {contentType: mime})
+            })
+            .then(() =>{
+                uploadBlob.close()
+                return imageRef.getDownloadURL()
+            })
+            .then((url)=>{
+                resolve(url)
+            })
+            .catch((error)=>{
+                reject(error)
+            })
+      })
   }
 
 export default class FormEvidence extends Component{
@@ -37,13 +73,25 @@ export default class FormEvidence extends Component{
     constructor(props){
         super(props);
         this.state={
-            avatarSource: null,
-            pic:null,
+            avatarSource: "",
+            pic: "",
             descripcion:{
                 desc:""
             },
+            uid: ""
         }
       }
+
+     async componentWillMount(){
+        try{
+            let user = await firebase.auth().currentUser ;
+            this.setState({
+                uid: user.uid
+            })
+        }catch(error){
+            console.log(error)
+        }
+    }
 
     myfun=()=>{
         ImagePicker.showImagePicker(options, (response) => {
@@ -70,7 +118,29 @@ export default class FormEvidence extends Component{
         this.setState({descripcion});
         console.log("hola", descripcion)
     };
-   
+    
+    saveData(){
+        if(this.state.uid){
+            try{
+                this.state.desc ? Helpers.setUserDesc(this.state.uid, this.state.desc): null
+                this.state.imagePath ?
+                uploadImage(this.state.imagePath, `${this.state.uid}.jpg`)
+                    .then((responseData)=>{
+                        Helpers.setImageUrl(this.state.uid, responseData)
+                    })
+                    .done()
+                : null
+                
+                this.props.navigator.push({
+                    id:'App'
+                })
+            }catch(error){
+                console.log(error)
+            }
+        }f
+    }
+
+
     render(){
 
         closeDrawer = () => {

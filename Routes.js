@@ -24,11 +24,20 @@ const Routes = () => {
            
                     <Scene key="login"      header={null} component={ComponentLogin} initial/>
                     {/* <Scene key="main"       header={null} component={MainPage}/> */}
+<<<<<<< HEAD
                     <Scene key="profile"    header={null} component={ProfileBanner}/>
+=======
+>>>>>>> 971d573a34940b45f3caed8c5dc3cdbef89212a7
                     <Scene key="location"   header={null} component={FormLocation}/>
+                    <Scene key="profile"    header={null} component={ProfileBanner}/>
                     <Scene key="evidence"    header={null} component={FormEvidence}/>
                     <Scene key="reports"    header={null} component={FormReports}/> 
+<<<<<<< HEAD
                     <Scene key="registry"    header={null} component={Registry}/>
+=======
+                    <Scene key="registry"    header={null} component={Registry}/> 
+                    
+>>>>>>> 971d573a34940b45f3caed8c5dc3cdbef89212a7
 
                 </Scene>
                

@@ -55,15 +55,6 @@ export default class SideBar extends Component {
                         </Body>
                     </ListItem> */}
 
-                    <ListItem icon onPress={()=>Actions.profile()}>
-                        <Left>
-                            <Icon name="user" style={{color:'white', fontSize:30}}/>
-                        </Left>
-                        <Body>
-                            <Text style={{color:'white'}}>Mi perfil</Text>
-                        </Body>
-                    </ListItem>
-
                     <ListItem icon onPress={()=>Actions.location()}>
                         <Left>
                             <Icon name="location" style={{color:'white', fontSize:30}}/>
@@ -71,6 +62,15 @@ export default class SideBar extends Component {
 
                         <Body>
                             <Text style={{color:'white'}}>Ir a checador</Text>
+                        </Body>
+                    </ListItem>
+
+                    <ListItem icon onPress={()=>Actions.profile()}>
+                        <Left>
+                            <Icon name="user" style={{color:'white', fontSize:30}}/>
+                        </Left>
+                        <Body>
+                            <Text style={{color:'white'}}>Mi perfil</Text>
                         </Body>
                     </ListItem>
 
