@@ -8,11 +8,6 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-<<<<<<< HEAD
-    "firebase": "^5.8.4",
-=======
-    "firebase": "^5.8.3",
->>>>>>> 971d573a34940b45f3caed8c5dc3cdbef89212a7
     "native-base": "^2.10.0",
     "react": "16.6.3",
     "react-alert": "^4.0.4",
@@ -26,19 +21,11 @@
     "react-native-material-design": "^0.3.7",
     "react-native-off-canvas-menu": "^0.1.32",
     "react-native-router-flux": "^4.0.6",
-    "react-navigation": "^3.0.9"
+    "react-navigation": "^3.0.9",
+    "rn-fetch-blob": "^0.10.15"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
     "babel-jest": "23.6.0",
-<<<<<<< HEAD
-    "babel-loader": "^8.0.5",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-=======
-    "babel-polyfill": "^6.26.0",
->>>>>>> 971d573a34940b45f3caed8c5dc3cdbef89212a7
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.51.1",
     "react-test-renderer": "16.6.3"
