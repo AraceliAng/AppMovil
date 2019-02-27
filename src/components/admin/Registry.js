@@ -27,11 +27,7 @@ export default class Registry extends Component{
         } catch (error) {
         }
     }
-<<<<<<< HEAD
-
-=======
 // aquí empieza el codigo de foto e imagenes
->>>>>>> 971d573a34940b45f3caed8c5dc3cdbef89212a7
     constructor(props){
         super(props);
         this.state={
@@ -59,11 +55,9 @@ export default class Registry extends Component{
     };
    
     render(){
-<<<<<<< HEAD
 // para abrr  y cerrar el menú
-=======
 
->>>>>>> 971d573a34940b45f3caed8c5dc3cdbef89212a7
+
         closeDrawer = () => {
             this.drawer._root.close()
         };
@@ -71,11 +65,8 @@ export default class Registry extends Component{
         openDrawer = () => {
             this.drawer._root.open()
         };
-<<<<<<< HEAD
 // hasta aquí abrir y cerrar menú
-=======
 
->>>>>>> 971d573a34940b45f3caed8c5dc3cdbef89212a7
         let {user,logged}=this.state
         return(
 
