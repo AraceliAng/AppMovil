@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { KeyboardAvoidingView, touchableOpacity, StatusBar } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 import {Container, Content, Text, Toast, Input, Button, Item, Form, View, Spinner} from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import styles3 from './Styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FormLoginNuevo from './FormLoginNuevo';
-import firebase, {firebaseAuth} from '../firebase/Firebase';
+//import firebase, {firebaseAuth} from '../firebase/Firebase';
 
 export default class ComponentLoginNuevo extends Component {
 	state = {
@@ -44,28 +44,6 @@ export default class ComponentLoginNuevo extends Component {
     Toast.show({ text:'Bienvenido', position:'bottom', type:'success'})
     }
     
-    spinnerInicio() {
-        if (this.state.loading) {
-          return (
-            <Button rounded block style={styles3.botonSpiner}>
-              <Spinner color='white'/>
-            </Button>
-          );
-        }
-        return(
-          <Button bordered dark style={styles3.boton} onPress={this.onButtonPress.bind(this)} >
-            <Text>Iniciar</Text>
-          </Button>
-
-
-            // <Button 
-            //  disabled={correo.length !== 0 && password.length !== 0 ? false:true}
-            //  full bordered dark onPress={this.onButtonPress.bind(this)} style={styles3.boton}>
-            //  <Text>Entrar</Text>
-            //  </Button> 
-        );
-      }
-    
       handleChange = (field, value) => {
       const userLog = this.state.userLog;
       userLog[field] = value;
@@ -91,7 +69,6 @@ export default class ComponentLoginNuevo extends Component {
                                         value={this.state.correo}
                                         autoCapitalize='none'
                                         style={styles3.textoF}
-                                        onChangeText= {value=>onChange('correo',Value)}
                                         onChangeText={value=>this.handleChange("correo", value)}
 
                                     />
@@ -107,8 +84,12 @@ export default class ComponentLoginNuevo extends Component {
                                         onChangeText={value=>this.handleChange("password", value)}
                                     />
                                 </Item>
-                                
-                                {this.spinnerInicio()}
+
+                                <Button 
+                                    disabled={correo.length !== 0 && password.length !== 0 ? false:true}
+                                    full bordered dark onPress={this.onButtonPress.bind(this)} style={styles3.boton}>
+                                    <Text>Entrar</Text>
+                                </Button> 
                             </Form>
                         </View>
                     </KeyboardAvoidingView>
