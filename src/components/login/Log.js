@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {firebaseAuth} from '../firebase/Firebase';
+import {firebaseAuth} from '../../services/firebase/Firebase';
 import {Actions} from 'react-native-router-flux';
-import ComponentLoginNuevo from './ComponentLoginNuevo';
+import ComponentLogin from './ComponentLogin';
 import ProfileBanner from '../profile/ProfileBanner';
+
 
 class Log extends Component {
   state = {
@@ -25,7 +26,7 @@ class Log extends Component {
       case true:
         return <ProfileBanner/>;
       case false:
-        return <ComponentLoginNuevo/>;
+        return <ComponentLogin/>;
     }
   }
 

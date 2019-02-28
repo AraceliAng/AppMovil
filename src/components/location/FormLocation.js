@@ -7,8 +7,7 @@ import SideBar from '../main/SideBar';
 import style4 from './Styles';
 
 
-type Props={};
-export default class FormLocation extends Component <Props>{
+export default class FormLocation extends Component{
     state={
         user:{},
         logged:false,
@@ -100,7 +99,7 @@ export default class FormLocation extends Component <Props>{
                 
                 </Drawer>
                 
-                <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
+                <StatusBar backgroundColor="#DEDEDE" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
             
             </Container>
         );

@@ -133,7 +133,7 @@ export default class FormReports extends Component{
 
                </Drawer> 
 
-                <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
+                <StatusBar backgroundColor="#DEDEDE" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
                 
            </Container>
         );

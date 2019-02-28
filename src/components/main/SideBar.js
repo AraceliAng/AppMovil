@@ -3,7 +3,7 @@ import { View, AsyncStorage} from 'react-native';
 import { Container, Header, Content, ListItem, Text,Body, Left,Thumbnail,Right,Button, Toast } from 'native-base';
 import logo from '../../assets/m.jpg';
 import { Actions } from 'react-native-router-flux';
-import firebase,{firebaseAuth} from '../firebase/Firebase';
+import firebase,{firebaseAuth} from '../../services/firebase/Firebase';
 
 import Icon from 'react-native-vector-icons/EvilIcons';
 import stylesM from './Styles';

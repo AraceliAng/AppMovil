@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { View, Image, StatusBar,Platform} from 'react-native';
+import { Image, StatusBar,Platform} from 'react-native';
 import { Header, Text, Item, Left, Input, Button, Body,Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import ImagePicker from 'react-native-image-picker';
 import styles6 from './Styles';
 import SideBar from '../main/SideBar';
-import Helpers from '../../services/Helpers';
-import firebase from '../../services/Fire';
+import Helpers from '../../services/firebase/Helpers';
+import firebase from '../../services/firebase/Firebase';
 import RNFetchBlob from 'react-native-fetch-blob';
 import 'core-js/es6/symbol'; 
 import 'core-js/fn/symbol/iterator';
@@ -215,7 +215,7 @@ export default class FormEvidence extends Component{
 
                 </Drawer>
 
-                <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" } />
+                <StatusBar backgroundColor="#DEDEDE" barStyle={Platform.OS === 'android' ? "dark-content": "default" } />
                 
             </Container>
         )

@@ -1,87 +1,103 @@
-import React,{ Component } from 'react'
-import { View,TouchableOpacity, StatusBar} from 'react-native'
-import { Container, Content, Text, Toast} from 'native-base';
+import React, { Component } from 'react';
+import { KeyboardAvoidingView } from 'react-native';
+import {Container, Content, Text, Toast, Input, Button, Item, Form, View} from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import styles3 from './Styles';
-import { FormLogin } from './FormLogin';
-import {login} from '../../services/auth'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import FormLogin from './FormLogin';
+import firebase, {firebaseAuth} from '../../services/firebase/Firebase';
 
 
 
 export default class ComponentLogin extends Component{
-    state={
+    state = {
+		email:"",
+		contraseña:"",
+		credential:"",
+		loading:"",
+		loadingF:"",
+		error:"",
         userLog:{
-            email:"",
-            password:""
-        },
+            correo: "",
+            password: "",
+        }
+    }
+    constructor(props){
+        super(props);
+        this.onLoginSuccess = this.onLoginSuccess.bind(this);
+        this.onLoginFailed= this.onLoginFailed.bind(this);
+    }
+
+    onButtonPress(){
+        let{userLog} = this.state
+        this.setState({error:"", loading:true});
+        console.log('data',userLog)
+        firebase.auth().signInWithEmailAndPassword(userLog.correo,userLog.password)
+        .then(this.onLoginSuccess)
+        .catch(this.onLoginFailed);
+    }
+
+    onLoginFailed(){
+        this.setState({error: 'Autenticación Fallida', loading: false })
+        //Toast.show ({ text:error.response.data.msg, position: "top", type:"danger"})
+        Toast.show({text: 'Usuario/contraseña inválidos', position: 'bottom', buttonText: 'OK', type: 'danger'})
+    }
+    onLoginSuccess(r){
+        console.log('si se hizo',r);
+        this.setState({ email: "", contraseña: "", error:"", loading:false });
+        //Actions.Log();
+    Toast.show({ text:'Bienvenido', position:'bottom', type:'success'})
     }
     
-    login=()=>{
-        let {userLog}=this.state;
-        // if(userLog.email == "ara@gmail.com" && userLog.password == "12345"){
-        //     Actions.main()
-        // }else{
-        //     Toast.show({
-        //         text: 'Datos invalidos',
-        //         position:'bottom',
-        //     })
-        // }
-
-        console.log("userLog",userLog)
-        //Actions.main()
-        // let {userLog,buttonD} = this.state;
-        // if(userLog.email.length == 0){
-        //     Toast.show({
-        //         text: "Llena los campos!",
-        //         position: "top",
-        //         type: "danger"
-        //     })
-        //     console.log("no se puede",userLog)
-        // }else{
-            login(userLog)
-                .then(r => {
-                    Actions.main()
-                    Toast.show({
-                        text: "Bienvenido!",
-                        position: "bottom",
-                        type: "success"
-                    })
-                    console.log("si se pudo",r)
-                })
-                .catch(error => {
-                    console.log("error",error.response)
-                    Toast.show({
-                        text: error.response.data.msg,
-                        position: "top",
-                        type: "danger"
-                    })
-                    console.log(error);
-                })
-        //}
-        // // console.log("Datos",this.state.login)
-    }
-    handleChange = (field, value) => {
-        let {userLog} = this.state;
-        userLog[field] = value;
-        this.setState({userLog});
-        console.log("hols",userLog)
+      handleChange = (field, value) => {
+      const userLog = this.state.userLog;
+      userLog[field] = value;
+      this.setState({userLog});
     };
+    
 
-    render(){
-        let {userLog}=this.state
+	render(){
         return(
             <Container>
-                
                 <Content>
-                <FormLogin login={this.login} onChange={this.handleChange} {...userLog}/>
-                <View style={styles3.containerF}>
-                    {/*<TouchableOpacity onPress={()=>Actions.recover()} >
-                        <Text style={styles3.textoF}>¿Olvidaste tu contraseña?</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity >
-                        <Text style={styles3.textoF}>Registrate</Text>
-                    </TouchableOpacity>*/}
-                </View>
+                    <KeyboardAvoidingView behavior="padding">
+                    <FormLogin/>
+                        <View>
+                            <Form style={styles3.containerF}>
+                                <Item regular style={styles3.inputs}>
+                                    <Icon active name='user' size={15} style={{marginLeft:12}}/>
+                                    <Input 
+                                        name='correo'
+                                        placeholder='Correo Electrónico'
+                                        keyboardType='email-address'
+                                        returnKeyType='next'
+                                        value={this.state.correo}
+                                        autoCapitalize='none'
+                                        style={styles3.textoF}
+                                        onChangeText={value=>this.handleChange("correo", value)}
+
+                                    />
+                                </Item>
+                                <Item regular style={styles3.inputs}>
+                                    <Icon active name='unlock-alt' size={15} style={{marginLeft:12}}/>
+                                    <Input 
+                                        name='password'
+                                        placeholder='Contraseña'
+                                        secureTextEntry={true}
+                                        style={styles3.textoF}
+                                        value={this.state.password}
+                                        onChangeText={value=>this.handleChange("password", value)}
+                                    />
+                                </Item>
+
+                                <Button 
+                                    //disabled={correo.length !== 0 && password.length !== 0 ? false:true}
+                                    full bordered dark onPress={this.onButtonPress.bind(this)} style={styles3.boton}>
+                                    <Text>Entrar</Text>
+                                </Button> 
+                            </Form>
+                        </View>
+                    </KeyboardAvoidingView>
                 </Content>
             </Container>
         )

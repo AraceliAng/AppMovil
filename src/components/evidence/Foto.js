@@ -8,7 +8,7 @@ const options={
   chooseFromLibraryButtonTitle: 'Choose photo from library',
 }
 
-export default class Foto extends Component<Props> {
+export default class Foto extends Component {
     
   constructor(props){
         super(props);

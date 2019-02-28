@@ -2,14 +2,13 @@ import React from 'react';
 import {Root} from 'native-base';
 import { StyleSheet } from 'react-native';
 import {Router, Scene } from 'react-native-router-flux';
-//import MainPage from './src/components/main/MainPage';
 import ComponentLogin from './src/components/login/ComponentLogin';
 import FormLocation from './src/components/location/FormLocation';
 import FormReports from './src/components/reports/FormReports';
 import FormEvidence from './src/components/evidence/FormEvidence';
 import ProfileBanner from './src/components/profile/ProfileBanner';
 import Registry from './src/components/admin/Registry';
-import Log from './src/components/logueo/Log';
+import Log from './src/components/login/Log';
 
 
 const Routes = () => {
