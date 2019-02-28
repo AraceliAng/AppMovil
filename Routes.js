@@ -6,10 +6,9 @@ import ComponentLogin from './src/components/login/ComponentLogin';
 import FormLocation from './src/components/location/FormLocation';
 import FormReports from './src/components/reports/FormReports';
 import FormEvidence from './src/components/evidence/FormEvidence';
-import ProfileBanner from './src/components/profile/ProfileBanner';
+import ViewProfile from './src/components/profile/ViewProfile';
 import Registry from './src/components/admin/Registry';
 import Log from './src/components/login/Log';
-import ViewProfile from './src/components/profile/ViewProfile';
 
 
 const Routes = () => {

@@ -5,9 +5,9 @@ import SideBar from './SideBar';
 import { PageWelcome } from './PageWelcome';
 
 
-type Props={};
 
-export default class MainPage extends Component<Props>{
+
+export default class MainPage extends Component{
     state={
         user:{},
         logged:false,

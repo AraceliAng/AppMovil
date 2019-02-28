@@ -3,7 +3,7 @@ import {View, StyleSheet} from 'react-native';
 import {firebaseAuth} from '../../services/firebase/Firebase';
 import {Actions} from 'react-native-router-flux';
 import ComponentLogin from './ComponentLogin';
-import ProfileBanner from '../profile/ProfileBanner';
+import ViewProfile from '../profile/ViewProfile';
 
 
 class Log extends Component {
@@ -24,7 +24,7 @@ class Log extends Component {
   renderContent() {
     switch (this.state.loggedIn) {
       case true:
-        return <ProfileBanner/>;
+        return <ViewProfile/>;
       case false:
         return <ComponentLogin/>;
     }

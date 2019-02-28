@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text } from 'react-native';
 import { Content, Card,Body, ListItem } from 'native-base';
-import Icon from 'react-native-vector-icons/Entypo';
 
 
 export default class ContentP extends Component {

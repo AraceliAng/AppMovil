@@ -4,7 +4,6 @@ import { Container, Header, Content, ListItem, Text,Body, Left,Thumbnail,Right,B
 import logo from '../../assets/m.jpg';
 import { Actions } from 'react-native-router-flux';
 import firebase,{firebaseAuth} from '../../services/firebase/Firebase';
-
 import Icon from 'react-native-vector-icons/EvilIcons';
 import stylesM from './Styles';
 
@@ -17,7 +16,7 @@ export default class SideBar extends Component {
        // para el boton cerrar sesion del menu
        salir() {
         firebaseAuth.signOut()
-        .then(r=>Toast.show({text: 'Adios \(^_^)/', position: 'bottom', type: 'success'}))
+        .then(r=>Toast.show({text: 'Hasta pronto', position: 'bottom', type: 'success'}))
         Actions.login();
       }
             

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {StatusBar} from 'react-native'
-import { Container, Header,Button, Icon,  Body,Title,Right,Left ,Toast} from 'native-base';
+import {StatusBar, Platform} from 'react-native'
+import { Container, Content, Header,Button, SideBar, Body, Title, Left, View, Drawer} from 'native-base';
 import firebase,{firebaseAuth} from '../../services/firebase/Firebase';
+import Icon from 'react-native-vector-icons/Entypo';
 import Profile from './Profile';
 
 export default class ViewProfile extends Component {
@@ -10,6 +11,8 @@ export default class ViewProfile extends Component {
         this.state = {
             nuevo: '',
             lista: [],
+            user:{},
+            loggedIn:false,
         }
     }
 
@@ -37,11 +40,11 @@ export default class ViewProfile extends Component {
 
     componentDidMount() {
         var that = this;
-        firebaseAuth.onAuthStateChanged(function(user) {
-        console.log('user', user)
-        if (user) {
-            var uid = user.uid;
-            var key = user.key;
+        firebaseAuth.onAuthStateChanged(function(userLog) {
+        console.log('userLog', userLog)
+        if (userLog) {
+            var uid = userLog.uid;
+            var key = userLog.key;
         }
         console.log(uid)
         console.log(key)
@@ -50,14 +53,26 @@ export default class ViewProfile extends Component {
         });
     }
 
+    
+
   render() {
+   
+    closeDrawer = () => {
+        this.drawer._root.close()
+    };
+    openDrawer = () => {
+        this.drawer._root.open()
+    };
 
     return (
         <Container>
             <View style={{flex:1}}>
                 <Drawer
                     ref={(ref) => { this.drawer = ref; }}
-                    content={<SideBar navigator={this.navigator} logged={logged}/>}
+                    content={<SideBar navigator={this.navigator}
+                    //  loggedIn={loggedIn}
+                     
+                     />}
                     onClose={this.closeDrawer} >
 
                     <Header style={{ backgroundColor: '#000000',paddingTop:22, height:80 }} 
@@ -70,11 +85,11 @@ export default class ViewProfile extends Component {
                         </Left>
 
                         <Body>
-                            <Title style={{color:'#DCDCDC'}}>
-                                {logged ?
-                                    user.username :
+                            <Title style={{color:'#DCDCDC'}}> Mi perfil
+                                {/* {loggedIn ?
+                                    userLog.username :
                                     "Mi perfil"
-                                }
+                                } */}
                             </Title>
                         </Body>
                     </Header>
@@ -83,7 +98,8 @@ export default class ViewProfile extends Component {
                     </Content>
                         
                 </Drawer>  
-                <StatusBar backgroundColor="#DEDEDE" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  /> 
+                <StatusBar backgroundColor="#DEDEDE" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
+                
             </View>
         </Container>
 
