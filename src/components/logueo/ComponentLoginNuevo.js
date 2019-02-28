@@ -41,7 +41,7 @@ export default class ComponentLoginNuevo extends Component {
         //Toast.show ({ text:error.response.data.msg, position: "top", type:"danger"})
         Toast.show({text: 'Usuario/contraseña inválidos', position: 'bottom', buttonText: 'OK', type: 'danger'})
     }
-    nLoginSuccess(r){
+    onLoginSuccess(r){
         console.log('si se hizo',r);
         this.setState({ email: "", contraseña: "", error:"", loading:false });
         //Actions.Log();

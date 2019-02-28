@@ -27,10 +27,8 @@ const Routes = () => {
                     <Scene key="log"       header={null} component={Log} initial/>
                     <Scene key="profile"    header={null} component={ProfileBanner}/>
                     <Scene key="location"   header={null} component={FormLocation}/>
-                    <Scene key="profile"    header={null} component={ProfileBanner}/>
                     <Scene key="evidence"    header={null} component={FormEvidence}/>
                     <Scene key="reports"    header={null} component={FormReports}/> 
-                    <Scene key="registry"    header={null} component={Registry}/>
                     <Scene key="registry"    header={null} component={Registry}/> 
 
                 </Scene>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, AsyncStorage} from 'react-native';
-import { Container, Header, Content, ListItem, Text,Body, Left,Thumbnail,Right,Button } from 'native-base';
+import { Container, Header, Content, ListItem, Text,Body, Left,Thumbnail,Right,Button, Toast } from 'native-base';
 import logo from '../../assets/m.jpg';
 import { Actions } from 'react-native-router-flux';
 import firebase,{firebaseAuth} from '../firebase/Firebase';
@@ -55,6 +55,15 @@ export default class SideBar extends Component {
                         </Body>
                     </ListItem> */}
 
+                    <ListItem icon onPress={()=>Actions.profile()}>
+                        <Left>
+                            <Icon name="user" style={{color:'white', fontSize:30}}/>
+                        </Left>
+                        <Body>
+                            <Text style={{color:'white'}}>Mi perfil</Text>
+                        </Body>
+                    </ListItem>
+
                     <ListItem icon onPress={()=>Actions.location()}>
                         <Left>
                             <Icon name="location" style={{color:'white', fontSize:30}}/>
@@ -62,15 +71,6 @@ export default class SideBar extends Component {
 
                         <Body>
                             <Text style={{color:'white'}}>Ir a checador</Text>
-                        </Body>
-                    </ListItem>
-
-                    <ListItem icon onPress={()=>Actions.profile()}>
-                        <Left>
-                            <Icon name="user" style={{color:'white', fontSize:30}}/>
-                        </Left>
-                        <Body>
-                            <Text style={{color:'white'}}>Mi perfil</Text>
                         </Body>
                     </ListItem>
 

@@ -11,8 +11,8 @@ class Log extends Component {
   };
 
   componentWillMount() {
-    firebaseAuth.onAuthStateChanged((user) => {
-      if (user) {
+    firebaseAuth.onAuthStateChanged((userLog) => {
+      if (userLog) {
         this.setState({loggedIn: true});
       } else {
         this.setState({loggedIn: false});
