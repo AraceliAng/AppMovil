@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
-import {Container, Content, Text, Toast, Input, Button, Item, Form, View, Spinner} from 'native-base';
+import {Container, Content, Text, Toast, Input, Button, Item, Form, View} from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import styles3 from './Styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FormLoginNuevo from './FormLoginNuevo';
-//import firebase, {firebaseAuth} from '../firebase/Firebase';
+import firebase, {firebaseAuth} from '../firebase/Firebase';
+import Log from './Log';
 
 export default class ComponentLoginNuevo extends Component {
 	state = {
@@ -25,22 +26,25 @@ export default class ComponentLoginNuevo extends Component {
         this.onLoginSuccess = this.onLoginSuccess.bind(this);
         this.onLoginFailed= this.onLoginFailed.bind(this);
     }
+
     onButtonPress(){
-        const{correo, password} = this.state.userLog;
+        let{userLog} = this.state
         this.setState({error:"", loading:true});
-        firebaseAuth.signEmailAndPassword(correo, password)
+        console.log('data',userLog)
+        firebase.auth().signInWithEmailAndPassword(userLog.correo,userLog.password)
         .then(this.onLoginSuccess)
         .catch(this.onLoginFailed);
     }
+
     onLoginFailed(){
         this.setState({error: 'Autenticación Fallida', loading: false })
         //Toast.show ({ text:error.response.data.msg, position: "top", type:"danger"})
         Toast.show({text: 'Usuario/contraseña inválidos', position: 'bottom', buttonText: 'OK', type: 'danger'})
     }
-    onLoginSuccess(r){
-        console.log(r);
+    nLoginSuccess(r){
+        console.log('si se hizo',r);
         this.setState({ email: "", contraseña: "", error:"", loading:false });
-        Actions.Log();
+        //Actions.Log();
     Toast.show({ text:'Bienvenido', position:'bottom', type:'success'})
     }
     
@@ -86,7 +90,7 @@ export default class ComponentLoginNuevo extends Component {
                                 </Item>
 
                                 <Button 
-                                    disabled={correo.length !== 0 && password.length !== 0 ? false:true}
+                                    //disabled={correo.length !== 0 && password.length !== 0 ? false:true}
                                     full bordered dark onPress={this.onButtonPress.bind(this)} style={styles3.boton}>
                                     <Text>Entrar</Text>
                                 </Button> 

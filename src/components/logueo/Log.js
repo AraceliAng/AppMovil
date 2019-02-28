@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {firebaseAuth} from '../firebase/Firebase';
 import {Actions} from 'react-native-router-flux';
-
 import ComponentLoginNuevo from './ComponentLoginNuevo';
 import ProfileBanner from '../profile/ProfileBanner';
 

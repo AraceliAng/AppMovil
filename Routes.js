@@ -9,6 +9,7 @@ import FormReports from './src/components/reports/FormReports';
 import FormEvidence from './src/components/evidence/FormEvidence';
 import ProfileBanner from './src/components/profile/ProfileBanner';
 import Registry from './src/components/admin/Registry';
+import Log from './src/components/logueo/Log';
 
 
 const Routes = () => {
@@ -22,8 +23,8 @@ const Routes = () => {
     ese nombre nos servira para poder navegar con el metodo Actions.nombredevista()
 */ }
            
-                    <Scene key="login"      header={null} component={ComponentLogin} initial/>
-                    {/* <Scene key="main"       header={null} component={MainPage}/> */}
+                    <Scene key="login"      header={null} component={ComponentLogin} />
+                    <Scene key="log"       header={null} component={Log} initial/>
                     <Scene key="profile"    header={null} component={ProfileBanner}/>
                     <Scene key="location"   header={null} component={FormLocation}/>
                     <Scene key="profile"    header={null} component={ProfileBanner}/>
