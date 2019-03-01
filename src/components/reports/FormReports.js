@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import { View, Text, StatusBar,Platform } from 'react-native';
-import { Header, Left, Button, Body,Right, Container, Title, H1, ListItem, Card, Content, Drawer} from 'native-base';
+import { Header, Left, Button, Body, CardItem, Item, Input, Container, Title, H1, ListItem, Card, Content, Drawer} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import style5 from './Styles';
 import SideBar from '../main/SideBar';
 
 export default class FormReports extends Component{
-    state={
-        user:{},
-        logged:false,
+    constructor(props){
+        super(props);
+        this.state={
+            user:{},
+            logged:false,
+            datos:{
+                busca:"",       
+            }
+        }
     }
+  
+ 
 
     _retrieveData = async () => {
         try {
@@ -24,7 +32,15 @@ export default class FormReports extends Component{
         } catch (error) {  
         }
     }
-   
+    
+    handleChange = (field, value) => {
+        let {datos} = this.state;
+        datos[field] = value;
+        this.setState({datos});
+        console.log("hola", datos)
+    };
+
+
     render(){
 
         closeDrawer = () => {
@@ -67,6 +83,22 @@ export default class FormReports extends Component{
                 </Header>
 
                 <Content>
+                <Card style={style5.containerF}>
+                            <CardItem>
+                                    <Body>
+                                        <Item regular style={style5.inputs}>
+                                            {/* <Icon active name='buscar' size={15} style={{marginLeft:12}} /> */}
+                                                <Input name='buscar' placeholder='Buscar' style={style5.textoF} onChange={this.handleChange} />
+                                        </Item>
+                                    </Body>
+                            </CardItem>
+                            <CardItem>
+                                    <Button full bordered dark  onPress={this.myfun} style={{borderRadius:25, borderColor:'#5F0003'}}>
+                                        <Text>Buscar</Text>
+                                    </Button>       
+                                </CardItem>
+                        </Card>
+
 
                     <View style={style5.view}>
                         <H1 style={style5.h1}>Nombre operador</H1>

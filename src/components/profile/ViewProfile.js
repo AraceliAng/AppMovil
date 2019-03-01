@@ -11,8 +11,11 @@ export default class ViewProfile extends Component {
         this.state = {
             nuevo: '',
             lista: [],
-            user:{},
-            loggedIn:false,
+            state:{
+                userLog:{},
+                loggedIn:false,
+
+            }
         }
     }
 
@@ -23,12 +26,13 @@ export default class ViewProfile extends Component {
             var lista = [];
             snap.forEach((child) => {
                 lista.push({
-                    nombre: child.val().nombre,
-                    emailE: child.val().emailE,
-                    numEmpleado: child.val().numEmpleado,
-                    foto:child.val().foto,
-                    cargo: child.val().cargo,
                     area: child.val().area,
+                    cargo: child.val().cargo,
+                    contraseña: child.val().contraseña,
+                    emailE: child.val().emailE,
+                    foto:child.val().foto,
+                    nombre: child.val().nombre,
+                    numEmpleado: child.val().numEmpleado,
                     key: child.key
                 });
             });
@@ -63,7 +67,7 @@ export default class ViewProfile extends Component {
     openDrawer = () => {
         this.drawer._root.open()
     };
-
+    
     return (
         <Container>
             <View style={{flex:1}}>
@@ -94,7 +98,7 @@ export default class ViewProfile extends Component {
                         </Body>
                     </Header>
                     <Content>
-                        <Profile lista={this.state.lista} />
+                        <Profile  />
                     </Content>
                         
                 </Drawer>  

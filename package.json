@@ -24,6 +24,7 @@
     "react-native-off-canvas-menu": "^0.1.32",
     "react-native-router-flux": "^4.0.6",
     "react-navigation": "^3.0.9",
+    "react-navigation-drawer": "^1.2.0",
     "rn-fetch-blob": "^0.10.15"
   },
   "devDependencies": {

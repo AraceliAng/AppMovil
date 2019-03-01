@@ -11,8 +11,8 @@ export default class Profile extends Component{
              <ContentP key={item.id}
                             item={item}
 
-                          />
-                  )}
+          />)}
+          
         </View>
     );
   }
