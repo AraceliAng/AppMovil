@@ -70,7 +70,7 @@ export default class Registry extends Component{
        });
     
         this.setState({email: '', password: '', error: '', loading: false});
-        Toast.show({text: '¡Se ha registrado! ', position: 'bottom', type: 'success'})
+        Toast.show({text: 'Bienvenido', position: 'bottom', type: 'success'})
     
       }catch(error){
         console.log(error)
@@ -142,6 +142,41 @@ export default class Registry extends Component{
                                 <Right/>
                             </CardItem>
 
+                            <CardItem>
+                                <Body>
+                                    <Item regular style={styles6.inputs}>
+                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
+                                        <Input name='area' placeholder='Área' style={styles6.textoF} onChangeText={value=>this.handleChange('area',value)} />
+                                    </Item>
+                                </Body>     
+                            </CardItem>
+
+                            <CardItem>
+                                <Body>
+                                    <Item regular style={styles6.inputs}>
+                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
+                                        <Input name='cargo' placeholder='Cargo dentro de proyecto' style={styles6.textoF} onChangeText={value=>this.handleChange('cargo',value)} />
+                                    </Item>
+                                </Body>     
+                            </CardItem>
+
+                            <CardItem>
+                                <Body>
+                                    <Item regular style={styles6.inputs}>
+                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
+                                        <Input name='password' secureTextEntry={true} placeholder='Password' style={styles6.textoF} onChangeText={value=>this.handleChange('password',value)} />
+                                    </Item>
+                                </Body> 
+                            </CardItem>
+
+                            <CardItem>
+                                <Body>
+                                    <Item regular style={styles6.inputs}>
+                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
+                                        <Input name='email' keyboardType='email-address' placeholder='Correo electrónico' style={styles6.textoF} onChangeText={value=>this.handleChange('email',value)} />
+                                    </Item>
+                                </Body>     
+                            </CardItem>                       
 
                             <CardItem>
                                 <Body>
@@ -160,43 +195,7 @@ export default class Registry extends Component{
                                     </Item>
                                 </Body>     
                             </CardItem>
-
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
-                                        <Input name='area' placeholder='Área' style={styles6.textoF} onChangeText={value=>this.handleChange('area',value)} />
-                                    </Item>
-                                </Body>     
-                            </CardItem>
-
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
-                                        <Input name='cargo' placeholder='Cargo dentro de proyecto' style={styles6.textoF} onChangeText={value=>this.handleChange('cargo',value)} />
-                                    </Item>
-                                </Body>     
-                            </CardItem>
                             
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
-                                        <Input name='email' keyboardType='email-address' placeholder='Correo electrónico' style={styles6.textoF} onChangeText={value=>this.handleChange('email',value)} />
-                                    </Item>
-                                </Body>     
-                            </CardItem>   
-                            
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
-                                        <Input name='password' secureTextEntry={true} placeholder='Password' style={styles6.textoF} onChangeText={value=>this.handleChange('password',value)} />
-                                    </Item>
-                                </Body> 
-                            </CardItem>
-
                             <CardItem>
                                 <Button bordered dark style={styles6.boton} onPress={this.onButtonPress.bind(this)}>
                                     <Text>Registrar</Text>

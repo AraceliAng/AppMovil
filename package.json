@@ -22,6 +22,8 @@
     "react-native-image-picker": "^0.28.0",
     "react-native-material-design": "^0.3.7",
     "react-native-off-canvas-menu": "^0.1.32",
+    "react-native-picker-module": "^0.1.2",
+    "react-native-picker-select": "^6.0.0",
     "react-native-router-flux": "^4.0.6",
     "react-navigation": "^3.0.9",
     "react-navigation-drawer": "^1.2.0",

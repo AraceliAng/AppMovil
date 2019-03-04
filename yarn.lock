@@ -4071,7 +4071,7 @@ lodash.clone@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.clone/-/lodash.clone-4.5.0.tgz#195870450f5a13192478df4bc3d23d2dea1907b6"
   integrity sha1-GVhwRQ9aExkkeN9Lw9I9LeoZB7Y=
 
-lodash.isequal@4.5.0:
+lodash.isequal@4.5.0, lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
   integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
@@ -5594,6 +5594,18 @@ react-native-off-canvas-menu@^0.1.32:
   version "0.1.32"
   resolved "https://registry.yarnpkg.com/react-native-off-canvas-menu/-/react-native-off-canvas-menu-0.1.32.tgz#af1143f9b1a3dfa89b5465f2a054084cac144003"
   integrity sha512-oHYYqECXf63ndQsHItCRkiAGgPNoWPjiTQO+4t6zahDKEmS1KkwG5fhzucr8sSMthZx4qXo+qZyQwv90vMjCeQ==
+
+react-native-picker-module@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-picker-module/-/react-native-picker-module-0.1.2.tgz#24e7d7647cfda9b215d1b0013356f793a2c2e2a4"
+  integrity sha512-vWeePOcpmLkZBIC2uUgBJQnOurS4JoX0xt93Y7/UbRIsqdcFLCKMDiORonsnpG8AK3HztRkAQJH6pfte+Ne5EA==
+
+react-native-picker-select@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-picker-select/-/react-native-picker-select-6.0.0.tgz#81b51022c31f5340e60d0f32c16da22db0ea711b"
+  integrity sha512-qvc3eisFvm6ZFZEZz3/by+yaAdWhlvWr/TKC19KZr27JZWm+TCOyo0647COCYs2zpO9LjANkSA3uhkuiinpqvQ==
+  dependencies:
+    lodash.isequal "^4.5.0"
 
 react-native-router-flux@^4.0.6:
   version "4.0.6"
