@@ -4,15 +4,15 @@ import { Toast, Header, Text, Item, Left, Input, Button, Body,Right, Container, 
 import Icon from 'react-native-vector-icons/Entypo';
 import styles6 from './Styles';
 import SideBar from '../main/SideBar';
-import firebase, {firebaseAuth} from '../../services/firebase/Firebase';
+import firebase from '../../services/firebase/Firebase';
 import {Actions} from 'react-native-router-flux';
 
 export default class Registry extends Component{
 	state={
         area:'',
         cargo:'',
-        contraseña:'',
-        emailE:'',
+        password:'',
+        email:'',
         nombre: '',
 	    numEmpleado:'',
 	    loading: false,
@@ -21,24 +21,24 @@ export default class Registry extends Component{
         vehiculoAsig:'',
         diasEstimados:'',
         destino:'',
+        data:{}
     };
     
 
     constructor(props) {
         super(props);
-        this.onLoginSuccess = this.onLoginSuccess.bind(this);
-        this.onLoginFailed = this.onLoginFailed.bind(this);
     }
 
 
     onButtonPress(){
-        const{ area, cargo, contraseña, emailE, nombre,  numEmpleado }= this.state;
+        const{ area, cargo, password, email, nombre,  numEmpleado, data }= this.state;
         //   nomProyecto, vehiculoAsig, diasEstimados, destino
         //this.setState({error: '', loading:true});
-        if ( area != null && cargo != null && contraseña != null  && emailE != null && nombre != null  && numEmpleado != null  /**  && nomProyecto != null && vehiculoAsig != null && diasEstimados != null && destino != null  */  ) {
-            console.log(this.state.contraseña)
-            console.log(this.state.emailE)
-            firebaseAuth.createUserWithEmailAndPassword(emailE, contraseña).then(this.onLoginSuccess).catch(this.onLoginFailed);
+        if(Object.keys(data).length >= 6){
+        // if ( area != null && cargo != null && password != null  && email != null && nombre != null  && numEmpleado != null  /**  && nomProyecto != null && vehiculoAsig != null && diasEstimados != null && destino != null  */  ) {
+            console.log(this.state.password)
+            console.log(this.state.email)
+            firebase.auth().createUserWithEmailAndPassword(email, password).then(r=>this.onSignupSuccess(r)).catch(e=>this.onSignupFailed(e));
         }
         else {
             Toast.show({ 
@@ -49,29 +49,49 @@ export default class Registry extends Component{
             })
         }
     }
-    onLoginFailed() {
+    onSignupFailed=(e)=> {
+        console.log('el Error: ',e)
         this.setState({error: 'Autenticación Fallida', loading:false});
-        Toast.show({ text: 'Verifique los campos',position: 'bottom', buttonText: 'OK', type: 'danger'})
+        Toast.show({ text: 'Error al ingresar los datos',position: 'bottom', buttonText: 'OK', type: 'danger'})
     }
 
-    onLoginSuccess(userLog) {
-        var uid = userLog.uid;
-        console.log(userLog)
+    onSignupSuccess=(userLog)=> {
+        var uid = userLog.user.uid;
+        let{data}=this.state
+        console.log('------------------------------------',userLog)
       try{
-        firebase.database().ref('/empleado/' + uid +"/").set({
-            area: this.state.area,
-            cargo: this.state.cargo,
-            contraseña: this.state.contraseña,
-            emailE: this.state.emailE,
-            nombre: this.state.nombre,
-            numEmpleado: this.state.numEmpleado,
+        firebase.database().ref('empleado/' + uid +'/').set({
+            area: data.area,
+            cargo: data.cargo,
+            password: data.password,
+            email: data.email,
+            nombre: data.nombre,
+            numEmpleado: data.numEmpleado
        });
-        this.setState({emailE: '', contraseña: '', error: '', loading: false});
-        Toast.show({text: 'Bienvenido', position: 'bottom', duration: 3000, type: 'success'})
+    
+        this.setState({email: '', password: '', error: '', loading: false});
+        Toast.show({text: '¡Se ha registrado! ', position: 'bottom', type: 'success'})
+    
       }catch(error){
         console.log(error)
       }
   
+    }
+    handleChange=(field,value)=>{
+        console.log('Antes',field,value)
+        let {data,email,password} = this.state
+        if(field === 'email'){
+            email = value
+            this.setState({email})
+        }
+        if(field === 'password'){
+            password = value
+            this.setState({password})
+        }
+        data[field]=value
+        this.setState({data})
+        console.log('lo que escribo',data)
+
     }
 
     render(){
@@ -122,11 +142,12 @@ export default class Registry extends Component{
                                 <Right/>
                             </CardItem>
 
+
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
                                         {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
-                                        <Input name='area' placeholder='Área' style={styles6.textoF} onChange={this.handleChange} />
+                                        <Input name='nombre' placeholder='Nombre completo' style={styles6.textoF} onChangeText={value=>this.handleChange('nombre',value)} />
                                     </Item>
                                 </Body>     
                             </CardItem>
@@ -135,7 +156,7 @@ export default class Registry extends Component{
                                 <Body>
                                     <Item regular style={styles6.inputs}>
                                         {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
-                                        <Input name='cargo' placeholder='Cargo dentro de proyecto' style={styles6.textoF} onChange={this.handleChange} />
+                                        <Input name='numEmpleado' placeholder='Número de empleado' style={styles6.textoF} onChangeText={value=>this.handleChange('numEmpleado',value)} />
                                     </Item>
                                 </Body>     
                             </CardItem>
@@ -144,25 +165,7 @@ export default class Registry extends Component{
                                 <Body>
                                     <Item regular style={styles6.inputs}>
                                         {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
-                                        <Input name='contraseña' placeholder='Password' style={styles6.textoF} onChange={this.handleChange} />
-                                    </Item>
-                                </Body> 
-                            </CardItem>
-
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
-                                        <Input name='emailE' placeholder='Correo electrónico' style={styles6.textoF} onChange={this.handleChange} />
-                                    </Item>
-                                </Body>     
-                            </CardItem>                       
-
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
-                                        <Input name='nombre' placeholder='Nombre completo' style={styles6.textoF} onChange={this.handleChange} />
+                                        <Input name='area' placeholder='Área' style={styles6.textoF} onChangeText={value=>this.handleChange('area',value)} />
                                     </Item>
                                 </Body>     
                             </CardItem>
@@ -171,11 +174,29 @@ export default class Registry extends Component{
                                 <Body>
                                     <Item regular style={styles6.inputs}>
                                         {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
-                                        <Input name='numEmpleado' placeholder='Número de empleado' style={styles6.textoF} onChange={this.handleChange} />
+                                        <Input name='cargo' placeholder='Cargo dentro de proyecto' style={styles6.textoF} onChangeText={value=>this.handleChange('cargo',value)} />
                                     </Item>
                                 </Body>     
                             </CardItem>
                             
+                            <CardItem>
+                                <Body>
+                                    <Item regular style={styles6.inputs}>
+                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
+                                        <Input name='email' keyboardType='email-address' placeholder='Correo electrónico' style={styles6.textoF} onChangeText={value=>this.handleChange('email',value)} />
+                                    </Item>
+                                </Body>     
+                            </CardItem>   
+                            
+                            <CardItem>
+                                <Body>
+                                    <Item regular style={styles6.inputs}>
+                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
+                                        <Input name='password' secureTextEntry={true} placeholder='Password' style={styles6.textoF} onChangeText={value=>this.handleChange('password',value)} />
+                                    </Item>
+                                </Body> 
+                            </CardItem>
+
                             <CardItem>
                                 <Button bordered dark style={styles6.boton} onPress={this.onButtonPress.bind(this)}>
                                     <Text>Registrar</Text>
