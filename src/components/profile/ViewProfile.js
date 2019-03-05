@@ -4,6 +4,7 @@ import { Container, Content, Header,Button, SideBar, Body, Title, Left, View, Dr
 import firebase,{firebaseAuth} from '../../services/firebase/Firebase';
 import Icon from 'react-native-vector-icons/Entypo';
 import Profile from './Profile';
+import ContentP from './ContentP';
 
 export default class ViewProfile extends Component {
     constructor(props) {
@@ -26,13 +27,12 @@ export default class ViewProfile extends Component {
             var lista = [];
             snap.forEach((child) => {
                 lista.push({
-                    area: child.val().area,
-                    cargo: child.val().cargo,
-                    contraseña: child.val().contraseña,
-                    emailE: child.val().emailE,
-                    foto:child.val().foto,
                     nombre: child.val().nombre,
                     numEmpleado: child.val().numEmpleado,
+                    area: child.val().area,
+                    cargo: child.val().cargo,
+                    email: child.val().email,
+                    password: child.val().password,
                     key: child.key
                 });
             });
@@ -52,7 +52,7 @@ export default class ViewProfile extends Component {
         }
         console.log(uid)
         console.log(key)
-        const itemsRef = firebase.database().ref('empleado/' + uid + '/');
+        const itemsRef = firebase.database().ref('/empleado/' + uid + '/');
         that.listenForItems(itemsRef);
         });
     }
@@ -89,7 +89,7 @@ export default class ViewProfile extends Component {
                         </Left>
 
                         <Body>
-                            <Title style={{color:'#DCDCDC'}}> Mi perfil
+                            <Title style={{color:'#DCDCDC'}}> 
                                 {/* {loggedIn ?
                                     userLog.username :
                                     "Mi perfil"
@@ -98,7 +98,7 @@ export default class ViewProfile extends Component {
                         </Body>
                     </Header>
                     <Content>
-                        <Profile  />
+                        <ContentP />
                     </Content>
                         
                 </Drawer>  

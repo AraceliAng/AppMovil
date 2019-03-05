@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StatusBar,Platform} from 'react-native';
-import { Toast, Header, Text, Item, Left, Input, Button, Body,Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
+import { StatusBar,Platform } from 'react-native';
+import { Toast, Header, Text, Item, Left, Input, Button, Body,Show, Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import styles6 from './Styles';
 import SideBar from '../main/SideBar';
 import firebase from '../../services/firebase/Firebase';
+import ReactNativePickerModule from 'react-native-picker-module'
 import {Actions} from 'react-native-router-flux';
 
 export default class Registry extends Component{
@@ -21,8 +22,15 @@ export default class Registry extends Component{
         vehiculoAsig:'',
         diasEstimados:'',
         destino:'',
+        // selectedValue: null,
+        //     cargo: [
+        //         "Lider de proyecto",
+        //         "Ayudante",
+        //         "Segundo al mando",
+        //     ],
         data:{}
     };
+    
     
 
     constructor(props) {
@@ -31,7 +39,7 @@ export default class Registry extends Component{
 
 
     onButtonPress(){
-        const{ area, cargo, password, email, nombre,  numEmpleado, data }= this.state;
+        const{ area, selectedValue, password, email, nombre,  numEmpleado, data }= this.state;
         //   nomProyecto, vehiculoAsig, diasEstimados, destino
         //this.setState({error: '', loading:true});
         if(Object.keys(data).length >= 6){
@@ -62,7 +70,7 @@ export default class Registry extends Component{
       try{
         firebase.database().ref('empleado/' + uid +'/').set({
             area: data.area,
-            cargo: data.cargo,
+            selectedValue: data.selectedValue,
             password: data.password,
             email: data.email,
             nombre: data.nombre,
@@ -146,42 +154,6 @@ export default class Registry extends Component{
                                 <Body>
                                     <Item regular style={styles6.inputs}>
                                         {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
-                                        <Input name='area' placeholder='Área' style={styles6.textoF} onChangeText={value=>this.handleChange('area',value)} />
-                                    </Item>
-                                </Body>     
-                            </CardItem>
-
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
-                                        <Input name='cargo' placeholder='Cargo dentro de proyecto' style={styles6.textoF} onChangeText={value=>this.handleChange('cargo',value)} />
-                                    </Item>
-                                </Body>     
-                            </CardItem>
-
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
-                                        <Input name='password' secureTextEntry={true} placeholder='Password' style={styles6.textoF} onChangeText={value=>this.handleChange('password',value)} />
-                                    </Item>
-                                </Body> 
-                            </CardItem>
-
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
-                                        <Input name='email' keyboardType='email-address' placeholder='Correo electrónico' style={styles6.textoF} onChangeText={value=>this.handleChange('email',value)} />
-                                    </Item>
-                                </Body>     
-                            </CardItem>                       
-
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
                                         <Input name='nombre' placeholder='Nombre completo' style={styles6.textoF} onChangeText={value=>this.handleChange('nombre',value)} />
                                     </Item>
                                 </Body>     
@@ -195,6 +167,59 @@ export default class Registry extends Component{
                                     </Item>
                                 </Body>     
                             </CardItem>
+
+                            <CardItem>
+                                <Body>
+                                    <Item regular style={styles6.inputs}>
+                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
+                                        <Input name='area' placeholder='Área' style={styles6.textoF} onChangeText={value=>this.handleChange('area',value)} />
+                                    </Item>
+                                </Body>     
+                            </CardItem>
+
+                            <CardItem>
+                                <Body>
+                                    <Item regular style={styles6.inputs}>
+                                        <Input name='cargo' placeholder='Cargo dentro de proyecto' style={styles6.textoF} onChangeText={value=>this.handleChange('cargo',value)} />
+                                    </Item>
+                                    {/* <Button bordered dark onPress={() => {this.pickerRef.show()}}>
+                                        <Text>Selecciona el cargo dentro del proyecto</Text>
+                                    </Button>
+
+                                        <ReactNativePickerModule
+                                        pickerRef={e => this.pickerRef = e}
+                                        value={this.state.selectedValue}
+                                        title={"Selecciona un cargo"}
+                                        items={this.state.cargo}
+                                        onValueChange={(index) => {
+                                            this.setState({
+                                            selectedValue: index
+                                            })
+                                        }}
+                                        style={styles6.textoF} 
+                                        onChangeText={value=>this.handleChange('selectedValue',value)}  
+                                        />
+                                        */}
+                                </Body>     
+                            </CardItem>
+
+                            <CardItem>
+                                <Body>
+                                    <Item regular style={styles6.inputs}>
+                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
+                                        <Input name='email' keyboardType='email-address' placeholder='Correo electrónico' style={styles6.textoF} onChangeText={value=>this.handleChange('email',value)} />
+                                    </Item>
+                                </Body>     
+                            </CardItem>  
+
+                            <CardItem>
+                                <Body>
+                                    <Item regular style={styles6.inputs}>
+                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
+                                        <Input name='password' secureTextEntry={true} placeholder='Password' style={styles6.textoF} onChangeText={value=>this.handleChange('password',value)} />
+                                    </Item>
+                                </Body> 
+                            </CardItem>      
                             
                             <CardItem>
                                 <Button bordered dark style={styles6.boton} onPress={this.onButtonPress.bind(this)}>

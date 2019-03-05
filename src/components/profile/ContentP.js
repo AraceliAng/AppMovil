@@ -21,37 +21,8 @@ export default class ContentP extends Component {
                 <Card>
                     <ListItem>
                         <Body>
-                            <Text style={{fontWeight: 'bold'}}>Área a la que pertenece</Text>
-                            <Text note>{this.props.item.emailE}</Text>
-                        </Body>
-                    </ListItem>
-                </Card>
-
-                <Card>
-                    <ListItem>
-                        <Body>
                             <Text style={{fontWeight: 'bold'}}>Número de empleado</Text>
                             <Text note>{this.props.item.numEmpleado}</Text>
-                        </Body>
-                    </ListItem>
-                </Card>
-
-                <Card>
-                    <ListItem>
-                        <Body>
-                            <Text style={{fontWeight: 'bold'}}>foto del operador</Text>
-                            <Text note>{this.props.item.foto}</Text>
-                        </Body>
-                    </ListItem>
-                </Card>
-    
-                
-    
-                <Card>
-                    <ListItem>
-                        <Body>
-                            <Text style={{fontWeight: 'bold'}}>Cargo dentro del proyecto</Text>
-                            <Text note>{this.props.item.cargo}</Text>
                         </Body>
                     </ListItem>
                 </Card>
@@ -64,6 +35,24 @@ export default class ContentP extends Component {
                         </Body>
                     </ListItem>
                 </Card>
+
+                <Card>
+                    <ListItem>
+                        <Body>
+                            <Text style={{fontWeight: 'bold'}}>Cargo dentro del proyecto</Text>
+                            <Text note>{this.props.item.cargo}</Text>
+                        </Body>
+                    </ListItem>
+                </Card>
+
+                <Card>
+                    <ListItem>
+                        <Body>
+                            <Text style={{fontWeight: 'bold'}}>Correo electrónico</Text>
+                            <Text note>{this.props.item.email}</Text>
+                        </Body>
+                    </ListItem>
+                </Card>               
 
                 </View>
             </Content> 
