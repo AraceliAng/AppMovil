@@ -8,7 +8,7 @@ import firebase from '../../services/firebase/Firebase';
 import ReactNativePickerModule from 'react-native-picker-module'
 import {Actions} from 'react-native-router-flux';
 
-export default class Registry extends Component{
+export default class RegistryEmployee extends Component{
 	state={
         area:'',
         cargo:'',
@@ -70,7 +70,7 @@ export default class Registry extends Component{
       try{
         firebase.database().ref('empleado/' + uid +'/').set({
             area: data.area,
-            selectedValue: data.selectedValue,
+            cargo: data.cargo,
             password: data.password,
             email: data.email,
             nombre: data.nombre,
@@ -78,7 +78,7 @@ export default class Registry extends Component{
        });
     
         this.setState({email: '', password: '', error: '', loading: false});
-        Toast.show({text: 'Bienvenido', position: 'bottom', type: 'success'})
+        Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
     
       }catch(error){
         console.log(error)

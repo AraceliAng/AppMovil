@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {StatusBar, Platform} from 'react-native'
-import { Container, Content, Header,Button, SideBar, Body, Title, Left, View, Drawer} from 'native-base';
-import firebase,{firebaseAuth} from '../../services/firebase/Firebase';
+import { Container, Content, Header,Button, SideBar, Body, Title, Left, View} from 'native-base';
+import firebase from '../../services/firebase/Firebase';
 import Icon from 'react-native-vector-icons/Entypo';
-import Profile from './Profile';
+import Drawer from 'react-native-drawer'
 import ContentP from './ContentP';
 
 export default class ViewProfile extends Component {
@@ -44,7 +44,7 @@ export default class ViewProfile extends Component {
 
     componentDidMount() {
         var that = this;
-        firebaseAuth.onAuthStateChanged(function(userLog) {
+        firebase.auth().onAuthStateChanged(function(userLog) {
         console.log('userLog', userLog)
         if (userLog) {
             var uid = userLog.uid;
@@ -89,7 +89,7 @@ export default class ViewProfile extends Component {
                         </Left>
 
                         <Body>
-                            <Title style={{color:'#DCDCDC'}}> 
+                            <Title style={{color:'#DCDCDC'}}>  Mi perfil
                                 {/* {loggedIn ?
                                     userLog.username :
                                     "Mi perfil"

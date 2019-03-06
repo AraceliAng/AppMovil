@@ -6,10 +6,10 @@ import ComponentLogin from './src/components/login/ComponentLogin';
 import FormLocation from './src/components/location/FormLocation';
 import FormReports from './src/components/reports/FormReports';
 import FormEvidence from './src/components/evidence/FormEvidence';
-//import ProfileBanner from './src/components/profile/ProfileBanner';
-import Registry from './src/components/admin/Registry';
+import ProfileBanner from './src/components/profile/ProfileBanner';
 import Log from './src/components/login/Log';
-import ViewProfile from './src/components/profile/ViewProfile';
+import RegistryEmployee from './src/components/admin/RegistryEmployee';
+import RegistryProyect from './src/components/admin/RegistryProyect';
 
 
 
@@ -26,12 +26,12 @@ const Routes = () => {
            
                     <Scene key="login"      header={null} component={ComponentLogin} />
                     <Scene key="log"       header={null} component={Log} initial/>
-                    <Scene key="profile"    header={null} component={ViewProfile}/>
+                    <Scene key="profile"    header={null} component={ProfileBanner}/>
                     <Scene key="location"   header={null} component={FormLocation}/>
                     <Scene key="evidence"    header={null} component={FormEvidence}/>
                     <Scene key="reports"    header={null} component={FormReports}/> 
-                    <Scene key="registry"    header={null} component={Registry}/> 
-
+                    <Scene key="registryEmployee"    header={null} component={RegistryEmployee}/> 
+                    <Scene key="registryProyect"    header={null} component={RegistryProyect}/> 
                 </Scene>
                
             </Router> 

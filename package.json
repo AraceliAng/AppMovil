@@ -18,6 +18,7 @@
     "react-native-camera": "^1.9.2",
     "react-native-drawer": "^2.5.1",
     "react-native-fetch-blob": "^0.10.8",
+    "react-native-gesture-handler": "^1.1.0",
     "react-native-image-header-scroll-view": "^0.10.0",
     "react-native-image-picker": "^0.28.0",
     "react-native-material-design": "^0.3.7",
@@ -25,7 +26,7 @@
     "react-native-picker-module": "^0.1.2",
     "react-native-picker-select": "^6.0.0",
     "react-native-router-flux": "^4.0.6",
-    "react-navigation": "^3.0.9",
+    "react-navigation": "^3.3.2",
     "react-navigation-drawer": "^1.2.0",
     "rn-fetch-blob": "^0.10.15"
   },

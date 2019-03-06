@@ -13,7 +13,7 @@ export default class ContentP extends Component {
                     <ListItem>
                         <Body>
                             <Text style={{fontWeight: 'bold'}}>Nombre</Text>
-                            <Text note>{this.props.item.nombre}</Text>
+                            <Text note>{this.props.nombre}</Text>
                         </Body>
                     </ListItem>
                 </Card>
@@ -22,7 +22,7 @@ export default class ContentP extends Component {
                     <ListItem>
                         <Body>
                             <Text style={{fontWeight: 'bold'}}>Número de empleado</Text>
-                            <Text note>{this.props.item.numEmpleado}</Text>
+                            <Text note>{this.props.numEmpleado}</Text>
                         </Body>
                     </ListItem>
                 </Card>
@@ -31,7 +31,7 @@ export default class ContentP extends Component {
                     <ListItem>
                         <Body>
                             <Text style={{fontWeight: 'bold'}}>Área de empleado</Text>
-                            <Text note>{this.props.item.area}</Text>
+                            <Text note>{this.props.area}</Text>
                         </Body>
                     </ListItem>
                 </Card>
@@ -40,7 +40,7 @@ export default class ContentP extends Component {
                     <ListItem>
                         <Body>
                             <Text style={{fontWeight: 'bold'}}>Cargo dentro del proyecto</Text>
-                            <Text note>{this.props.item.cargo}</Text>
+                            <Text note>{this.props.cargo}</Text>
                         </Body>
                     </ListItem>
                 </Card>
@@ -49,7 +49,7 @@ export default class ContentP extends Component {
                     <ListItem>
                         <Body>
                             <Text style={{fontWeight: 'bold'}}>Correo electrónico</Text>
-                            <Text note>{this.props.item.email}</Text>
+                            <Text note>{this.props.email}</Text>
                         </Body>
                     </ListItem>
                 </Card>               

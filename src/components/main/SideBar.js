@@ -92,13 +92,23 @@ export default class SideBar extends Component {
                         </Body>
                     </ListItem>
 
-                    <ListItem icon onPress={()=> Actions.registry()} >
+                    <ListItem icon onPress={()=> Actions.registryEmployee()} >
                         <Left>
                             <Icon name="pencil" style={{color:'white', fontSize:30}}/>
                         </Left>
 
                         <Body>
-                            <Text style={{color:'white'}}> Registro</Text>
+                            <Text style={{color:'white'}}> Registro de operadores</Text>
+                        </Body>
+                    </ListItem>
+
+                    <ListItem icon onPress={()=> Actions.registryProyect()} >
+                        <Left>
+                            <Icon name="pencil" style={{color:'white', fontSize:30}}/>
+                        </Left>
+
+                        <Body>
+                            <Text style={{color:'white'}}> Registro de proyectos</Text>
                         </Body>
                     </ListItem>
 

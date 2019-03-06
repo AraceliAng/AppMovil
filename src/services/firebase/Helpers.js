@@ -17,7 +17,7 @@ class Helpers {
         let userNamePath = "/empleado/"+userID+"/cargo";
         return firebase.database().ref(userNamePath).set(cargo)
     }
-    static setUserPass(userID, contraseña){
+    static setUserPass(userID, password){
         let userNamePath = "/empleado/"+userID+"/password";
         return firebase.database().ref(userNamePath).set(password)
     }
