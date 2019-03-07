@@ -21,40 +21,40 @@ export default class ProfileContent extends Component {
         <Left>
          <Text>Nombre</Text>
        </Left>
-       <Text style={styles.texto} >{this.props.nombre}</Text>
+       <Text style={styles.texto} >{this.props.item.nombre}</Text>
         </ListItem>
 
         <ListItem last style={styles.tamaño}>
          <Left>
             <Text>Numero de empleado</Text>
          </Left>
-          <Input style={styles.texto} disabled value={this.props.numEmpleado} />
+          <Input style={styles.texto} disabled value={this.props.item.numEmpleado} />
         </ListItem>
 
         <ListItem last style={styles.tamaño}>
          <Left>
             <Text>Area</Text>
          </Left>
-          <Input style={styles.texto} value={this.props.area} />
+          <Input style={styles.texto} value={this.props.item.area} />
         </ListItem>
 
         <ListItem last style={styles.tamaño}>
          <Left>
             <Text>Cargo</Text>
          </Left>
-          <Input style={styles.texto} value={this.props.cargo} />
+          <Input style={styles.texto} value={this.props.item.cargo} />
         </ListItem>
         <ListItem last style={styles.tamaño}>
          <Left>
             <Text>Email</Text>
          </Left>
-          <Input style={styles.texto} value={this.props.email}  />
+          <Input style={styles.texto} value={this.props.item.email}  />
         </ListItem>
         <ListItem last style={styles.tamaño}>
          <Left>
             <Text>password</Text>
          </Left>
-          <Input style={styles.texto} value={this.props.password}  />
+          <Input style={styles.texto} value={this.props.item.password}  />
         </ListItem>
       </List>
         </View>

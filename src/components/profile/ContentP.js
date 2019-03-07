@@ -9,12 +9,14 @@ export default class ContenidoP extends Component{
     return (
 
         <View>
-          {this.props.lista.map(item =>
+            
+         { this.props.lista.map(function(item){
              <ProfileContent key={item.uid}
                             item={item}
 
                           />
-                  )}
+                  })
+                  }
         </View>
     );
   }

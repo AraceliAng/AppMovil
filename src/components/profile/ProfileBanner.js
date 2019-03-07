@@ -9,6 +9,7 @@ import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header
 
 import firebase from '../../services/firebase/Firebase';
 import ProfileContent from './ProfileContent';
+import ContenidoP from './ContentP';
 
 export default class ProfileBanner extends Component {
     state={
@@ -121,7 +122,7 @@ export default class ProfileBanner extends Component {
                             <View>
                                 <Card>
                                 
-                                    <ProfileContent lista={this.state.lista} />
+                                    <ContenidoP lista={this.state.lista} />
                                 </Card>            
 
 
