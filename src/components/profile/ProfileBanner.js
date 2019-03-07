@@ -8,6 +8,7 @@ import imgPerfil from '../../assets/photo.jpg';
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
 
 import firebase from '../../services/firebase/Firebase';
+import ProfileContent from './ProfileContent';
 
 export default class ProfileBanner extends Component {
     state={
@@ -29,17 +30,32 @@ export default class ProfileBanner extends Component {
         }
     }
 
-    // async componentWillMount(){
-    //     try{
-    //         let userLog = await firebase.auth().currentUser
-            
-    //     }
-    //     catch(error){
-    //         console.log(error)
-    //     }
-    // }
 
-
+    listenForItems = (itemsRef) => {
+        itemsRef.on('value', (snap) => {
+      
+          // get children as an array
+          var lista = [];
+          snap.forEach((child) => {
+            lista.push({
+              nombre: child.val().nombre,
+              numEmpleado: child.val().numEmpleado,
+              area: child.val().area,
+              cargo:child.val().cargo,
+              email: child.val().email,
+              password: child.val().password,
+              key: child.key
+      
+            });
+          });
+      
+      
+          this.setState({
+            lista: lista
+          });
+      
+        });
+      }
     render() {
 
         closeDrawer = () => {
@@ -104,84 +120,11 @@ export default class ProfileBanner extends Component {
                             
                             <View>
                                 <Card>
-                                    <ListItem>
-                                        <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
-                                        <Body>
-                                        <Text style={{fontWeight: 'bold'}}>Proyecto</Text>
-                                        <Text note>descripción del proyecto</Text>
-                                        </Body>
-                                    </ListItem>
-                                </Card>
-                    
-                                <Card>
-                                    <ListItem>
-                                        <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
-                                        <Body>
-                                        <Text style={{fontWeight: 'bold'}}>Lugar del proyecto</Text>
-                                        <Text note>descripción del lugar</Text>
-                                        </Body>
-                                    </ListItem>
-                                </Card>
-                    
-                                <Card>
-                                    <ListItem>
-                                        <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
-                                        <Body>
-                                        <Text style={{fontWeight: 'bold'}}>Lugar del proyecto2</Text>
-                                        <Text note>descripción del lugar</Text>
-                                        </Body>
-                                    </ListItem>
-                                </Card>
-                    
-                                <Card>
-                                    <ListItem>
-                                        <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
-                                        <Body>
-                                        <Text style={{fontWeight: 'bold'}}>Lugar del proyecto3</Text>
-                                        <Text note>descripción del lugar</Text>
-                                        </Body>
-                                    </ListItem>
-                                </Card>
-                    
-                                <Card>
-                                    <ListItem>
-                                        <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
-                                        <Body>
-                                        <Text style={{fontWeight: 'bold'}}>Lugar del proyecto4</Text>
-                                        <Text note>descripción del lugar</Text>
-                                        </Body>
-                                    </ListItem>
-                                </Card>
                                 
-                                <Card>
-                                    <ListItem>
-                                        <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
-                                        <Body>
-                                        <Text style={{fontWeight: 'bold'}}>Lugar del proyecto5</Text>
-                                        <Text note>descripción del lugar</Text>
-                                        </Body>
-                                    </ListItem>
-                                </Card>
-                                
-                                <Card>
-                                    <ListItem>
-                                        <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
-                                        <Body>
-                                        <Text style={{fontWeight: 'bold'}}>Lugar del proyecto6</Text>
-                                        <Text note>descripción del lugar</Text>
-                                        </Body>
-                                    </ListItem>
-                                </Card>
-                                
-                                <Card>
-                                    <ListItem>
-                                        <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
-                                        <Body>
-                                        <Text style={{fontWeight: 'bold'}}>Lugar del proyecto7</Text>
-                                        <Text note>descripción del lugar</Text>
-                                        </Body>
-                                    </ListItem>
-                                </Card>
+                                    <ProfileContent lista={this.state.lista} />
+                                </Card>            
+
+
                             </View>
                             </Content> 
 

@@ -22,6 +22,8 @@ export default class RegistryEmployee extends Component{
         vehiculoAsig:'',
         diasEstimados:'',
         destino:'',
+        userLog:{},
+        loggedIn:false,
         // selectedValue: null,
         //     cargo: [
         //         "Lider de proyecto",
@@ -111,16 +113,15 @@ export default class RegistryEmployee extends Component{
         openDrawer = () => {
         this.drawer._root.open()
         };
-
-        // let {userLog,loggedIn}=this.state
+        let {userLog,loggedIn}=this.state
         return(
 
             <Container >
 
                 <Drawer
                     ref={(ref) => { this.drawer = ref; }}
-                    content={<SideBar navigator={this.navigator} />}
-                    // loggedIn={loggedIn}
+                    content={<SideBar navigator={this.navigator} loggedIn={loggedIn}/>}
+                 
                     onClose={this.closeDrawer} >
 
                     <Header style={{ backgroundColor: '#000000', paddingTop:22, height:80}}
@@ -133,7 +134,7 @@ export default class RegistryEmployee extends Component{
 
                         <Body>
                             <Title style={{color:'#DCDCDC'}}>
-                                {/* {loggedIn ? userLog.username : "Registro" } */}
+                                {loggedIn ? userLog.username : "Registro" }
                             </Title>
                         </Body>
 
@@ -228,54 +229,7 @@ export default class RegistryEmployee extends Component{
                             </CardItem>
 
                         </Card>
-                        {/* <Card style={styles6.containerF}>
-                            <CardItem>
-                                <Left>
-                                    <Text>PROYECTOS</Text>
-                                </Left>
-                                <Right/>
-                            </CardItem>
-
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        <Input name='nomProyecto' placeholder='Nombre del proyecto' style={styles6.textoF} onChange={this.handleChange} />
-                                    </Item>
-                                </Body>     
-                            </CardItem>
-
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        <Input name='vehiculoAsig' placeholder='Vehículo asignado' style={styles6.textoF} onChange={this.handleChange} />
-                                    </Item>
-                                </Body>     
-                            </CardItem>
-
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        <Input name='destino' placeholder='Destino' style={styles6.textoF} onChange={this.handleChange} />
-                                    </Item>
-                                </Body>     
-                            </CardItem>
-
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        <Input name='diasEstimados' placeholder='Número de días' style={styles6.textoF} onChange={this.handleChange} />
-                                    </Item>
-                                </Body>  
-                            </CardItem>
-
-                            <CardItem>
-                                <Button full rounded style={styles6.boton} onPress={this.onButtonPress.bind(this)}  >
-                                    <Text style={{color:'#FFFFFF'}}>Registrar</Text>
-                                </Button>                            
-                            </CardItem>
-
-                        </Card> */}
-
+                      
                     </Content>
 
                 </Drawer>

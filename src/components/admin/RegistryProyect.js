@@ -12,65 +12,63 @@ export default class RegistryProyect extends Component{
         destino:'',
         diasEstimados:'',
         vehiculoAsig:'',    
-	    loading: false,
+	    evidenceId:'',
         error:'',	
-        data:{},    
+           
         userLog:{},
         loggedIn:false,
+        uid:'',
+        data:{}, 
+        nuevo:''
     };
    
-    onButtonPress(){
-        const{ nomProyecto, destino,diasEstimados, vehiculoAsig, data }= this.state;
-        if(Object.keys(data).length >= 4){
-            console.log(this.state.nomProyecto)
-            console.log(this.state.destino)
-            firebase.database().ref('proyecto/' + userId).set({
-                nomProyecto: nomProyecto,
-                destino: destino,
-                diasEstimados: diasEstimados,
-                vehiculoAsig: vehiculoAsig
-              });
-        }
-        else {
-            Toast.show({ 
-            text: 'Verifique que los datos sean correctos',
-            position: 'bottom',
-            buttonText: 'OK',
-            type: 'danger'
-            })
-        }
-    }
-    // onFailed=(e)=> {
-    //     console.log('el Error: ',e)
-    //     this.setState({error: 'Autenticación Fallida', loading:false});
-    //     Toast.show({ text: 'Error al ingresar los datos',position: 'bottom', buttonText: 'OK', type: 'danger'})
-    // }
+    onButtonPress=()=>{
+        //let nuevo = this.state.data             //------- inserta doble
+        let nuevo = this.state.nuevo         //---------------lo va a insertar en blanco
 
-    // onSuccess=(data)=> {
+        // if(Object.keys(data).length >= 4){
+        //     console.log(this.state.userLog)
+        //     console.log(this.state.nomProyecto)
+        //     console.log(this.state.destino)
+        //     console.log(this.state.diasEstimados)
+        //     console.log(this.state.vehiculoAsig)
+        // }
+        // else {
+        //     Toast.show({ 
+        //     text: 'Verifique que los datos sean correctos',
+        //     position: 'bottom',
+        //     buttonText: 'OK',
+        //     type: 'danger'
+        //     })
+        nuevo = {nomProyecto:nuevo,destino:nuevo,diasEstimados:nuevo,vehiculoAsig:nuevo};
+        firebase.database().ref('proyecto').push(nuevo);
+        // this.state.data.push(nuevo);
+        this.setState({data: this.state.data});
+        console.log(nuevo)
         
-    //     let{data}=this.state
-    //     console.log('------------------------------------',data)
-    //   try{
-    //     firebase.database().ref('proyecto/' + uid +'/').set({
-    //         area: data.area,
-    //         cargo: data.cargo,
-    //         password: data.password,
-    //         email: data.email,
-    //         nombre: data.nombre,
-    //         numEmpleado: data.numEmpleado
-    //    });
+        Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
+    }
     
-    //     this.setState({email: '', password: '', error: '', loading: false});
-    //     Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
-    
-    //   }catch(error){
-    //     console.log(error)
-    //   }
-  
-    //}
+
     handleChange=(field,value)=>{
         console.log('Antes',field,value)
-        let {data} = this.state
+        let {data,nomProyecto,destino,vehiculoAsig,diasEstimados} = this.state
+        if(field === 'nomProyecto'){
+            nomProyecto = value
+            this.setState({nomProyecto})
+        }
+        if(field === 'destino'){
+            destino = value
+            this.setState({destino})
+        }
+        if(field === 'diasEstimados'){
+            diasEstimados = value
+            this.setState({diasEstimados})
+        }
+        if(field === 'vehiculoAsig'){
+            vehiculoAsig = value
+            this.setState({vehiculoAsig})
+        }
         data[field]=value
         this.setState({data})
         console.log('lo que escribo',data)
@@ -95,7 +93,7 @@ export default class RegistryProyect extends Component{
                 <Drawer
                     ref={(ref) => { this.drawer = ref; }}
                     content={<SideBar navigator={this.navigator} loggedIn={loggedIn} />}
-                    // loggedIn={loggedIn}
+                    
                     onClose={this.closeDrawer} >
 
                     <Header style={{ backgroundColor: '#000000', paddingTop:22, height:80}}
@@ -158,8 +156,8 @@ export default class RegistryProyect extends Component{
                             </CardItem>
 
                             <CardItem>
-                                <Button full rounded style={styles6.boton} onPress={this.onButtonPress.bind(this)}  >
-                                    <Text style={{color:'#FFFFFF'}}>Registrar</Text>
+                            <Button bordered dark style={styles6.boton} onPress={this.onButtonPress}>
+                                    <Text>Registrar</Text>
                                 </Button>                            
                             </CardItem>
 
