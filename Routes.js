@@ -24,13 +24,13 @@ const Routes = () => {
     ese nombre nos servira para poder navegar con el metodo Actions.nombredevista()
 */ }
            
-                    <Scene key="login"      header={null} component={ComponentLogin} />
-                    <Scene key="log"       header={null} component={Log} initial/>
-                    <Scene key="profile"    header={null} component={ProfileBanner}/>
-                    <Scene key="location"   header={null} component={FormLocation}/>
-                    <Scene key="evidence"    header={null} component={FormEvidence}/>
-                    <Scene key="reports"    header={null} component={FormReports}/> 
-                    <Scene key="registryEmployee"    header={null} component={RegistryEmployee}/> 
+                    <Scene key="login"              header={null} component={ComponentLogin} />
+                    <Scene key="log"                header={null} component={Log} initial/>
+                    <Scene key="profile"            header={null} component={ProfileBanner}/>
+                    <Scene key="location"           header={null} component={FormLocation}/>
+                    <Scene key="evidence"           header={null} component={FormEvidence}/>
+                    <Scene key="reports"            header={null} component={FormReports}/> 
+                    <Scene key="registryEmployee"   header={null} component={RegistryEmployee}/> 
                     <Scene key="registryProyect"    header={null} component={RegistryProyect}/> 
                 </Scene>
                

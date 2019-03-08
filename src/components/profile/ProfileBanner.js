@@ -4,12 +4,9 @@ import { Content, Button, H1, Left, Body, Title, Header,Right, Card, ListItem, D
 import Icon from 'react-native-vector-icons/Entypo';
 import SideBar from '../main/SideBar';
 import stylesP from './Styles';
-import imgPerfil from '../../assets/photo.jpg';
+import imgFondo from '../../assets/mas.jpg';
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
-
-import firebase from '../../services/firebase/Firebase';
 import ProfileContent from './ProfileContent';
-import ContenidoP from './ContentP';
 
 export default class ProfileBanner extends Component {
     state={
@@ -93,41 +90,27 @@ export default class ProfileBanner extends Component {
                                 }
                             </Title>
                         </Body>
-
-                        
                     </Header>
                
                 <HeaderImageScrollView
                     maxHeight={120}
                     renderFixedForeground={() => (
-                        <View style={{
-                                flexDirection:'row',
-                                backgroundColor: "black"
-                            }}>
-                            <View >
-                                <Image source={imgPerfil} style={stylesP.thub}/> 
-                            </View> 
-                            <View style={{flexDirection:'column'}}>
-                                <H1 style={stylesP.h1}>Nombre operador</H1>
-                                <Text style={stylesP.text}>correo_operdor@mucino.com</Text>
-                                <Text style={stylesP.texto}>más información del operador</Text>
-                            </View>
+                        <View style={{ flexDirection:'row', backgroundColor: "black" }}> 
+                            <Image source={imgFondo} style={stylesP.img}/>
                         </View>
                     )}
                 >   
 
                     <Content>
-                            <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
+                        <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
                             
                             <View>
                                 <Card>
-                                
-                                    <ContenidoP lista={this.state.lista} />
-                                </Card>            
-
-
+                                    <ProfileContent lista={this.state.lista} />
+                                        {/* <ContenidoP lista={this.state.lista} /> */}
+                                </Card>   
                             </View>
-                            </Content> 
+                    </Content> 
 
                 </HeaderImageScrollView>
 

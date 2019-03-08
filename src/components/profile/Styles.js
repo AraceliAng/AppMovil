@@ -31,7 +31,7 @@ const stylesP = StyleSheet.create({
     },
     img: {
         flex: 5,
-        height: 200,
+        height: 160,
         width: null,
         
     },

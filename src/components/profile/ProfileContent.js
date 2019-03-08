@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {View, Text, StatusBar,StyleSheet, Platform } from 'react-native';
-import { Content, Card,Body, List,Left, Input, ListItem } from 'native-base';
+import {View, Text, StatusBar, Platform } from 'react-native';
+import { Content, Card,Body, ListItem } from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 
 export default class ProfileContent extends Component {
@@ -11,75 +11,74 @@ export default class ProfileContent extends Component {
         <Content>
            <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
         
-        <View>
-        <List >
-        <ListItem itemDivider>
-          <Text>Informacion</Text>
-        </ListItem>
+            <View>
+                <Card>
+                    <ListItem>
+                        <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
+                        <Body>
+                            <Text style={{fontWeight: 'bold'}}>Información</Text>
+                        </Body>
+                    </ListItem>
+                </Card>
 
-        <ListItem last style={styles.tamaño} >
-        <Left>
-         <Text>Nombre</Text>
-       </Left>
-       <Text style={styles.texto} >{this.props.item.nombre}</Text>
-        </ListItem>
+                <Card>
+                    <ListItem>
+                        <Body>
+                            <Text style={{fontWeight: 'bold'}}>Nombre</Text>
+                            <Text note> {this.props.nombre}</Text>
+                        </Body>
+                    </ListItem>
+                </Card>
 
-        <ListItem last style={styles.tamaño}>
-         <Left>
-            <Text>Numero de empleado</Text>
-         </Left>
-          <Input style={styles.texto} disabled value={this.props.item.numEmpleado} />
-        </ListItem>
+                <Card>
+                    <ListItem>
+                        <Body>
+                            <Text style={{fontWeight: 'bold'}}>Número de empleado</Text>
+                            <Text note> {this.props.numEmpleado}</Text>
+                        </Body>
+                    </ListItem>
+                </Card>
+        
+                <Card>
+                    <ListItem>
+                        <Body>
+                            <Text style={{fontWeight: 'bold'}}>Área</Text>
+                            <Text note> {this.props.area}</Text>
+                        </Body>
+                    </ListItem>
+                </Card>
+        
+                <Card>
+                    <ListItem>
+                        <Body>
+                            <Text style={{fontWeight: 'bold'}}>Cargo</Text>
+                            <Text note> {this.props.cargo}</Text>
+                        </Body>
+                    </ListItem>
+                </Card>
 
-        <ListItem last style={styles.tamaño}>
-         <Left>
-            <Text>Area</Text>
-         </Left>
-          <Input style={styles.texto} value={this.props.item.area} />
-        </ListItem>
+                <Card>
+                    <ListItem>
+                        <Body>
+                        <Text style={{fontWeight: 'bold'}}>Correo Electrónico</Text>
+                        <Text note> {this.props.email}</Text>
+                        </Body>
+                    </ListItem>
+                </Card>
 
-        <ListItem last style={styles.tamaño}>
-         <Left>
-            <Text>Cargo</Text>
-         </Left>
-          <Input style={styles.texto} value={this.props.item.cargo} />
-        </ListItem>
-        <ListItem last style={styles.tamaño}>
-         <Left>
-            <Text>Email</Text>
-         </Left>
-          <Input style={styles.texto} value={this.props.item.email}  />
-        </ListItem>
-        <ListItem last style={styles.tamaño}>
-         <Left>
-            <Text>password</Text>
-         </Left>
-          <Input style={styles.texto} value={this.props.item.password}  />
-        </ListItem>
-      </List>
-        </View>
+                <Card>
+                    <ListItem>
+                        <Body>
+                            <Text style={{fontWeight: 'bold'}}>Contraseña</Text>
+                            <Text note> {this.props.password}</Text>
+                        </Body>
+                    </ListItem>
+                </Card>
+            </View>
         </Content> 
         );
     }
 }
-
-const styles = StyleSheet.create({
-    view: {
-      backgroundColor: 'rgb(0,0,0)',
-      opacity: 0.6
-    },
-    img: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: 180
-    },
-    texto:{
-      textAlign:'right'
-    },
-    tamaño:{
-      height:47,
-    }
-  })
 
 {/*<Container style={stylesP.container}>
  <Header
