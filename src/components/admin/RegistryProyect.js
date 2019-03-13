@@ -197,7 +197,12 @@ export default class RegistryProyect extends Component{
                             </CardItem>
 
                             <CardItem>
-                            <Button bordered dark style={styles6.boton} onPress={this.onButtonPress}>
+                            <Button 
+                                bordered 
+                                dark 
+                                style={styles6.boton} 
+                                onPress={this.onButtonPress}
+                            >
                                     <Text>Registrar</Text>
                                 </Button>                            
                             </CardItem>
