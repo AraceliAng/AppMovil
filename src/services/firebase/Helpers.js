@@ -1,4 +1,5 @@
-import * as firebase from './Firebase';
+import firebase from './Firebase';
+
 
 class Helpers {
     static setUserName(userID, nombre){
@@ -37,5 +38,15 @@ class Helpers {
         let userNamePath = "/proyecto/"+userID+"/destino ";
         return firebase.database().ref(userNamePath).set(destino)
     }
+
+
+    static setUserDesc(userId, desc){
+        let userNamePath = "/evidencia/"+userId+"/datos/descripcion ";
+        return firebase.database().ref(userNamePath).set(desc)
+    }
+    static setImageUrl(userId, url){
+        let userNamePath = "/evidencia/"+userId+"/datos/foto";
+        return firebase.database().ref(userNamePath).set(url)
+    }
 }
-module.export= Helpers
+module.exports = Helpers
