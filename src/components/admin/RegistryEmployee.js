@@ -134,7 +134,7 @@ export default class RegistryEmployee extends Component{
 
                         <Body>
                             <Title style={{color:'#DCDCDC'}}>
-                                {loggedIn ? userLog.username : "Registro" }
+                                {loggedIn ? userLog.username : "Registro de operadores" }
                             </Title>
                         </Body>
 
