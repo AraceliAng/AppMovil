@@ -11,21 +11,22 @@ export default class SideBar extends Component {
 
     constructor(props) {
         super(props);
-        this.salir = this.salir.bind(this);
+        // this.salir = this.salir.bind(this);
        }
        // para el boton cerrar sesion del menu
-       salir() {
-        firebaseAuth.signOut()
-        .then(r=>Toast.show({text: 'Hasta pronto', position: 'bottom', type: 'success'}))
-        Actions.login();
-      }
+    //    salir() {
+    //     firebaseAuth.signOut()
+    //     .then(r=>Toast.show({text: 'Hasta pronto', position: 'bottom', type: 'success'}))
+    //     Actions.login();
+    //   }
             
 
-    // logOut=()=>{
-    //     AsyncStorage.removeItem("user");
-    //     AsyncStorage.removeItem("token");
-    //     Actions.login()
-    // }
+    logOut=()=>{
+            firebaseAuth.signOut()
+        .then(r=>Toast.show({text: 'Hasta pronto', position: 'bottom', type: 'success'}))
+        AsyncStorage.removeItem("userId");
+        Actions.login()
+    }
 
     render() {
 
@@ -115,7 +116,7 @@ export default class SideBar extends Component {
                 </Content>
                 
                 <View style={stylesM.boton}>                                                                                                                                                                                                                                                                                                                                                                        
-                        <Button full bordered light onPress={this.salir}>
+                        <Button full bordered light onPress={this.logOut}>
                             <Text>Cerrar Sesión</Text>
                         </Button>
                 </View>
