@@ -1,15 +1,19 @@
+// con insercion de datos vacios
+//// evidencias como el de fixter
+
 import React, { Component } from 'react';
 import { Image, StatusBar,Platform} from 'react-native';
-import { Header, Text, Item, Left, Input, Button, Body,Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
+import { Toast, Header, Text, Item, Left, Input, Button, Body,Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import ImagePicker from 'react-native-image-picker';
 import styles6 from './Styles';
 import SideBar from '../main/SideBar';
-import Helpers from '../../services/firebase/Helpers';
-import firebase from '../../services/firebase/Firebase';
 import RNFetchBlob from 'react-native-fetch-blob';
 import 'core-js/es6/symbol'; 
 import 'core-js/fn/symbol/iterator';
+import Helpers from '../../services/firebase/Firebase';
+import firebase from '../../services/firebase/Firebase';
+//import { TextInput } from 'react-native-gesture-handler';
 
 const options={
     title: 'Elige una opción:',
@@ -49,50 +53,49 @@ const options={
   }
 
 export default class FormEvidence extends Component{
-    // state={
-    //     descripcion:{
-    //         desc:""
-    //     },
-    // }
-
-    _retrieveData = async () => {
-        try {
-            const userLocal = await AsyncStorage.getItem('user');
-            let user = JSON.parse(userLocal)
-
-            if(user){
-                console.log("hay usuario",user)
-                this.setState({user:user,logged:true})
-            } else{
-                console.log("no hay nada")
-            }
-        } catch (error) {
-        }
-    }
-// aquí empieza el codigo de foto e imagenes
     constructor(props){
         super(props);
         this.state={
+            data:{},
             avatarSource: "",
             pic: "",
-            descripcion:{
-                desc:""
-            },
-            uid: ""
+            desc:"",
+            uid: "",
+            nuevo: '',
+            userLog:{},
+            loggedIn:false,
+            source:''
         }
       }
 
-     async componentWillMount(){
-        try{
-            let user = await firebase.auth().currentUser ;
-            this.setState({
-                uid: user.uid
-            })
-        }catch(error){
-            console.log(error)
+  
+
+      _retrieveData = async () => {
+        try {
+            const userLocal = await AsyncStorage.getItem('userLog');
+            let userLog= JSON.parse(userLocal)
+            if(userLog){
+                console.log("hay usuario",userLog)
+                this.setState({userLog:userLog,loggedIn:true})
+            } else{
+                console.log("no hay nada")
+            }
+        } catch (error) {   
         }
     }
 
+    async componentWillMount(){
+        try{
+            let userLog= await firebase.auth().currentUser;
+            this.setState({                                                                                                                                                                                 
+                uid: userLog.uid
+            })
+        }catch(error){
+            console.log("no se tiene usuario", error)
+        }
+    }
+
+// aquí empieza el codigo de foto e imagenes
     myfun=()=>{
         ImagePicker.showImagePicker(options, (response) => {
             console.log('Response = ', response);
@@ -101,45 +104,68 @@ export default class FormEvidence extends Component{
             } else if (response.error) {
                 console.log('Image Picker Error: ', response.error);
             } else {
+                console.log("la imagen",response)
                 let source = { uri: response.uri };
                 // Tambien se puede poner asi: let source = { uri: 'data:image/jpeg;base64,' + response.data };
                 this.setState({
+                source:source.uri,
                 avatarSource: source,
                 pic:response.data
                 });
             }
         });
-    }
+    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 //aquí termina la parte de fotos    
 
-    handleChange = (field, value) => {
-        let {descripcion} = this.state;
-        descripcion[field] = value;
-        this.setState({descripcion});
-        console.log("hola", descripcion)
-    };
-    
-    saveData(){
-        if(this.state.uid){
-            try{
-                this.state.desc ? Helpers.setUserDesc(this.state.uid, this.state.desc): null
-                this.state.imagePath ?
-                uploadImage(this.state.imagePath, `${this.state.uid}.jpg`)
-                    .then((responseData)=>{
-                        Helpers.setImageUrl(this.state.uid, responseData)
-                    })
-                    .done()
-                : null
-                
-                this.props.navigator.push({
-                    id:'App'
-                })
-            }catch(error){
-                console.log(error)
-            }
-        }f
+    // handleChange = (field, value) => {
+    //     let {descripcion} = this.state;
+    //     descripcion[field] = value;
+    //     this.setState({descripcion});
+    //     console.log("hola", descripcion)
+    // };
+    handleChange=(field,value)=>{
+        console.log('Antes',field,value)
+        let {data,desc} = this.state
+        if(field === 'desc'){
+            desc = value
+            this.setState({desc})
+        }
+        
+        data[field]=value
+        this.setState({data})
+        console.log('lo que escribo',data)
     }
 
+    uploadImage = async () =>{
+        let {source} = this.state
+        const response = await fetch(source)
+        const blob = await response.blob()
+        let ref = firebase.storage().ref().child('evidence/')
+        ref.put(blob).then(snap =>{
+            console.log('subio imagen??',snap)
+        }).catch(e=>{console.log('el erro',e)})
+    }
+    // saveForm(file){
+    //     const{ data, source }= this.state;
+    //     if(Object.keys(data).length >= 1){
+    //         let nuevo = this.state.nuevo  
+    //     nuevo = {descripcion: data};
+    //     const response = await fetch(file)
+    //     const blob = await response.blob()
+    //     let ref = firebase.storage().ref().child('evidence/')
+    //     ref.put(blob).then(snap =>{
+    //         console.log('subio imagen??',snap)
+    //     }).catch(e=>{console.log('el erro',e)})
+    //     // this.state.data.push(nuevo);
+    //     this.setState({data: this.state.data});
+    //     console.log(nuevo)
+        
+    //     Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
+    //     }else{
+    //         console.log('intentalo mas tarde xD')
+    //         Toast.show({text: 'Vuelve a intentarlo', position: 'bottom', buttonText: 'OK', type: 'danger'})
+    //     }
+    // }
 
     render(){
 
@@ -151,14 +177,14 @@ export default class FormEvidence extends Component{
             this.drawer._root.open()
         };
 
-        let {user,logged}=this.state
+        let {userLog,loggedIn}=this.state
         return(
 
             <Container >
 
                 <Drawer
                     ref={(ref) => { this.drawer = ref; }}
-                    content={<SideBar navigator={this.navigator} logged={logged}/>}
+                    content={<SideBar navigator={this.navigator} loggedIn={loggedIn}/>}
                     onClose={this.closeDrawer} >
 
                     <Header style={{ backgroundColor: '#000000', paddingTop:22, height:80}}
@@ -171,7 +197,7 @@ export default class FormEvidence extends Component{
 
                         <Body>
                             <Title style={{color:'#DCDCDC'}}>
-                                {logged ? user.username : "Evidencias" }
+                                {loggedIn ? userLog.username : "Evidencias" }
                             </Title>
                         </Body>
 
@@ -201,13 +227,21 @@ export default class FormEvidence extends Component{
                                 <Body>
                                     <Item regular style={styles6.inputs}>
                                         <Icon active name='edit' size={15} style={{marginLeft:12}} />
-                                            <Input name='desc' placeholder='Descripción' style={styles6.textoF} onChange={this.handleChange} />
+                                            <Input
+                                                name='desc' 
+                                                placeholder='Descripción' 
+                                                style={styles6.textoF} 
+                                                value={this.state.desc}
+                                                onChangeText={value=>this.handleChange('desc',value)} />
                                     </Item>
                                 </Body>     
                             </CardItem>
-                                <Button full bordered dark   style={styles6.boton} onPress={() => alert("¿Se ha agregado ?")}>
+                                <Button 
+                                    full bordered dark   
+                                    style={styles6.boton} 
+                                    onPress={this.uploadImage}
+                                >
                                     <Text>Guardar</Text> 
-                                    {/* agregar una condicion con alerta */}
                                 </Button>
                         </Card>
 
