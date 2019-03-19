@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { KeyboardAvoidingView } from 'react-native';
+import { KeyboardAvoidingView,AsyncStorage } from 'react-native';
 import {Container, Content, Text, Toast, Input, Button, Item, Form, View} from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import styles3 from './Styles';
@@ -44,6 +44,7 @@ export default class ComponentLogin extends Component{
     }
     onLoginSuccess(r){
         console.log('si se hizo',r);
+        this.saveUid(r.user.uid)
         this.setState({ email: "", contraseña: "", error:"", loading:false });
         //Actions.Log();
     Toast.show({ text:'Bienvenido', position:'bottom', type:'success'})
@@ -54,6 +55,15 @@ export default class ComponentLogin extends Component{
       userLog[field] = value;
       this.setState({userLog});
     };
+
+    saveUid = async (idUSer) => {
+        try {
+          await AsyncStorage.setItem('userID', idUSer);
+        } catch (error) {
+          // Error saving data
+          console.log('Error',error)
+        }
+      };
     
 
 	render(){
