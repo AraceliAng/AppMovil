@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, StatusBar,Platform } from 'react-native';
+import {View, Text, Image, StatusBar,Platform,AsyncStorage } from 'react-native';
 import { Content, Button, H1, snap ,Left, Body, Title, Header,Right, Card, ListItem, Drawer} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import SideBar from '../main/SideBar';
@@ -11,17 +11,28 @@ import firebase from '../../services/firebase/Firebase';
 
 export default class ProfileBanner extends Component {
     state={
-        userLog:{},
+        token:'',
         loggedIn:false,
+        data:{},
     }
 
-    _retrieveData = async () => {
+    getUID = async (item) => {
         try {
-            const userLocal = await AsyncStorage.getItem('userLog');
-            let userLog= JSON.parse(userLocal)
-            if(userLog){
-                console.log("hay usuario",userLog)
-                this.setState({userLog:userLog,loggedIn:true})
+            const userUid = await AsyncStorage.getItem('userID');
+            //let userLog= JSON.parse(userLocal)
+           
+            if(userUid){
+                
+                console.log("hay usuario",userUid)
+                this.setState({token:userUid})
+                firebase.database().ref('empleado/'+userUid+"/").once('value',snapshot =>{ 
+                    console.log('pruebaaaaaaaa dento de lo asincrono',snapshot.val()) 
+                    let user = snapshot.val()
+                    this.setState({data:user})
+                    console.log('pruebaaaaaaaa dento de lo asincrono',user) 
+                
+                }); 
+              
             } else{
                 console.log("no hay nada")
             }
@@ -29,14 +40,26 @@ export default class ProfileBanner extends Component {
         }
     }
 
-    
-    
-    readUserData () { 
-        firebase.database().ref('empleado/').once('value',function(snapshot) { 
-            console.log(snapshot.val()) 
-        }); 
+
+    //con esto vas a ejecutar la funcion cuando entres a la pantalla
+    componentWillMount(){
+     //this.readUserData(this.props)
+     this.getUID(this.props)
     }
 
+    //con esto es cuando haya un cambio
+    componentWillReciveProps(nextPros){
+       // this.readUserData(nextPros)
+        this.getUID(nextPros)
+    }
+    
+    
+    // readUserData (item) { 
+    //     firebase.database().ref('empleado/').once('value',function(snapshot) { 
+    //         console.log('pruebaaaaaaaa',snapshot.val()) 
+    //     }); 
+    // }
+        
     
     render() {
 
@@ -47,7 +70,7 @@ export default class ProfileBanner extends Component {
             this.drawer._root.open()
         };
 
-        let {userLog,loggedIn}=this.state
+        let {data,loggedIn}=this.state
         return (
 
             <View style={{flex:1}}>
@@ -100,17 +123,17 @@ export default class ProfileBanner extends Component {
                 <Card>
                     <ListItem>
                         <Body>
-                            {/* <Text style={{fontWeight: 'bold'}}>Nombre</Text> */}
-                            <Text note >{this.state.readUserData} </Text>
+                            <Text style={{fontWeight: 'bold'}}>Nombre</Text>
+                            <Text note> {data.nombre}</Text>
                         </Body>
                     </ListItem>
                 </Card>
-{/* 
+
                 <Card>
                     <ListItem>
                         <Body>
                             <Text style={{fontWeight: 'bold'}}>Número de empleado</Text>
-                            <Text note> {this.state.lista}</Text>
+                            <Text note> {data.numEmpleado}</Text>
                         </Body>
                     </ListItem>
                 </Card>
@@ -119,7 +142,7 @@ export default class ProfileBanner extends Component {
                     <ListItem>
                         <Body>
                             <Text style={{fontWeight: 'bold'}}>Área</Text>
-                            <Text note> {this.state.area}</Text>
+                            <Text note> {data.area}</Text>
                         </Body>
                     </ListItem>
                 </Card>
@@ -128,7 +151,7 @@ export default class ProfileBanner extends Component {
                     <ListItem>
                         <Body>
                             <Text style={{fontWeight: 'bold'}}>Cargo</Text>
-                            <Text note> {this.state.cargo}</Text>
+                            <Text note> {data.cargo}</Text>
                         </Body>
                     </ListItem>
                 </Card>
@@ -137,16 +160,16 @@ export default class ProfileBanner extends Component {
                     <ListItem>
                         <Body>
                         <Text style={{fontWeight: 'bold'}}>Correo Electrónico</Text>
-                        <Text note> {this.state.email}</Text>
+                        <Text note> {data.email}</Text>
                         </Body>
                     </ListItem>
                 </Card>
 
-                <Card>
+                {/* <Card>
                     <ListItem>
                         <Body>
                             <Text style={{fontWeight: 'bold'}}>Contraseña</Text>
-                            <Text note> {this.state.password}</Text>
+                            <Text note> {data.password}</Text>
                         </Body>
                     </ListItem>
                 </Card> */}
