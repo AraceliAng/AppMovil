@@ -118,45 +118,35 @@ export default class ProfileBanner extends Component {
                             <Text style={{fontWeight: 'bold'}}>Información</Text>
                         </Body>
                     </ListItem>
-                </Card>
-
-                <Card>
+               
                     <ListItem>
                         <Body>
                             <Text style={{fontWeight: 'bold'}}>Nombre</Text>
                             <Text note> {data.nombre}</Text>
                         </Body>
                     </ListItem>
-                </Card>
-
-                <Card>
+                
                     <ListItem>
                         <Body>
                             <Text style={{fontWeight: 'bold'}}>Número de empleado</Text>
                             <Text note> {data.numEmpleado}</Text>
                         </Body>
                     </ListItem>
-                </Card>
-        
-                <Card>
+               
                     <ListItem>
                         <Body>
                             <Text style={{fontWeight: 'bold'}}>Área</Text>
                             <Text note> {data.area}</Text>
                         </Body>
                     </ListItem>
-                </Card>
-        
-                <Card>
+                
                     <ListItem>
                         <Body>
                             <Text style={{fontWeight: 'bold'}}>Cargo</Text>
                             <Text note> {data.cargo}</Text>
                         </Body>
                     </ListItem>
-                </Card>
-
-                <Card>
+                
                     <ListItem>
                         <Body>
                         <Text style={{fontWeight: 'bold'}}>Correo Electrónico</Text>
