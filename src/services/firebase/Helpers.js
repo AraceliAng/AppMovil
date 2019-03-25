@@ -40,12 +40,13 @@ class Helpers {
     }
 
 
-    static setUserDesc(userId, desc){
-        let userNamePath = "/evidencia/"+userId+"/datos/descripcion ";
+    static setUserDesc(userID, desc){
+        let userNamePath = "/evidencia/"+ userID + "/descripcion";
         return firebase.database().ref(userNamePath).set(desc)
     }
-    static setImageUrl(userId, url){
-        let userNamePath = "/evidencia/"+userId+"/datos/foto";
+
+    static setImageUrl(userID, url){
+        let userNamePath = "/evidencia/"+ userID +"/foto";
         return firebase.database().ref(userNamePath).set(url)
     }
 }
