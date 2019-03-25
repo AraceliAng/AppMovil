@@ -1,6 +1,3 @@
-// con insercion de datos vacios
-//// evidencias como el de fixter
-
 import React, { Component } from 'react';
 import { Image, StatusBar,Platform} from 'react-native';
 import { Toast, Header, Text, Item, Left, Input, Button, Body,Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
@@ -11,9 +8,8 @@ import SideBar from '../main/SideBar';
 import RNFetchBlob from 'react-native-fetch-blob';
 import 'core-js/es6/symbol'; 
 import 'core-js/fn/symbol/iterator';
-import Helpers from '../../services/firebase/Firebase';
+import Helpers from '../../services/firebase/Helpers';
 import firebase from '../../services/firebase/Firebase';
-//import { TextInput } from 'react-native-gesture-handler';
 
 const options={
     title: 'Elige una opción:',
@@ -30,7 +26,7 @@ const options={
       return new Promise((resolve, reject)=>{
           const uploadUri = Platform.OS === 'ios' ? uri.replace('file://',''): uri
           let uploadBlob = null
-          const imageRef = firebase.storage().ref('images').child(imageName)
+          const imageRef = firebase.storage().ref('evidence').child(imageName)
           fs.readFile(uploadUri,'base64')
             .then((data)=>{
                 return Blob.build(data, {type: `${mime};BASE64`})
@@ -61,14 +57,11 @@ export default class FormEvidence extends Component{
             pic: "",
             desc:"",
             uid: "",
-            nuevo: '',
             userLog:{},
             loggedIn:false,
             source:''
         }
       }
-
-  
 
       _retrieveData = async () => {
         try {
@@ -86,9 +79,9 @@ export default class FormEvidence extends Component{
 
     async componentWillMount(){
         try{
-            let userLog= await firebase.auth().currentUser;
+            let user= await firebase.auth().currentUser;
             this.setState({                                                                                                                                                                                 
-                uid: userLog.uid
+                uid: user.uid
             })
         }catch(error){
             console.log("no se tiene usuario", error)
@@ -115,14 +108,7 @@ export default class FormEvidence extends Component{
             }
         });
     }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-//aquí termina la parte de fotos    
 
-    // handleChange = (field, value) => {
-    //     let {descripcion} = this.state;
-    //     descripcion[field] = value;
-    //     this.setState({descripcion});
-    //     console.log("hola", descripcion)
-    // };
     handleChange=(field,value)=>{
         console.log('Antes',field,value)
         let {data,desc} = this.state
@@ -135,37 +121,31 @@ export default class FormEvidence extends Component{
         this.setState({data})
         console.log('lo que escribo',data)
     }
-
-    uploadImage = async () =>{
-        let {source} = this.state
-        const response = await fetch(source)
-        const blob = await response.blob()
-        let ref = firebase.storage().ref().child('evidence/')
-        ref.put(blob).then(snap =>{
-            console.log('subio imagen??',snap)
-        }).catch(e=>{console.log('el erro',e)})
+  
+    saveForm(){
+        if(this.state.uid){
+            try{
+                this.state.desc ? Helpers.setUserDesc(this.state.uid, this.state.desc) : null
+                this.state.source ?
+                    uploadImage(this.state.source, `${this.state.desc}.jpg`)
+                        .then((responseData) =>{
+                            Helpers.setImageUrl(this.state.uid, responseData)
+                        })
+                        .catch((error)=>{
+                            console.log('No se agrego nada', error)
+                        })
+                        :null
+                console.log("Se agrego con exito")
+                Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
+            }catch(error){
+                console.log('Fatal error', error)
+                Toast.show({text: 'Error, no se puede agregar', position: 'bottom', buttonText: 'OK', type: 'danger'})
+            }
+        }else{
+            console.log('No hay uid')
+                Toast.show({text: 'Error, no hay uid', position: 'bottom', buttonText: 'OK', type: 'danger'})
+        }
     }
-    // saveForm(file){
-    //     const{ data, source }= this.state;
-    //     if(Object.keys(data).length >= 1){
-    //         let nuevo = this.state.nuevo  
-    //     nuevo = {descripcion: data};
-    //     const response = await fetch(file)
-    //     const blob = await response.blob()
-    //     let ref = firebase.storage().ref().child('evidence/')
-    //     ref.put(blob).then(snap =>{
-    //         console.log('subio imagen??',snap)
-    //     }).catch(e=>{console.log('el erro',e)})
-    //     // this.state.data.push(nuevo);
-    //     this.setState({data: this.state.data});
-    //     console.log(nuevo)
-        
-    //     Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
-    //     }else{
-    //         console.log('intentalo mas tarde xD')
-    //         Toast.show({text: 'Vuelve a intentarlo', position: 'bottom', buttonText: 'OK', type: 'danger'})
-    //     }
-    // }
 
     render(){
 
@@ -232,14 +212,14 @@ export default class FormEvidence extends Component{
                                                 placeholder='Descripción' 
                                                 style={styles6.textoF} 
                                                 value={this.state.desc}
-                                                onChangeText={value=>this.handleChange('desc',value)} />
+                                                onChangeText={(desc)=> this.setState({desc})} />
                                     </Item>
                                 </Body>     
                             </CardItem>
                                 <Button 
                                     full bordered dark   
                                     style={styles6.boton} 
-                                    onPress={this.uploadImage}
+                                    onPress={this.saveForm.bind(this)}
                                 >
                                     <Text>Guardar</Text> 
                                 </Button>
