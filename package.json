@@ -21,6 +21,7 @@
     "react-native-gesture-handler": "^1.1.0",
     "react-native-image-header-scroll-view": "^0.10.0",
     "react-native-image-picker": "^0.28.0",
+    "react-native-maps": "^0.23.0",
     "react-native-material-design": "^0.3.7",
     "react-native-off-canvas-menu": "^0.1.32",
     "react-native-picker-module": "^0.1.2",

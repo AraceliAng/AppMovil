@@ -1,17 +1,60 @@
 import React, { Component } from 'react';
-import { View, Image, Alert, Platform, StatusBar} from 'react-native';
+import { AppRegistry, Dimensions, View, Image, Alert, Platform, StatusBar} from 'react-native';
 import { Header, Left, Button, Body,Right, Container, Title, Card, Text, ListItem, Drawer} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import imgLocation from '../../assets/localizador.png';
 import SideBar from '../main/SideBar';
 import style4 from './Styles';
+import MapView from 'react-native-maps'
 
+const {width, height}= Dimensions.get('window')
 
 export default class FormLocation extends Component{
-    state={
-        user:{},
-        logged:false,
+  constructor(){
+      super()
+
+      this.state={
+            user:{},
+            logged:false,
+            region={
+                latitude:null,
+                longitude:null,
+                latitudeDelta:null,
+                longitudeDelta:null
+            },
+            
+      }
+  }
+
+    calcDelta(lat, lon, accuracy){
+        const oneDegreeOfLongitudInMeters = 111.32;
+        const circumference = (40075 / 360);
+
+        const latDelta = accuracy * (1 /(Math.cos(lat) * circumference))
+        const lonDelta = (accuracy / oneDegreeOfLongitudInMeters)
+
+        this.setState({
+            region:{
+                latitude: lat,
+                longitude: lon,
+                latitudeDelta:latDelta,
+                longitudeDelta: lonDelta
+            }
+        })
     }
+
+    componentWillMount(){
+        navigator.geolocation.getCurrentPosition(
+            (position)=>{
+                const lat = position.coords.latitude
+                const lon = position.coords.longitude
+                const accuracy = position.coords.accuracy
+                this.calcDelta(lat, lon, accuracy)
+            }
+        )
+    }
+
+
 
     _retrieveData = async () => {
         try {
@@ -66,35 +109,13 @@ export default class FormLocation extends Component{
                     
                     </Header>
             
-                    <View style={style4.view}>
-                        <Image source={imgLocation} style={style4.thub}/>
-                    </View>
-                    
-                    <View>
-                        <Card>
-                            <ListItem>
-                                <Body>
-                                    <Text style={{fontWeight: 'bold'}}>Ubicación</Text>
-                                    <Text note>No has checado tu ubicación</Text>
-                                </Body>
-                            </ListItem>
-                        </Card>
-                    </View>
-                    
-                    <View style={style4.textos}>
-                        <Button full bordered dark onPress={() => Alert.alert(
-                                    'Tu ubicación es: ',
-                                    'se ha guardado correctamente',
-                                    [
-                                        {text: 'Ok', onPress: () => console.log('Ok')},
-                                    ],
-                                    { cancel: null }
-                                )} style={style4.boton}
-                        >
-                        
-                            <Text>Guardar</Text>
-                        </Button>
-                    
+                    <View style={style4.container}>
+                        {this.state.region.latitude ? <MapView
+                                                        style={style4.map}
+                                                        initialRegion={this.state.region}
+                                                       /> 
+                            : null
+                        }
                     </View>
                 
                 </Drawer>

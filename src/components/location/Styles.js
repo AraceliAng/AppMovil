@@ -2,8 +2,13 @@ import { StyleSheet} from 'react-native';
 
 const style4 = StyleSheet.create({
     containerF:{
-        
         padding:10,
+    },
+    container:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#F5FCFF'
     },
     img: { 
         flex: 1,
@@ -31,6 +36,10 @@ const style4 = StyleSheet.create({
         padding:40,
         justifyContent:'center',
         alignItems:'center',
+    },
+    map:{
+        flex:1,
+        width: width
     },
 });
 
