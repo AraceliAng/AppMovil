@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import imgLocation from '../../assets/localizador.png';
 import SideBar from '../main/SideBar';
 import style4 from './Styles';
-import MapView from 'react-native-maps'
+import MapView ,{ PROVIDER_GOOGLE }from 'react-native-maps';
 
 const {width, height}= Dimensions.get('window')
 
@@ -116,9 +116,10 @@ export default class FormLocation extends Component{
                     
                     </Header>
             
-                    <View >
+                    <View style={style4.container} >
                         {this.state.region.latitude ? <MapView
-                                                        style={styless.map}
+                                                        provider={PROVIDER_GOOGLE}
+                                                        style={style4.map}
                                                         initialRegion={this.state.region}
                                                        /> 
                             : null
@@ -133,11 +134,3 @@ export default class FormLocation extends Component{
         );
     }
 }
-const styless= StyleSheet.create({
-    map:{
-        flex:1,
-        width: width,
-        height: height,
-    },
-    
-});
