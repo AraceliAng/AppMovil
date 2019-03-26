@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Dimensions, View, Image, Alert, Platform, StatusBar} from 'react-native';
+import { AppRegistry, StyleSheet ,Dimensions, View, Image, Alert, Platform, StatusBar} from 'react-native';
 import { Header, Left, Button, Body,Right, Container, Title, Card, Text, ListItem, Drawer} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import imgLocation from '../../assets/localizador.png';
@@ -16,7 +16,7 @@ export default class FormLocation extends Component{
       this.state={
             user:{},
             logged:false,
-            region={
+            region:{
                 latitude:null,
                 longitude:null,
                 latitudeDelta:null,
@@ -44,6 +44,13 @@ export default class FormLocation extends Component{
     }
 
     componentWillMount(){
+        this.getPosition(this.props)
+    }
+    componentWillReceiveProps(nextProps){
+        this.getPosition(nextProps)
+    }
+
+    getPosition=(item)=>{
         navigator.geolocation.getCurrentPosition(
             (position)=>{
                 const lat = position.coords.latitude
@@ -109,9 +116,9 @@ export default class FormLocation extends Component{
                     
                     </Header>
             
-                    <View style={style4.container}>
+                    <View >
                         {this.state.region.latitude ? <MapView
-                                                        style={style4.map}
+                                                        style={styless.map}
                                                         initialRegion={this.state.region}
                                                        /> 
                             : null
@@ -126,4 +133,11 @@ export default class FormLocation extends Component{
         );
     }
 }
-
+const styless= StyleSheet.create({
+    map:{
+        flex:1,
+        width: width,
+        height: height,
+    },
+    
+});

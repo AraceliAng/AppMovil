@@ -37,10 +37,7 @@ const style4 = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
     },
-    map:{
-        flex:1,
-        width: width
-    },
+    
 });
 
 export default style4;
