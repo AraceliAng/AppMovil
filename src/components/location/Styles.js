@@ -5,13 +5,10 @@ const style4 = StyleSheet.create({
         padding:10,
     },
     container:{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
+        padding:10,
+        width: 360,
+        height: 230,
+        
     },
     map:{
         position: 'absolute',
