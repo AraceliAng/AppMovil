@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StatusBar,Platform } from 'react-native';
-import { Toast, Header, Text, Item, Left, Input, Button, Body,Show, Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
+import { Toast, Header, Text, Item, Left, Input, Button, Body, Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import styles6 from './Styles';
 import SideBar from '../main/SideBar';
@@ -16,29 +16,13 @@ export default class RegistryProyect extends Component{
             vehiculoAsig:'',      
             userLog:{},
             loggedIn:false,
-            data:[], 
-            // uid:'',
-            // nuevo:'',
+            data:[],
         };
     }
    
     onButtonPress=()=>{
-       // let nuevo = this.state.data             //------- inserta doble
-        // let nuevo = this.state.nuevo         //---------------lo va a insertar en blanco
-
-        
-        // nuevo = {nomProyecto:nuevo,destino:nuevo,diasEstimados:nuevo,vehiculoAsig:nuevo};
-        // firebase.database().ref('proyecto').push(nuevo);
-        // this.state.data.push(nuevo);
-        // this.setState({data: this.state.data});
-        // console.log(nuevo)
-        
-        // Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
-
         const{  data }= this.state;
-        
         if(Object.keys(data).length >= 4){
-       
             firebase.database().ref('/proyecto/').push({
                 nomProyecto: data.nomProyecto,
                 destino: data.destino,
@@ -62,7 +46,6 @@ export default class RegistryProyect extends Component{
         }
     }
     
-
     handleChange=(field,value)=>{
         console.log('Antes',field,value)
         let {data,nomProyecto,destino,vehiculoAsig,diasEstimados} = this.state
@@ -85,11 +68,9 @@ export default class RegistryProyect extends Component{
         data[field]=value
         this.setState({data})
         console.log('lo que escribo',data)
-
     }
 
     render(){
-
         closeDrawer = () => {
         this.drawer._root.close()
         };
@@ -158,8 +139,6 @@ export default class RegistryProyect extends Component{
                                             name='destino' 
                                             placeholder='Destino' 
                                             style={styles6.textoF} 
-                                            // value={this.state.nuevo}
-                                            // onChangeText={nuevo=>this.setState({nuevo})}
                                             onChangeText={value=>this.handleChange('destino',value)} 
                                         />
                                     </Item>
@@ -173,8 +152,6 @@ export default class RegistryProyect extends Component{
                                             name='diasEstimados' 
                                             placeholder='Días estimados' 
                                             style={styles6.textoF} 
-                                            // value={this.state.nuevo}
-                                            // onChangeText={nuevo=>this.setState({nuevo})}
                                             onChangeText={value=>this.handleChange('diasEstimados',value)}
                                         />
                                     </Item>
@@ -188,8 +165,6 @@ export default class RegistryProyect extends Component{
                                             name='vehiculoAsig' 
                                             placeholder='Vehículo asignado' 
                                             style={styles6.textoF} 
-                                            // value={this.state.nuevo}
-                                            // onChangeText={nuevo=>this.setState({nuevo})}
                                             onChangeText={value=>this.handleChange('vehiculoAsig',value)}
                                         />
                                     </Item>
