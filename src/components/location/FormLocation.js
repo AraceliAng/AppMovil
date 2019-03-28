@@ -19,41 +19,52 @@ export default class FormLocation extends Component{
         latitude:null,
         longitude:null,
         latitudeDelta:null,
-        longitudeDelta:null
-    },   
-    startTime: new Date(),
-     data:[]
+        longitudeDelta:null,
+        //startTime: new Date()
+    }
+    
   }
 
 
   onButtonPress=()=>{
-    
+   
+    const{ region }= this.state;
     try{
-       this.marker(longitude,latitude)
-        
-        
-            console.log(this.state.longitude)
-            console.log(this.state.latitude)
+             
+        if(Object.keys(region)){
+            console.log(this.state.region)
             firebase.database().ref('/checador/').push({
-                latitude: data.latitude,
-                longitude: data.longitude,
+                altitude: region.latitude,
+                longitude: region.longitude,
+                latitudeDelta: region.latitudeDelta,
+                longitudeDelta: region.longitudeDelta,
+                
                 
             })
             Toast.show({ 
-                text: 'Datos agregados correctamente ',
+                text: 'Se ha guardado su ubicación correctamente',
                 position: 'bottom',
                 buttonText: 'OK',
                 type: 'success'
                 })
-       
+        }else{
+            console.log("Error al guardar la ubicación")
+            Toast.show({ 
+                text: "Error al guardar la ubicación",
+                position: 'bottom',
+                buttonText: 'OK',
+                type: 'danger'
+                })
+        }
+            
     }catch(error){
+        console.log("Fatal error")
         Toast.show({ 
-            text: 'no se agrego nada',
+            text: "No existe ninguna ubicación",
             position: 'bottom',
             buttonText: 'OK',
             type: 'danger'
             })
-        console.log(error,"nada se agrego u.u")
     }
     
 }
