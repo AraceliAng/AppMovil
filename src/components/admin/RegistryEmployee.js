@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { StatusBar,Platform } from 'react-native';
-import { Toast, Header, Text, Item, Left, Input, Button, Body,Show, Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
+import { Toast, Header, Text, Item, Left, Input, Button, Body, Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import styles6 from './Styles';
 import SideBar from '../main/SideBar';
 import firebase from '../../services/firebase/Firebase';
-import ReactNativePickerModule from 'react-native-picker-module'
-import {Actions} from 'react-native-router-flux';
 
 export default class RegistryEmployee extends Component{
 	state={
@@ -18,34 +16,16 @@ export default class RegistryEmployee extends Component{
 	    numEmpleado:'',
 	    loading: false,
         error:'',	    
-        nomProyecto:'',
-        vehiculoAsig:'',
-        diasEstimados:'',
-        destino:'',
         userLog:{},
         loggedIn:false,
-        // selectedValue: null,
-        //     cargo: [
-        //         "Lider de proyecto",
-        //         "Ayudante",
-        //         "Segundo al mando",
-        //     ],
         data:{}
     };
     
-    
-
-    constructor(props) {
-        super(props);
-    }
-
 
     onButtonPress(){
-        const{ area, selectedValue, password, email, nombre,  numEmpleado, data }= this.state;
-        //   nomProyecto, vehiculoAsig, diasEstimados, destino
-        //this.setState({error: '', loading:true});
+        const{ password, email, data }= this.state;
+        
         if(Object.keys(data).length >= 6){
-        // if ( area != null && cargo != null && password != null  && email != null && nombre != null  && numEmpleado != null  /**  && nomProyecto != null && vehiculoAsig != null && diasEstimados != null && destino != null  */  ) {
             console.log(this.state.password)
             console.log(this.state.email)
             firebase.auth().createUserWithEmailAndPassword(email, password).then(r=>this.onSignupSuccess(r)).catch(e=>this.onSignupFailed(e));
@@ -68,7 +48,7 @@ export default class RegistryEmployee extends Component{
     onSignupSuccess=(userLog)=> {
         var uid = userLog.user.uid;
         let{data}=this.state
-        console.log('------------------------------------',userLog)
+        console.log('Usuario: ',userLog)
       try{
         firebase.database().ref('empleado/' + uid +'/').set({
             area: data.area,
@@ -100,7 +80,7 @@ export default class RegistryEmployee extends Component{
         }
         data[field]=value
         this.setState({data})
-        console.log('lo que escribo',data)
+        console.log('Lo que se está escribiendo',data)
 
     }
 
@@ -154,7 +134,6 @@ export default class RegistryEmployee extends Component{
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
                                         <Input name='nombre' placeholder='Nombre completo' style={styles6.textoF} onChangeText={value=>this.handleChange('nombre',value)} />
                                     </Item>
                                 </Body>     
@@ -163,7 +142,6 @@ export default class RegistryEmployee extends Component{
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
                                         <Input name='numEmpleado' placeholder='Número de empleado' style={styles6.textoF} onChangeText={value=>this.handleChange('numEmpleado',value)} />
                                     </Item>
                                 </Body>     
@@ -172,7 +150,6 @@ export default class RegistryEmployee extends Component{
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
                                         <Input name='area' placeholder='Área' style={styles6.textoF} onChangeText={value=>this.handleChange('area',value)} />
                                     </Item>
                                 </Body>     
@@ -181,33 +158,14 @@ export default class RegistryEmployee extends Component{
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
-                                        <Input name='cargo' placeholder='Cargo dentro de proyecto' style={styles6.textoF} onChangeText={value=>this.handleChange('cargo',value)} />
+                                        <Input name='cargo' placeholder='Cargo dentro del proyecto' style={styles6.textoF} onChangeText={value=>this.handleChange('cargo',value)} />
                                     </Item>
-                                    {/* <Button bordered dark onPress={() => {this.pickerRef.show()}}>
-                                        <Text>Selecciona el cargo dentro del proyecto</Text>
-                                    </Button>
-
-                                        <ReactNativePickerModule
-                                        pickerRef={e => this.pickerRef = e}
-                                        value={this.state.selectedValue}
-                                        title={"Selecciona un cargo"}
-                                        items={this.state.cargo}
-                                        onValueChange={(index) => {
-                                            this.setState({
-                                            selectedValue: index
-                                            })
-                                        }}
-                                        style={styles6.textoF} 
-                                        onChangeText={value=>this.handleChange('selectedValue',value)}  
-                                        />
-                                        */}
                                 </Body>     
                             </CardItem>
 
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
                                         <Input name='email' keyboardType='email-address' placeholder='Correo electrónico' style={styles6.textoF} onChangeText={value=>this.handleChange('email',value)} />
                                     </Item>
                                 </Body>     
@@ -216,7 +174,6 @@ export default class RegistryEmployee extends Component{
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
-                                        {/* <Icon active name='edit' size={15} style={{marginLeft:12}} /> */}
                                         <Input name='password' secureTextEntry={true} placeholder='Password' style={styles6.textoF} onChangeText={value=>this.handleChange('password',value)} />
                                     </Item>
                                 </Body> 
