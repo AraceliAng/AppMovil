@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {View, Text, Image, StatusBar,Platform,AsyncStorage } from 'react-native';
-import { Content, Button, H1, snap ,Left, Body, Title, Header,Right, Card, ListItem, Drawer} from 'native-base';
+import { Content, Button,Left, Body, Title, Header, Card, ListItem, Drawer} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import SideBar from '../main/SideBar';
 import stylesP from './Styles';
 import imgFondo from '../../assets/mas.jpg';
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
-import ProfileContent from './ProfileContent';
 import firebase from '../../services/firebase/Firebase';
 
 export default class ProfileBanner extends Component {
@@ -19,17 +18,14 @@ export default class ProfileBanner extends Component {
     getUID = async (item) => {
         try {
             const userUid = await AsyncStorage.getItem('userID');
-            //let userLog= JSON.parse(userLocal)
-           
             if(userUid){
-                
-                console.log("hay usuario",userUid)
+                console.log("Existe un usuario",userUid)
                 this.setState({token:userUid})
                 firebase.database().ref('empleado/'+userUid+"/").once('value',snapshot =>{ 
-                    console.log('pruebaaaaaaaa dento de lo asincrono',snapshot.val()) 
+                    console.log('Esto es una prueba, dento de lo asincrono',snapshot.val()) 
                     let user = snapshot.val()
                     this.setState({data:user})
-                    console.log('pruebaaaaaaaa dento de lo asincrono',user) 
+                    console.log('Es una prueba dento de lo asincrono',user) 
                 
                 }); 
               
@@ -43,23 +39,13 @@ export default class ProfileBanner extends Component {
 
     //con esto vas a ejecutar la funcion cuando entres a la pantalla
     componentWillMount(){
-     //this.readUserData(this.props)
      this.getUID(this.props)
     }
 
     //con esto es cuando haya un cambio
     componentWillReciveProps(nextPros){
-       // this.readUserData(nextPros)
         this.getUID(nextPros)
-    }
-    
-    
-    // readUserData (item) { 
-    //     firebase.database().ref('empleado/').once('value',function(snapshot) { 
-    //         console.log('pruebaaaaaaaa',snapshot.val()) 
-    //     }); 
-    // }
-        
+    }   
     
     render() {
 
