@@ -8,18 +8,7 @@ import Icon from 'react-native-vector-icons/EvilIcons';
 import stylesM from './Styles';
 
 export default class SideBar extends Component {
-
-    constructor(props) {
-        super(props);
-        // this.salir = this.salir.bind(this);
-       }
-       // para el boton cerrar sesion del menu
-    //    salir() {
-    //     firebaseAuth.signOut()
-    //     .then(r=>Toast.show({text: 'Hasta pronto', position: 'bottom', type: 'success'}))
-    //     Actions.login();
-    //   }
-            
+     
 
     logOut=()=>{
             firebaseAuth.signOut()
@@ -44,16 +33,6 @@ export default class SideBar extends Component {
                 </Header>
 
                 <Content>
-
-                    {/* <ListItem icon onPress={()=>Actions.main()}>
-                        <Left>
-                            <Icon name="heart" style={{color:'white', fontSize:30}}/>
-                        </Left>
-
-                        <Body>
-                            <Text style={{color:'white'}}>Ir a vista principal</Text>
-                        </Body>
-                    </ListItem> */}
 
                     <ListItem icon onPress={()=>Actions.profile()}>
                         <Left>
