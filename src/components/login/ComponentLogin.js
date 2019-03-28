@@ -39,15 +39,14 @@ export default class ComponentLogin extends Component{
 
     onLoginFailed(){
         this.setState({error: 'Autenticación Fallida', loading: false })
-        //Toast.show ({ text:error.response.data.msg, position: "top", type:"danger"})
         Toast.show({text: 'Usuario/contraseña inválidos', position: 'bottom', buttonText: 'OK', type: 'danger'})
     }
     onLoginSuccess(r){
-        console.log('si se hizo',r);
+        console.log('Se ha autenticado',r);
         this.saveUid(r.user.uid)
         this.setState({ email: "", contraseña: "", error:"", loading:false });
         //Actions.Log();
-    Toast.show({ text:'Bienvenido', position:'bottom', type:'success'})
+    Toast.show({ text:'¡Bienvenido!', position:'bottom', type:'success'})
     }
     
       handleChange = (field, value) => {
@@ -101,7 +100,6 @@ export default class ComponentLogin extends Component{
                                 </Item>
 
                                 <Button 
-                                    //disabled={correo.length !== 0 && password.length !== 0 ? false:true}
                                     full bordered dark onPress={this.onButtonPress.bind(this)} style={styles3.boton}>
                                     <Text>Entrar</Text>
                                 </Button> 
