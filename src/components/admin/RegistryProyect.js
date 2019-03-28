@@ -38,7 +38,7 @@ export default class RegistryProyect extends Component{
         }
         else {
             Toast.show({ 
-            text: 'Los datos son incorrectos',
+            text: 'Datos son incorrectos',
             position: 'bottom',
             buttonText: 'OK',
             type: 'danger'
@@ -124,8 +124,6 @@ export default class RegistryProyect extends Component{
                                             name='nomProyecto' 
                                             placeholder='Nombre del proyecto'
                                             style={styles6.textoF}  
-                                            // value={this.state.nuevo} 
-                                            // onChangeText={nuevo=>this.setState({nuevo})}
                                             onChangeText={value=>this.handleChange('nomProyecto',value)}
                                         />
                                     </Item>
