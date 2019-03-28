@@ -1,27 +1,62 @@
 import React, { Component } from 'react';
-import { Dimensions, View, Image, Alert, Platform, StatusBar} from 'react-native';
+import { View, Alert, Platform, StatusBar} from 'react-native';
 import { Toast, Header, Left, Button, Body,Right, Container, Title, Card, Text, ListItem, Drawer} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
-import imgLocation from '../../assets/localizador.png';
 import SideBar from '../main/SideBar';
 import style4 from './Styles';
 import MapView ,{ PROVIDER_GOOGLE }from 'react-native-maps';
+import firebase from '../../services/firebase/Firebase';
 
 export default class FormLocation extends Component{
   constructor(){
       super()
 
-      this.state={
-        loggedIn:false,
-        region:{
-            latitude:null,
-            longitude:null,
-            latitudeDelta:null,
-            longitudeDelta:null
-        },   
-            
-      }
+      
   }
+  state={
+    loggedIn:false,
+    region:{
+        latitude:null,
+        longitude:null,
+        latitudeDelta:null,
+        longitudeDelta:null
+    },   
+    startTime: new Date(),
+     data:[]
+  }
+
+
+  onButtonPress=()=>{
+    
+    try{
+       this.marker(longitude,latitude)
+        
+        
+            console.log(this.state.longitude)
+            console.log(this.state.latitude)
+            firebase.database().ref('/checador/').push({
+                latitude: data.latitude,
+                longitude: data.longitude,
+                
+            })
+            Toast.show({ 
+                text: 'Datos agregados correctamente ',
+                position: 'bottom',
+                buttonText: 'OK',
+                type: 'success'
+                })
+       
+    }catch(error){
+        Toast.show({ 
+            text: 'no se agrego nada',
+            position: 'bottom',
+            buttonText: 'OK',
+            type: 'danger'
+            })
+        console.log(error,"nada se agrego u.u")
+    }
+    
+}
 
     calcDelta(lat, lon, accuracy){
         const oneDegreeOfLongitudInMeters = 111.32;
@@ -142,14 +177,16 @@ export default class FormLocation extends Component{
                     </View>
                     
                     <View style={style4.textos}>
-                        <Button full bordered dark onPress={() => Alert.alert(
-                                    'Tu ubicación es: ',
-                                    'se ha guardado correctamente',
-                                    [
-                                        {text: 'Ok', onPress: () => console.log('Ok')},
-                                    ],
-                                    { cancel: null }
-                                )} style={style4.boton}
+                        <Button full bordered dark onPress={this.onButtonPress}
+                        
+                            // onPress={() => Alert.alert(
+                            //         'Tu ubicación es: ',
+                            //         'se ha guardado correctamente',
+                            //         [
+                            //             {text: 'Ok', onPress: () => console.log('Ok')},
+                            //         ],
+                            //         { cancel: null }
+                            //     )} style={style4.boton}
                         >
                        
                             <Text>Checador</Text>
