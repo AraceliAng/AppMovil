@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {firebaseAuth} from '../../services/firebase/Firebase';
-import {Actions} from 'react-native-router-flux';
 import ComponentLogin from './ComponentLogin';
 import ProfileBanner from '../profile/ProfileBanner';
 
