@@ -10,6 +10,7 @@ import 'core-js/es6/symbol';
 import 'core-js/fn/symbol/iterator';
 import Helpers from '../../services/firebase/Helpers';
 import firebase from '../../services/firebase/Firebase';
+import moment from 'moment';
 
 const options={
     title: 'Elige una opción:',
@@ -59,7 +60,9 @@ export default class FormEvidence extends Component{
             uid: "",
             userLog:{},
             loggedIn:false,
-            source:''
+            source:'',
+            date : moment(new Date()).format("YYYY/MM/DD"),
+            hours : moment(new Date()).format('HH:mm:ss')
         }
       }
 
@@ -135,6 +138,9 @@ export default class FormEvidence extends Component{
                             console.log('No se agrego nada', error)
                         })
                         :null
+
+                this.state.date ? Helpers.setUserDate(this.state.uid, this.state.date) : null
+                this.state.hours ? Helpers.setUserHours(this.state.uid, this.state.hours) : null
                 console.log("Se agrego con exito")
                 Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
             }catch(error){
