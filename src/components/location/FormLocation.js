@@ -6,6 +6,7 @@ import SideBar from '../main/SideBar';
 import style4 from './Styles';
 import MapView ,{ PROVIDER_GOOGLE }from 'react-native-maps';
 import firebase from '../../services/firebase/Firebase';
+import moment from 'moment';;
 
 export default class FormLocation extends Component{
   constructor(){
@@ -18,7 +19,13 @@ export default class FormLocation extends Component{
                 latitudeDelta:null,
                 longitudeDelta:null,
             },
-            miFecha: new Date()
+            data:{
+                //   lat:position.lat,
+                //   lon:position.lon,
+                  //date:new Date ()
+                  date : moment(new Date()).format("YYYY/MM/DD"),
+                  hours : moment(new Date()).format('HH:mm:ss')
+            }
           }
       
   }
@@ -27,18 +34,23 @@ export default class FormLocation extends Component{
 
     onButtonPress=()=>{
 
-        let{ region, miFecha }= this.state;
+        let{region,data}=this.state
+        
+
+
+        // let{ region, miFecha }= this.state;
         try{
                 
-            if(Object.keys(region && miFecha)){
+            if(Object.keys(region && data)){
                 console.log(this.state.region)
-                console.log(this.state.miFecha)
+                console.log(this.state.data)
                 firebase.database().ref('/checador/').push({
                     altitude: region.latitude,
                     longitude: region.longitude,
                     latitudeDelta: region.latitudeDelta,
                     longitudeDelta: region.longitudeDelta,
-                    miFecha: miFecha
+                    fecha: data.date,
+                    hora: data.hours
                 })
                 Toast.show({ 
                     text: 'Se ha guardado su ubicación correctamente',
