@@ -10,64 +10,63 @@ import firebase from '../../services/firebase/Firebase';
 export default class FormLocation extends Component{
   constructor(){
       super()
-
+        this.state={
+            loggedIn:false,
+            region:{
+                latitude:null,
+                longitude:null,
+                latitudeDelta:null,
+                longitudeDelta:null,
+            },
+            miFecha: new Date()
+          }
       
   }
-  state={
-    loggedIn:false,
-    region:{
-        latitude:null,
-        longitude:null,
-        latitudeDelta:null,
-        longitudeDelta:null,
-        //startTime: new Date()
-    }
-    
-  }
+  
 
 
-  onButtonPress=()=>{
-   
-    const{ region }= this.state;
-    try{
-             
-        if(Object.keys(region)){
-            console.log(this.state.region)
-            firebase.database().ref('/checador/').push({
-                altitude: region.latitude,
-                longitude: region.longitude,
-                latitudeDelta: region.latitudeDelta,
-                longitudeDelta: region.longitudeDelta,
+    onButtonPress=()=>{
+
+        let{ region, miFecha }= this.state;
+        try{
                 
-                
-            })
-            Toast.show({ 
-                text: 'Se ha guardado su ubicación correctamente',
-                position: 'bottom',
-                buttonText: 'OK',
-                type: 'success'
+            if(Object.keys(region && miFecha)){
+                console.log(this.state.region)
+                console.log(this.state.miFecha)
+                firebase.database().ref('/checador/').push({
+                    altitude: region.latitude,
+                    longitude: region.longitude,
+                    latitudeDelta: region.latitudeDelta,
+                    longitudeDelta: region.longitudeDelta,
+                    miFecha: miFecha
                 })
-        }else{
-            console.log("Error al guardar la ubicación")
+                Toast.show({ 
+                    text: 'Se ha guardado su ubicación correctamente',
+                    position: 'bottom',
+                    buttonText: 'OK',
+                    type: 'success'
+                    })
+            }else{
+                console.log("Error al guardar la ubicación")
+                Toast.show({ 
+                    text: "Error al guardar la ubicación",
+                    position: 'bottom',
+                    buttonText: 'OK',
+                    type: 'danger'
+                    })
+            }
+                
+        }catch(error){
+            console.log("Fatal error")
             Toast.show({ 
-                text: "Error al guardar la ubicación",
+                text: "No existe ninguna ubicación",
                 position: 'bottom',
                 buttonText: 'OK',
                 type: 'danger'
                 })
         }
-            
-    }catch(error){
-        console.log("Fatal error")
-        Toast.show({ 
-            text: "No existe ninguna ubicación",
-            position: 'bottom',
-            buttonText: 'OK',
-            type: 'danger'
-            })
+        
     }
-    
-}
 
     calcDelta(lat, lon, accuracy){
         const oneDegreeOfLongitudInMeters = 111.32;
