@@ -1,68 +1,80 @@
-import React, { Component } from 'react';
-import { View, Text, StatusBar,Platform } from 'react-native';
-import { Header, Left, Button, Body, CardItem, Item, Input, Container, Title, H1, ListItem, Card, Content, Drawer} from 'native-base';
+import React, {Component} from 'react';
+import {View, Text, Image, StatusBar,Platform,AsyncStorage } from 'react-native';
+import { Content, Button,Left, Body, Title, Header, Card, ListItem, Drawer} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
-import style5 from './Styles';
 import SideBar from '../main/SideBar';
+import firebase from '../../services/firebase/Firebase';
 
-export default class FormReports extends Component{
-    constructor(props){
-        super(props);
-        this.state={
-            user:{},
-            logged:false,
-            datos:{
-                busca:"",       
-            }
-        }
+export default class ProfileBanner extends Component {
+    state={
+        token:'',
+        loggedIn:false,
+        data:{},
     }
-  
- 
 
-    _retrieveData = async () => {
+    getUID = async (item) => {
         try {
-            const userLocal = await AsyncStorage.getItem('user');
-            let user = JSON.parse(userLocal)
-            if(user){
-                console.log("hay usuario",user)
-                this.setState({user:user,logged:true})
-            }else{
+            const userUid = await AsyncStorage.getItem('userID');
+            if(userUid){
+                console.log("Existe un usuario",userUid)
+                this.setState({token:userUid})
+                firebase.database().ref('empleado/'+userUid+"/").once('value',snapshot =>{ 
+                    console.log('Esto es una prueba, dento de lo asincrono',snapshot.val()) 
+                    let user = snapshot.val()
+                    this.setState({data:user})
+                    console.log('Es una prueba dento de lo asincrono',user) 
+            });         
+                // if(userUid){
+                //     console.log("Existe un usuario",userUid)
+                //     this.setState({token:userUid})
+                //     firebase.database().ref('/evidencia/'+userUid+"/").once('value',snapshot =>{ 
+                //         console.log('Esto es una prueba, dento de lo asincrono',snapshot.val()) 
+                //         let uid = snapshot.val()
+                //         this.setState({data:uid})
+                //         console.log('uid del usuario',uid) 
+                    
+                //     });              
+                // } else{
+                //     console.log("no hay nada")
+                // }     
+            } else{
                 console.log("no hay nada")
             }
-        } catch (error) {  
+        } catch (error) {   
         }
     }
+
+
+    //con esto vas a ejecutar la funcion cuando entres a la pantalla
+    componentWillMount(){
+     this.getUID(this.props)
+    }
+
+    //con esto es cuando haya un cambio
+    componentWillReciveProps(nextPros){
+        this.getUID(nextPros)
+    }   
     
-    handleChange = (field, value) => {
-        let {datos} = this.state;
-        datos[field] = value;
-        this.setState({datos});
-        console.log("hola", datos)
-    };
-
-
-    render(){
+    render() {
 
         closeDrawer = () => {
             this.drawer._root.close()
         };
-
         openDrawer = () => {
             this.drawer._root.open()
         };
 
-        let {user,logged}=this.state
+        let {data,loggedIn}=this.state
+        return (
 
-        return(
+            <View style={{flex:1}}>
 
-           <Container>
-            
-               <Drawer
+                <Drawer
                     ref={(ref) => { this.drawer = ref; }}
-                    content={<SideBar navigator={this.navigator} logged={logged}/>}
+                    content={<SideBar navigator={this.navigator} loggedIn={loggedIn}/>}
                     onClose={this.closeDrawer} >
-            
-                    <Header style={{ backgroundColor: '#000000', paddingTop:22, height:80}}
+
+                    <Header style={{ backgroundColor: '#000000',paddingTop:22, height:80 }} 
                             androidStatusBarColor="black">
 
                         <Left>
@@ -73,101 +85,142 @@ export default class FormReports extends Component{
 
                         <Body>
                             <Title style={{color:'#DCDCDC'}}>
-                                {logged ?
-                                    user.username :
-                                    "Reportes"
+                                {loggedIn ?
+                                    userLog.username :
+                                    "Reporte"
                                 }
                             </Title>
                         </Body>
-
-                </Header>
-
-                <Content>
-                <Card style={style5.containerF}>
-                            <CardItem>
-                                    <Body>
-                                        <Item regular style={style5.inputs}>
-                                            {/* <Icon active name='buscar' size={15} style={{marginLeft:12}} /> */}
-                                                <Input name='buscar' placeholder='Buscar' style={style5.textoF} onChange={this.handleChange} />
-                                        </Item>
-                                    </Body>
-                            </CardItem>
-                            <CardItem>
-                                    <Button full bordered dark  onPress={this.myfun} style={{borderRadius:25, borderColor:'#5F0003'}}>
-                                        <Text>Buscar</Text>
-                                    </Button>       
-                                </CardItem>
-                        </Card>
-
-
-                    <View style={style5.view}>
-                        <H1 style={style5.h1}>Nombre operador</H1>
-                        <Text style={style5.text}>correo_operdor@mucino.com</Text>
+                    </Header>
+               
+               
+                    <Content>
+                        <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
                         <View>
-                            <Text style={style5.texto}>más información del operador</Text>
+                            <Card>
+                                <ListItem>
+                                    <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
+                                    <Body>
+                                        <Text style={{fontWeight: 'bold'}}>Información del operador</Text>
+                                    </Body>
+                                </ListItem>
+                        
+                                <ListItem>
+                                    <Body>
+                                        <Text style={{fontWeight: 'bold'}}>Nombre</Text>
+                                        <Text note> {data.nombre}</Text>
+                                    </Body>
+                                </ListItem>
+                            
+                                <ListItem>
+                                    <Body>
+                                        <Text style={{fontWeight: 'bold'}}>Número de empleado</Text>
+                                        <Text note> {data.numEmpleado}</Text>
+                                    </Body>
+                                </ListItem>
+                        
+                                <ListItem>
+                                    <Body>
+                                        <Text style={{fontWeight: 'bold'}}>Área</Text>
+                                        <Text note> {data.area}</Text>
+                                    </Body>
+                                </ListItem>
+                            
+                                <ListItem>
+                                    <Body>
+                                        <Text style={{fontWeight: 'bold'}}>Cargo</Text>
+                                        <Text note> {data.cargo}</Text>
+                                    </Body>
+                                </ListItem>
+
+                                <ListItem>
+                                    <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
+                                    <Body>
+                                        <Text style={{fontWeight: 'bold'}}>Información de evidencia</Text>
+                                    </Body>
+                                </ListItem>
+                            
+                                <ListItem>
+                                    <Body>
+                                    <Text style={{fontWeight: 'bold'}}>Nombre de la imagen</Text>
+                                    <Text note> Ejemplo de evidencia
+                                        {/* {data.descripcion} */}
+                                    </Text>
+                                    </Body>
+                                </ListItem>
+
+                                <ListItem>
+                                    <Body>
+                                    <Text style={{fontWeight: 'bold'}}>Fecha en que se subió la evidencia</Text>
+                                    <Text note> 2019/04/02
+                                        {/* {data.fecha} */}
+                                    </Text>
+                                    </Body>
+                                </ListItem>
+
+                                <ListItem>
+                                    <Body>
+                                    <Text style={{fontWeight: 'bold'}}>Hora en que se subió la evidencia</Text>
+                                    <Text note> 11:22:53
+                                        {/* {data.hora} */}
+                                    </Text>
+                                    </Body>
+                                </ListItem>
+
+                                <ListItem>
+                                    <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
+                                    <Body>
+                                        <Text style={{fontWeight: 'bold'}}>Información de ubicación</Text>
+                                    </Body>
+                                </ListItem>
+                            
+                                <ListItem>
+                                    <Body>
+                                    <Text style={{fontWeight: 'bold'}}>Altitud</Text>
+                                    <Text note> 20.019534
+                                        {/* {data.altitud} */}
+                                    </Text>
+                                    </Body>
+                                </ListItem>
+
+                                <ListItem>
+                                    <Body>
+                                    <Text style={{fontWeight: 'bold'}}>Longitud</Text>
+                                    <Text note> -98.8077773
+                                        {/* {data.longitud} */}
+                                    </Text>
+                                    </Body>
+                                </ListItem>
+
+                                <ListItem>
+                                    <Body>
+                                    <Text style={{fontWeight: 'bold'}}>Fecha en que checó</Text>
+                                    <Text note> 2019/04/02
+                                        {/* {data.Fecha} */}
+                                    </Text>
+                                    </Body>
+                                </ListItem>
+
+                                <ListItem>
+                                    <Body>
+                                    <Text style={{fontWeight: 'bold'}}>Hora en que checó</Text>
+                                    <Text note> 09:30:13
+                                        {/* {data.hora} */}
+                                    </Text>
+                                    </Body>
+                                </ListItem>
+                            </Card> 
                         </View>
-                    </View>
+                    </Content> 
 
-                    <View>
-                        <Card>
-                            <ListItem>
-                                <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
-                                <Body>
-                                    <Text style={{fontWeight: 'bold'}}>Proyecto</Text>
-                                    <Text note>descripcion del proyecto</Text>
-                                </Body>
-                            </ListItem>
-                        </Card>
+
+                </Drawer>  
+
+                <StatusBar backgroundColor="#DEDEDE" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />  
+                 
+            </View>
             
-                        <Card>
-                            <ListItem>
-                                <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
-                                <Body>
-                                    <Text style={{fontWeight: 'bold'}}>Lugar del proyecto</Text>
-                                    <Text note>descripcion del lugar</Text>
-                                </Body>
-                            </ListItem>
-                        </Card>
-            
-                        <Card>
-                            <ListItem>
-                                <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
-                                <Body>
-                                    <Text style={{fontWeight: 'bold'}}>Lugar del proyecto2</Text>
-                                    <Text note>descripcion del lugar</Text>
-                                </Body>
-                            </ListItem>
-                        </Card>
-            
-                        <Card>
-                            <ListItem>
-                                <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
-                                <Body>
-                                    <Text style={{fontWeight: 'bold'}}>Lugar del proyecto3</Text>
-                                    <Text note>descripcion del lugar</Text>
-                                </Body>
-                            </ListItem>
-                        </Card>
-            
-                        <Card>
-                            <ListItem>
-                                <Icon name="location" style={{marginRight: 30, fontSize: 20}}/>
-                                <Body>
-                                    <Text style={{fontWeight: 'bold'}}>Lugar del proyecto4</Text>
-                                    <Text note>descripcion del lugar</Text>
-                                </Body>
-                            </ListItem>
-                        </Card>
-
-                    </View> 
-
-                </Content> 
-
-               </Drawer> 
-
-                <StatusBar backgroundColor="#DEDEDE" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
-                
-           </Container>
         );
     }
 }
+
