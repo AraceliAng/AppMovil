@@ -6,7 +6,8 @@ import SideBar from '../main/SideBar';
 import style4 from './Styles';
 import MapView ,{ PROVIDER_GOOGLE }from 'react-native-maps';
 import firebase from '../../services/firebase/Firebase';
-import moment from 'moment';;
+import moment from 'moment';import { getNamePosition } from '../../services/Geocode';
+;
 
 export default class FormLocation extends Component{
   constructor(){
@@ -20,8 +21,6 @@ export default class FormLocation extends Component{
                 longitudeDelta:null,
             },
             data:{
-                //   lat:position.lat,
-                //   lon:position.lon,
                   //date:new Date ()
                   date : moment(new Date()).format("YYYY/MM/DD"),
                   hours : moment(new Date()).format('HH:mm:ss')
@@ -35,38 +34,71 @@ export default class FormLocation extends Component{
     onButtonPress=()=>{
 
         let{region,data}=this.state
-        
-
-
-        // let{ region, miFecha }= this.state;
+       
         try{
+            getNamePosition(region).then(res=>{
+                console.log(res)
+                if(res.data.status == "OK"){
+                    if(Object.keys(region && data)){
+                        console.log(this.state.region)
+                        console.log(this.state.data)
+                        firebase.database().ref('/checador/').push({
+                            direccion: res.data.results[0].formated_address, // es para convertir las coordenadas a dirección                       
+                            altitude: region.latitude,
+                            longitude: region.longitude,
+                            latitudeDelta: region.latitudeDelta,
+                            longitudeDelta: region.longitudeDelta,
+                            fecha: data.date,
+                            hora: data.hours
+                        })
+                        Toast.show({ 
+                            text: 'Se ha guardado su ubicación correctamente',
+                            position: 'bottom',
+                            buttonText: 'OK',
+                            type: 'success'
+                            })
+                    }else{
+                        console.log("Error al guardar la ubicación")
+                        Toast.show({ 
+                            text: "Error al guardar la ubicación",
+                            position: 'bottom',
+                            buttonText: 'OK',
+                            type: 'danger'
+                            })
+                    }
+                }else{
+                    if(Object.keys(region && data)){
+                        console.log(this.state.region)
+                        console.log(this.state.data)
+                        firebase.database().ref('/checador/').push({
+                                               
+                            altitude: region.latitude,
+                            longitude: region.longitude,
+                            latitudeDelta: region.latitudeDelta,
+                            longitudeDelta: region.longitudeDelta,
+                            fecha: data.date,
+                            hora: data.hours
+                        })
+                        Toast.show({ 
+                            text: 'Se ha guardado su ubicación correctamente',
+                            position: 'bottom',
+                            buttonText: 'OK',
+                            type: 'success'
+                            })
+                    }else{
+                        console.log("Error al guardar la ubicación")
+                        Toast.show({ 
+                            text: "Error al guardar la ubicación",
+                            position: 'bottom',
+                            buttonText: 'OK',
+                            type: 'danger'
+                            })
+                    }
+                }
                 
-            if(Object.keys(region && data)){
-                console.log(this.state.region)
-                console.log(this.state.data)
-                firebase.database().ref('/checador/').push({
-                    altitude: region.latitude,
-                    longitude: region.longitude,
-                    latitudeDelta: region.latitudeDelta,
-                    longitudeDelta: region.longitudeDelta,
-                    fecha: data.date,
-                    hora: data.hours
-                })
-                Toast.show({ 
-                    text: 'Se ha guardado su ubicación correctamente',
-                    position: 'bottom',
-                    buttonText: 'OK',
-                    type: 'success'
-                    })
-            }else{
-                console.log("Error al guardar la ubicación")
-                Toast.show({ 
-                    text: "Error al guardar la ubicación",
-                    position: 'bottom',
-                    buttonText: 'OK',
-                    type: 'danger'
-                    })
-            }
+
+            }).catch(e=>{console.log("error",e)})
+            
                 
         }catch(error){
             console.log("Fatal error")
@@ -170,6 +202,8 @@ export default class FormLocation extends Component{
                                 provider={PROVIDER_GOOGLE}
                                 style={style4.map}
                                 initialRegion={this.state.region}
+                                showsUserLocation={true}
+                                followsUserLocation={true}
                             >
                                 <MapView.Marker
                                     coordinate={this.marker()}
