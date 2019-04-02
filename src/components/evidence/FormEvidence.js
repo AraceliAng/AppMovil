@@ -53,7 +53,11 @@ export default class FormEvidence extends Component{
     constructor(props){
         super(props);
         this.state={
-            data:{},
+            data:{
+                date : moment(new Date()).format("YYYY/MM/DD"),
+                hours : moment(new Date()).format('HH:mm:ss'),
+                desc:''
+            },
             avatarSource: "",
             pic: "",
             desc:"",
@@ -125,24 +129,27 @@ export default class FormEvidence extends Component{
         console.log('lo que escribo',data)
     }
   
-    saveForm(){
+    saveForm =()=>{
         if(this.state.uid){
             try{
-                this.state.desc ? Helpers.setUserDesc(this.state.uid, this.state.desc) : null
-                this.state.source ?
+               let {data,source}=this.state 
+                console.log("-----------",data)
+                 source ?
                     uploadImage(this.state.source, `${this.state.desc}.jpg`)
                         .then((responseData) =>{
-                            Helpers.setImageUrl(this.state.uid, responseData)
+                            console.log("que es---------", responseData)
+                            data['url']=responseData
+                            Helpers.setEvidence(this.state.uid, data)
+                            this.setState({data:{},desc:'',source:'',avatarSource:''})
+                            Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
                         })
                         .catch((error)=>{
+                            Toast.show({text: 'Error, no se puede agregar', position: 'bottom', buttonText: 'OK', type: 'danger'})
                             console.log('No se agrego nada', error)
                         })
-                        :null
-
-                this.state.date ? Helpers.setUserDate(this.state.uid, this.state.date) : null
-                this.state.hours ? Helpers.setUserHours(this.state.uid, this.state.hours) : null
+                         :null
                 console.log("Se agrego con exito")
-                Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
+                
             }catch(error){
                 console.log('Fatal error', error)
                 Toast.show({text: 'Error, no se puede agregar', position: 'bottom', buttonText: 'OK', type: 'danger'})
@@ -196,7 +203,6 @@ export default class FormEvidence extends Component{
                             <CardItem>
                                 <Left>
                                     <Text>Presione el botón para elegir una opción</Text>
-                                    {/* <Text note>tomar una foto o elegir de la galería</Text> */}
                                 </Left>
                                 <Right>
                                     <Button full bordered dark  onPress={this.myfun} style={{borderRadius:25, borderColor:'#5F0003'}}>
@@ -218,14 +224,14 @@ export default class FormEvidence extends Component{
                                                 placeholder='Descripción' 
                                                 style={styles6.textoF} 
                                                 value={this.state.desc}
-                                                onChangeText={(desc)=> this.setState({desc})} />
+                                                onChangeText={value=>this.handleChange('desc',value)} />
                                     </Item>
                                 </Body>     
                             </CardItem>
                                 <Button 
                                     full bordered dark   
                                     style={styles6.boton} 
-                                    onPress={this.saveForm.bind(this)}
+                                    onPress={this.saveForm}
                                 >
                                     <Text>Guardar</Text> 
                                 </Button>
