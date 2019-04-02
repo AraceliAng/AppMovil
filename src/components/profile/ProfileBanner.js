@@ -139,6 +139,13 @@ export default class ProfileBanner extends Component {
                         <Text note> {data.email}</Text>
                         </Body>
                     </ListItem>
+
+                    <ListItem>
+                        <Body>
+                        <Text style={{fontWeight: 'bold'}}>Número de teléfono</Text>
+                        <Text note> {data.telefono}</Text>
+                        </Body>
+                    </ListItem>
                 </Card>
 
                 {/* <Card>
