@@ -148,6 +148,7 @@ export default class RegistryProyect extends Component{
                                     <Item regular style={styles6.inputs}>
                                         <Input 
                                             name='diasEstimados' 
+                                            keyboardType='number-pad'
                                             placeholder='Días estimados' 
                                             style={styles6.textoF} 
                                             onChangeText={value=>this.handleChange('diasEstimados',value)}
