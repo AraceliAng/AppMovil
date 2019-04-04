@@ -39,7 +39,7 @@ export default class SideBar extends Component {
                             <Icon name="user" style={{color:'white', fontSize:30}}/>
                         </Left>
                         <Body>
-                            <Text style={{color:'white'}}>Mi perfil</Text>
+                            <Text style={{color:'white'}}>Perfil</Text>
                         </Body>
                     </ListItem>
 
@@ -49,7 +49,7 @@ export default class SideBar extends Component {
                         </Left>
 
                         <Body>
-                            <Text style={{color:'white'}}>Ir a checador</Text>
+                            <Text style={{color:'white'}}>Checador</Text>
                         </Body>
                     </ListItem>
 
@@ -58,7 +58,7 @@ export default class SideBar extends Component {
                             <Icon name="camera" style={{color:'white', fontSize:30}}/>
                         </Left>
                         <Body >
-                            <Text style={{color:'white'}}>Agregar Evidencia</Text>
+                            <Text style={{color:'white'}}>Evidencias</Text>
                         </Body>
                     </ListItem>
 
@@ -68,7 +68,7 @@ export default class SideBar extends Component {
                         </Left>
 
                         <Body>
-                            <Text style={{color:'white'}}> Generar reporte</Text>
+                            <Text style={{color:'white'}}>Reporte</Text>
                         </Body>
                     </ListItem>
 
