@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { KeyboardAvoidingView,AsyncStorage } from 'react-native';
+import { KeyboardAvoidingView,AsyncStorage, StatusBar, Platform } from 'react-native';
 import {Container, Content, Text, Toast, Input, Button, Item, Form, View} from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import styles3 from './Styles';
@@ -74,11 +74,12 @@ export default class ComponentLogin extends Component{
                         <View>
                             <Form style={styles3.containerF}>
                                 <Item regular style={styles3.inputs}>
-                                    <Icon active name='user' size={15} style={{marginLeft:12}}/>
+                                    <Icon active name='phone' size={15} style={{marginLeft:12}}/>
                                     <Input 
                                         name='correo'
-                                        placeholder='Correo Electrónico'
+                                        placeholder='Número de teléfono'
                                         keyboardType='email-address'
+                                        // keyboardType='phone-pad'
                                         returnKeyType='next'
                                         value={this.state.correo}
                                         autoCapitalize='none'
@@ -107,6 +108,7 @@ export default class ComponentLogin extends Component{
                         </View>
                     </KeyboardAvoidingView>
                 </Content>
+                <StatusBar backgroundColor="#000000" barStyle={Platform.OS === 'android' ? "white-content": "default" }  />  
             </Container>
         )
     }
