@@ -241,7 +241,7 @@ export default class FormEvidence extends Component{
 
                 </Drawer>
 
-                <StatusBar backgroundColor="#DEDEDE" barStyle={Platform.OS === 'android' ? "dark-content": "default" } />
+                <StatusBar backgroundColor="#000000" barStyle={Platform.OS === 'android' ? "white-content": "default" }  />  
                 
             </Container>
         )
