@@ -28,11 +28,7 @@ export default class FormLocation extends Component{
           }
       
   }
-  
-
-
     onButtonPress=()=>{
-
         let{region,data}=this.state
        
         try{
@@ -66,7 +62,7 @@ export default class FormLocation extends Component{
                             type: 'danger'
                             })
                     }
-                }else{
+                }else{// empieza if en caso de que no haya la conversion de las coordenadas, solo va a guardar las coordenadas
                     if(Object.keys(region && data)){
                         console.log(this.state.region)
                         console.log(this.state.data)
@@ -158,12 +154,14 @@ export default class FormLocation extends Component{
     }
    
     render(){
+        //esto es para el drawer
         closeDrawer = () => {
             this.drawer._root.close()
         };
         openDrawer = () => {
             this.drawer._root.open()
         };
+        //aqui termina 
         let {userLog,loggedIn}=this.state
         
        return(
@@ -195,15 +193,14 @@ export default class FormLocation extends Component{
                     
                     </Header>
             
-                    
                     <View style={style4.container} >
                         {this.state.region.latitude ? 
                             <MapView
                                 provider={PROVIDER_GOOGLE}
                                 style={style4.map}
                                 initialRegion={this.state.region}
-                                showsUserLocation={true}
-                                followsUserLocation={true}
+                                // showsUserLocation={true}
+                                // followsUserLocation={true}
                             >
                                 <MapView.Marker
                                     coordinate={this.marker()}
@@ -252,7 +249,7 @@ export default class FormLocation extends Component{
                 
                 </Drawer>
                 
-                <StatusBar backgroundColor="#DEDEDE" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
+                <StatusBar backgroundColor="#000000" barStyle={Platform.OS === 'android' ? "white-content": "default" }  />  
             
             </Container>
         );
