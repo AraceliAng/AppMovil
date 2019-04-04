@@ -187,7 +187,7 @@ export default class RegistryProyect extends Component{
 
                 </Drawer>
 
-                <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" } />
+                <StatusBar backgroundColor="#000000" barStyle={Platform.OS === 'android' ? "white-content": "default" }  />  
 
             </Container>
             );
