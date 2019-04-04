@@ -95,7 +95,6 @@ export default class ProfileBanner extends Component {
                 >   
 
                     <Content>
-                        <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
                         <View>
                 <Card>
                     <ListItem>
@@ -133,12 +132,12 @@ export default class ProfileBanner extends Component {
                         </Body>
                     </ListItem>
                 
-                    <ListItem>
+                    {/* <ListItem>
                         <Body>
                         <Text style={{fontWeight: 'bold'}}>Correo Electrónico</Text>
                         <Text note> {data.email}</Text>
                         </Body>
-                    </ListItem>
+                    </ListItem> */}
 
                     <ListItem>
                         <Body>
@@ -163,7 +162,7 @@ export default class ProfileBanner extends Component {
 
                 </Drawer>  
 
-                <StatusBar backgroundColor="#DEDEDE" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />  
+                <StatusBar backgroundColor="#000000" barStyle={Platform.OS === 'android' ? "white-content": "default" }  />  
                  
             </View>
             
