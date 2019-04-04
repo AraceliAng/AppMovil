@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles3 from './Styles';
-import { Image, KeyboardAvoidingView, StatusBar, Platform} from 'react-native';
+import { Image, KeyboardAvoidingView} from 'react-native';
 import { Header, View} from 'native-base';
 import imgLogo from '../../assets/m.jpg';
 
@@ -12,8 +12,6 @@ export default class FormLogin extends Component{
                 <View style = {styles3.containerF}>
                     <Image source={imgLogo} style={styles3.img}/>
                 </View>
-            
-                <StatusBar backgroundColor="#DEDEDE" barStyle={Platform.OS === 'android' ? "dark-content": "default"}/>
             </KeyboardAvoidingView>
         );
     }
