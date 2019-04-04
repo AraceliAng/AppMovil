@@ -24,19 +24,19 @@ export default class ProfileBanner extends Component {
                     this.setState({data:user})
                     console.log('Es una prueba dento de lo asincrono',user) 
             });         
-                // if(userUid){
-                //     console.log("Existe un usuario",userUid)
-                //     this.setState({token:userUid})
-                //     firebase.database().ref('/evidencia/'+userUid+"/").once('value',snapshot =>{ 
-                //         console.log('Esto es una prueba, dento de lo asincrono',snapshot.val()) 
-                //         let uid = snapshot.val()
-                //         this.setState({data:uid})
-                //         console.log('uid del usuario',uid) 
+                if(userUid){
+                    console.log("Existe un usuario",userUid)
+                    this.setState({token:userUid})
+                    firebase.database().ref('/evidencia/'+userUid+"/").once('value',snapshot =>{ 
+                        console.log('Esto es una prueba, dento de lo asincrono',snapshot.val()) 
+                        let uid = snapshot.val()
+                        this.setState({data:uid})
+                        console.log('uid del usuario',uid) 
                     
-                //     });              
-                // } else{
-                //     console.log("no hay nada")
-                // }     
+                    });              
+                } else{
+                    console.log("no hay nada")
+                }     
             } else{
                 console.log("no hay nada")
             }
@@ -95,7 +95,6 @@ export default class ProfileBanner extends Component {
                
                
                     <Content>
-                        <StatusBar backgroundColor="#efeff4" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
                         <View>
                             <Card>
                                 <ListItem>
@@ -108,28 +107,36 @@ export default class ProfileBanner extends Component {
                                 <ListItem>
                                     <Body>
                                         <Text style={{fontWeight: 'bold'}}>Nombre</Text>
-                                        <Text note> {data.nombre}</Text>
+                                        <Text note> Araceli Olguin Angeles
+                                            {/* {data.nombre} */}
+                                        </Text>
                                     </Body>
                                 </ListItem>
                             
                                 <ListItem>
                                     <Body>
                                         <Text style={{fontWeight: 'bold'}}>Número de empleado</Text>
-                                        <Text note> {data.numEmpleado}</Text>
+                                        <Text note> 5044
+                                            {/* {data.numEmpleado} */}
+                                        </Text>
                                     </Body>
                                 </ListItem>
                         
                                 <ListItem>
                                     <Body>
                                         <Text style={{fontWeight: 'bold'}}>Área</Text>
-                                        <Text note> {data.area}</Text>
+                                        <Text note> Sistemas
+                                            {/* {data.area} */}
+                                        </Text>
                                     </Body>
                                 </ListItem>
                             
                                 <ListItem>
                                     <Body>
                                         <Text style={{fontWeight: 'bold'}}>Cargo</Text>
-                                        <Text note> {data.cargo}</Text>
+                                        <Text note> Prácticante
+                                            {/* {data.cargo} */}
+                                        </Text>
                                     </Body>
                                 </ListItem>
 
@@ -211,13 +218,10 @@ export default class ProfileBanner extends Component {
                                 </ListItem>
                             </Card> 
                         </View>
+                        
                     </Content> 
-
-
                 </Drawer>  
-
-                <StatusBar backgroundColor="#DEDEDE" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />  
-                 
+                <StatusBar backgroundColor="#000000" barStyle={Platform.OS === 'android' ? "white-content": "default" }  />                   
             </View>
             
         );
