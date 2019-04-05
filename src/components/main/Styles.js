@@ -14,7 +14,9 @@ const stylesM = StyleSheet.create({
     boton:{
         padding:20,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        borderRadius:10,
+        marginBottom:5
     },
     container: {
         flex: 1,
