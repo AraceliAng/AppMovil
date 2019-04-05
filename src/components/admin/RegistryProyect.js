@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StatusBar,Platform } from 'react-native';
-import { Toast, Header, Text, Item, Left, Input, Button, Body, Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
+import { Picker, Toast, Header, Text, Item, Left, Input, Button, Body, Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import styles6 from './Styles';
 import SideBar from '../main/SideBar';
@@ -17,6 +17,14 @@ export default class RegistryProyect extends Component{
             userLog:{},
             loggedIn:false,
             data:[],
+            empleados:[
+                {label:'Empleado...'},
+                {label:'empleado 1'},
+                {label:'empleado 2'},
+                {label:'empleado 3'},
+                {label:'empleado 4'},
+            ],
+            selectedEmpleado:'',
         };
     }
    
@@ -28,6 +36,7 @@ export default class RegistryProyect extends Component{
                 destino: data.destino,
                 diasEstimados: data.diasEstimados,
                 vehiculoAsig: data.vehiculoAsig,
+                empleado:data.empleado
             })
             Toast.show({ 
                 text: 'Datos agregados correctamente ',
@@ -48,7 +57,7 @@ export default class RegistryProyect extends Component{
     
     handleChange=(field,value)=>{
         console.log('Antes',field,value)
-        let {data,nomProyecto,destino,vehiculoAsig,diasEstimados} = this.state
+        let {data,nomProyecto,destino,vehiculoAsig,diasEstimados, selectedEmpleado} = this.state
         if(field === 'nomProyecto'){
             nomProyecto = value
             this.setState({nomProyecto})
@@ -64,6 +73,9 @@ export default class RegistryProyect extends Component{
         if(field === 'vehiculoAsig'){
             vehiculoAsig = value
             this.setState({vehiculoAsig})
+        }if(field === 'empleado'){
+            selectedEmpleado = value
+            this.setState({selectedEmpleado})
         }
         data[field]=value
         this.setState({data})
@@ -79,7 +91,7 @@ export default class RegistryProyect extends Component{
         this.drawer._root.open()
         };
 
-        let {userLog,loggedIn}=this.state
+        let {userLog,loggedIn, empleados}=this.state
         return(
 
             <Container >
@@ -171,6 +183,21 @@ export default class RegistryProyect extends Component{
                             </CardItem>
 
                             <CardItem>
+                                <Body>
+                                <Picker
+                                        note
+                                        mode="dropdown"
+                                        style={{width:'100%'}}
+                                        selectedValue={this.state.selectedEmpleado}
+                                        onValueChange={value=>this.handleChange('empleado',value)}
+                                        >
+                                        {empleados.map((empleado,i)=> <Picker.Item label={empleado.label} value={empleado.label} key={i}/> )}
+
+                                    </Picker>
+                                </Body>     
+                            </CardItem>
+
+                            <CardItem>
                             <Button 
                                 bordered 
                                 dark 
@@ -187,7 +214,7 @@ export default class RegistryProyect extends Component{
 
                 </Drawer>
 
-                <StatusBar backgroundColor="#000000" barStyle={Platform.OS === 'android' ? "white-content": "default" }  />  
+                <StatusBar backgroundColor="#000000" barStyle={Platform.OS === 'android' ? "light-content": "default" }  />  
 
             </Container>
             );
