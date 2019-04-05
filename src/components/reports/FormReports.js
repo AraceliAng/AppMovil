@@ -24,19 +24,7 @@ export default class ProfileBanner extends Component {
                     this.setState({data:user})
                     console.log('Es una prueba dento de lo asincrono',user) 
             });         
-                if(userUid){
-                    console.log("Existe un usuario",userUid)
-                    this.setState({token:userUid})
-                    firebase.database().ref('/evidencia/'+userUid+"/").once('value',snapshot =>{ 
-                        console.log('Esto es una prueba, dento de lo asincrono',snapshot.val()) 
-                        let uid = snapshot.val()
-                        this.setState({data:uid})
-                        console.log('uid del usuario',uid) 
-                    
-                    });              
-                } else{
-                    console.log("no hay nada")
-                }     
+               
             } else{
                 console.log("no hay nada")
             }
@@ -107,8 +95,9 @@ export default class ProfileBanner extends Component {
                                 <ListItem>
                                     <Body>
                                         <Text style={{fontWeight: 'bold'}}>Nombre</Text>
-                                        <Text note> Araceli Olguin Angeles
-                                            {/* {data.nombre} */}
+                                        <Text note> 
+                                            {/* Araceli Olguin Angeles */}
+                                            {data.nombre}
                                         </Text>
                                     </Body>
                                 </ListItem>
@@ -116,8 +105,9 @@ export default class ProfileBanner extends Component {
                                 <ListItem>
                                     <Body>
                                         <Text style={{fontWeight: 'bold'}}>Número de empleado</Text>
-                                        <Text note> 5044
-                                            {/* {data.numEmpleado} */}
+                                        <Text note> 
+                                            {/* 5044 */}
+                                            {data.numEmpleado}
                                         </Text>
                                     </Body>
                                 </ListItem>
@@ -125,8 +115,9 @@ export default class ProfileBanner extends Component {
                                 <ListItem>
                                     <Body>
                                         <Text style={{fontWeight: 'bold'}}>Área</Text>
-                                        <Text note> Sistemas
-                                            {/* {data.area} */}
+                                        <Text note> 
+                                            {/* Sistemas */}
+                                            {data.area}
                                         </Text>
                                     </Body>
                                 </ListItem>
@@ -134,8 +125,9 @@ export default class ProfileBanner extends Component {
                                 <ListItem>
                                     <Body>
                                         <Text style={{fontWeight: 'bold'}}>Cargo</Text>
-                                        <Text note> Prácticante
-                                            {/* {data.cargo} */}
+                                        <Text note> 
+                                            {/* Prácticante */}
+                                            {data.cargo}
                                         </Text>
                                     </Body>
                                 </ListItem>
@@ -150,8 +142,9 @@ export default class ProfileBanner extends Component {
                                 <ListItem>
                                     <Body>
                                     <Text style={{fontWeight: 'bold'}}>Nombre de la imagen</Text>
-                                    <Text note> Ejemplo de evidencia
-                                        {/* {data.descripcion} */}
+                                    <Text note> 
+                                        {/* Ejemplo de evidencia */}
+                                        {data.descripcion}
                                     </Text>
                                     </Body>
                                 </ListItem>
@@ -159,8 +152,9 @@ export default class ProfileBanner extends Component {
                                 <ListItem>
                                     <Body>
                                     <Text style={{fontWeight: 'bold'}}>Fecha en que se subió la evidencia</Text>
-                                    <Text note> 2019/04/02
-                                        {/* {data.fecha} */}
+                                    <Text note> 
+                                        {/* 2019/04/02 */} 
+                                        {data.fecha}
                                     </Text>
                                     </Body>
                                 </ListItem>
@@ -168,8 +162,9 @@ export default class ProfileBanner extends Component {
                                 <ListItem>
                                     <Body>
                                     <Text style={{fontWeight: 'bold'}}>Hora en que se subió la evidencia</Text>
-                                    <Text note> 11:22:53
-                                        {/* {data.hora} */}
+                                    <Text note> 
+                                        {/* 11:22:53 */}
+                                        {data.hora}
                                     </Text>
                                     </Body>
                                 </ListItem>
@@ -221,7 +216,7 @@ export default class ProfileBanner extends Component {
                         
                     </Content> 
                 </Drawer>  
-                <StatusBar backgroundColor="#000000" barStyle={Platform.OS === 'android' ? "white-content": "default" }  />                   
+                <StatusBar backgroundColor="#000000" barStyle={Platform.OS === 'android' ? "light-content": "default" }  />                   
             </View>
             
         );
