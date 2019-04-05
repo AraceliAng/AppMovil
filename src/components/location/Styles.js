@@ -37,7 +37,10 @@ const style4 = StyleSheet.create({
     boton: {
         borderColor:'#5F0003',
         borderRadius:10,
-        marginBottom:5
+        marginBottom:5,
+        padding:20,
+        justifyContent:'center',
+        alignItems:'center',
     },
     textos:{
         padding:40,
