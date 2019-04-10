@@ -41,7 +41,7 @@ export default class FormLocation extends Component{
                         if(Object.keys(region && data)){
                             console.log(this.state.region)
                             console.log(this.state.data)
-                            firebase.database().ref('/checador/').push({
+                            firebase.database().ref('/checador/'+userUid+"/").push({
                                 direccion: res.data.results[0].formated_address, // es para convertir las coordenadas a dirección                       
                                 altitude: region.latitude,
                                 longitude: region.longitude,
