@@ -213,11 +213,11 @@ export default class RegistryEmployee extends Component{
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
-                                        <Input name='email' keyboardType='email-address' placeholder='Correo electrónico' style={styles6.textoF} onChangeText={value=>this.handleChange('email',value)} />
+                                        <Input name='telefono' keyboardType='phone-pad' placeholder='Número de teléfono' style={styles6.textoF} onChangeText={value=>this.handleChange('telefono',value)} />
                                     </Item>
-                                </Body>     
-                            </CardItem>  
-
+                                </Body> 
+                            </CardItem>    
+                            
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
@@ -229,10 +229,11 @@ export default class RegistryEmployee extends Component{
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
-                                        <Input name='telefono' keyboardType='phone-pad' placeholder='Número de teléfono' style={styles6.textoF} onChangeText={value=>this.handleChange('telefono',value)} />
+                                        <Input name='email' keyboardType='email-address' placeholder='Correo electrónico' style={styles6.textoF} onChangeText={value=>this.handleChange('email',value)} />
                                     </Item>
-                                </Body> 
-                            </CardItem>      
+                                </Body>     
+                            </CardItem>  
+
 
                             <CardItem>
                                 <Button bordered dark style={styles6.boton} onPress={this.onButtonPress.bind(this)}>
