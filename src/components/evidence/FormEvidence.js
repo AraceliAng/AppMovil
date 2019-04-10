@@ -52,6 +52,9 @@ const options={
 export default class FormEvidence extends Component{
     constructor(props){
         super(props);
+        console.ignoredYellowBox = [
+            'Setting a timer'
+            ];
         this.state={
             data:{
                 date : moment(new Date()).format("YYYY/MM/DD"),
@@ -65,8 +68,7 @@ export default class FormEvidence extends Component{
             userLog:{},
             loggedIn:false,
             source:'',
-            date : moment(new Date()).format("YYYY/MM/DD"),
-            hours : moment(new Date()).format('HH:mm:ss')
+            
         }
       }
 
