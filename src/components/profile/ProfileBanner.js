@@ -9,11 +9,18 @@ import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header
 import firebase from '../../services/firebase/Firebase';
 
 export default class ProfileBanner extends Component {
-    state={
-        token:'',
-        loggedIn:false,
-        data:{},
+    constructor(props){
+        super(props);
+        console.ignoredYellowBox = [
+            'Setting a timer'
+            ];
+            this.state={
+                token:'',
+                loggedIn:false,
+                data:{},
+            }
     }
+   
 
     getUID = async (item) => {
         try {
@@ -132,12 +139,12 @@ export default class ProfileBanner extends Component {
                         </Body>
                     </ListItem>
                 
-                    {/* <ListItem>
+                    <ListItem>
                         <Body>
                         <Text style={{fontWeight: 'bold'}}>Correo Electrónico</Text>
                         <Text note> {data.email}</Text>
                         </Body>
-                    </ListItem> */}
+                    </ListItem>
 
                     <ListItem>
                         <Body>
