@@ -27,6 +27,7 @@
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
       <!-- AQUI VA LA API KEY DE GEOLOCALIZACIÓN -->
       
+      
     </application>
 
 </manifest>
