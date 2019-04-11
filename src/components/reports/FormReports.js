@@ -14,6 +14,7 @@ export default class FormReports extends Component {
             loggedIn:false,
             data:{},
             evi:{},
+            i:'',
         }
    }
     
@@ -46,11 +47,13 @@ getEvi=async(item)=>{
             this.setState({token:userUid})
             firebase.database().ref('evidencia/'+userUid+"/").once('value',snapshot =>{ 
                 console.log('Dentro de lo asincrono Evidencias',snapshot.val()) 
-                let user = snapshot.val()
-                console.log("usuario",user)
+                let user = Object.values(snapshot.val())
+                //console.log("usuario",user)
                 this.setState({evi:user})
-                console.log('Dentro de lo asincrono Evidenciasssss',user) 
+                console.log('Dentro de lo asincrono Evidenciasssss',evi) 
             });         
+            // const evi = Object.keys(user).map(i => user [i])
+            // console.log('Evi: object',evi)
            
         } else{
             console.log("no hay nada")
@@ -58,6 +61,10 @@ getEvi=async(item)=>{
     } catch (error) {   
     }
 }
+
+
+
+
 
     //con esto vas a ejecutar la funcion cuando entres a la pantalla
     componentWillMount(){
