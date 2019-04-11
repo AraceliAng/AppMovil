@@ -14,6 +14,8 @@ export default class FormReports extends Component {
             loggedIn:false,
             data:{},
             evi:{},
+            evid:{},
+            i:"",
         }
    }
     
@@ -50,6 +52,8 @@ getEvi=async(item)=>{
                 console.log("usuario",user)
                 this.setState({evi:user})
                 console.log('Dentro de lo asincrono Evidenciasssss',user) 
+                const evi = Object.keys(user)
+                console.log(evi,"eviiiiiii")
             });         
            
         } else{
@@ -163,7 +167,7 @@ getEvi=async(item)=>{
                                     <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
                                     <Body>
                                         <Text style={{fontWeight: 'bold'}}>Información de evidencia</Text>
-                                        {evi}
+                                        
                                     </Body>
                                 </ListItem>
 
