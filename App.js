@@ -10,8 +10,8 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Routes from './Routes';
 //-----
-console.ignoredYellowBox = ['Setting a timer'];
-console.disableYellowBox = true;
+//console.ignoredYellowBox = ['Setting a timer'];
+//console.disableYellowBox = true;
 //-----
 export default class App extends Component{
   render() {
