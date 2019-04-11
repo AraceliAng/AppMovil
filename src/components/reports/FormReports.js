@@ -40,21 +40,27 @@ export default class FormReports extends Component {
         }
     }
 
+   
+
+
 getEvi=async(item)=>{
     try {
+
         const userUid = await AsyncStorage.getItem('userID');
         if(userUid){
             console.log("Existe un usuario",userUid)
             this.setState({token:userUid})
-            firebase.database().ref('evidencia/'+userUid+"/").once('value',snapshot =>{ 
+           const evi = firebase.database().ref('evidencia/'+userUid+"/").getKey().once('value',snapshot =>{ 
                 console.log('Dentro de lo asincrono Evidencias',snapshot.val()) 
-                let user = snapshot.val()
-                console.log("usuario",user)
-                this.setState({evi:user})
-                console.log('Dentro de lo asincrono Evidenciasssss',user) 
-                const evi = Object.keys(user)
+                let evi = snapshot.val()
+                // console.log("usuario",user)
+                // this.setState({evi:user})
+                // console.log('Dentro de lo asincrono Evidenciasssss',user) 
+                //const evi = Object.keys(user)
                 console.log(evi,"eviiiiiii")
-            });         
+            }); 
+            const evid = Object .keys (evi) .map (i => evi [i])  
+            console.log(evid,"evddddddddd")      
            
         } else{
             console.log("no hay nada")
