@@ -11,9 +11,7 @@ import firebase from '../../services/firebase/Firebase';
 export default class ProfileBanner extends Component {
     constructor(props){
         super(props);
-        console.ignoredYellowBox = [
-            'Setting a timer'
-            ];
+        
             this.state={
                 token:'',
                 loggedIn:false,
