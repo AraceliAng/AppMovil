@@ -6,7 +6,8 @@ import SideBar from '../main/SideBar';
 import style4 from './Styles';
 import MapView ,{ PROVIDER_GOOGLE }from 'react-native-maps';
 import firebase from '../../services/firebase/Firebase';
-import moment from 'moment';import { getNamePosition } from '../../services/Geocode';
+import moment from 'moment';
+import { getNamePosition } from '../../services/Geocode';
 ;
 
 export default class FormLocation extends Component{
@@ -43,7 +44,7 @@ export default class FormLocation extends Component{
                             console.log(this.state.data)
                             firebase.database().ref('/checador/'+userUid+"/").push({
                                 direccion: res.data.results[0].formated_address, // es para convertir las coordenadas a dirección                       
-                                altitude: region.latitude,
+                                latitude: region.latitude,
                                 longitude: region.longitude,
                                 latitudeDelta: region.latitudeDelta,
                                 longitudeDelta: region.longitudeDelta,
@@ -71,7 +72,7 @@ export default class FormLocation extends Component{
                             console.log(this.state.data)
                             firebase.database().ref("/checador/"+userUid+"/").push({
                                                 
-                                altitude: region.latitude,
+                                latitude: region.latitude,
                                 longitude: region.longitude,
                                 latitudeDelta: region.latitudeDelta,
                                 longitudeDelta: region.longitudeDelta,
