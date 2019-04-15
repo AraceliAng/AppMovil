@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {View, Text, Image, StatusBar,Platform,AsyncStorage } from 'react-native';
-import { Content, Button,Left, Body, Title, Header, Card, ListItem, Drawer} from 'native-base';
+import { Content, Button,Left, Body, Title, Header, Card, ListItem, Drawer, CardItem} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import SideBar from '../main/SideBar';
 import firebase from '../../services/firebase/Firebase';
+import MapView ,{ PROVIDER_GOOGLE }from 'react-native-maps';
 
 
 export default class FormReports extends Component {
@@ -13,8 +14,9 @@ export default class FormReports extends Component {
             token:'',
             loggedIn:false,
             data:{},
-            evi:{},
+            evi:[],
             evid:{},
+            check:[],
             i:"",
         }
    }
@@ -48,19 +50,43 @@ getEvi=async(item)=>{
 
         const userUid = await AsyncStorage.getItem('userID');
         if(userUid){
-            console.log("Existe un usuario",userUid)
-            this.setState({token:userUid})
-           const evi = firebase.database().ref('evidencia/'+userUid+"/").getKey().once('value',snapshot =>{ 
-                console.log('Dentro de lo asincrono Evidencias',snapshot.val()) 
-                let evi = snapshot.val()
-                // console.log("usuario",user)
-                // this.setState({evi:user})
-                // console.log('Dentro de lo asincrono Evidenciasssss',user) 
-                //const evi = Object.keys(user)
-                console.log(evi,"eviiiiiii")
+            console.log("Existe un usuario envi",userUid)
+            
+           const evi = firebase.database().ref('evidencia/'+userUid+"/").once('value',snapshot =>{ 
+                console.log('---------------------------------------------------s',snapshot.val()) 
+                console.log('arreglo',Object.values(snapshot.val()))
+                let evi = Object.values(snapshot.val())
+                this.setState({evi})
             }); 
-            const evid = Object .keys (evi) .map (i => evi [i])  
-            console.log(evid,"evddddddddd")      
+            //const evid = Object .keys (evi) .map (i => evi [i])  
+            //forEach filter indexOf ...
+            // for in exmplae => for dylan in llavecit
+            //console.log(evid,"evddddddddd")      
+           
+        } else{
+            console.log("no hay nada")
+        }
+    } catch (error) {   
+    }
+}
+
+getCheck=async(item)=>{
+    try {
+
+        const userUid = await AsyncStorage.getItem('userID');
+        if(userUid){
+            console.log("Existe un usuario envi",userUid)
+            
+           const check = firebase.database().ref('checador/'+userUid+"/").once('value',snapshot =>{ 
+                console.log('---------------checador------------------------------------s',snapshot.val()) 
+                console.log('arreglo checador',Object.values(snapshot.val()))
+                let check = Object.values(snapshot.val())
+                this.setState({check})
+            }); 
+            //const evid = Object .keys (evi) .map (i => evi [i])  
+            //forEach filter indexOf ...
+            // for in exmplae => for dylan in llavecit
+            //console.log(evid,"evddddddddd")      
            
         } else{
             console.log("no hay nada")
@@ -73,12 +99,14 @@ getEvi=async(item)=>{
     componentWillMount(){
      this.getUID(this.props)
      this.getEvi(this.props)
+     this.getCheck(this.props)
     }
 
     //con esto es cuando haya un cambio
     componentWillReciveProps(nextPros){
         this.getUID(nextPros)
         this.getEvi(nextPros)
+        this.getCheck(nextPros)
     }   
     
     render() {
@@ -89,14 +117,14 @@ getEvi=async(item)=>{
             this.drawer._root.open()
         };
 
-        let {data,evi,loggedIn}=this.state
+        let {data,evi,loggedIn,check}=this.state
         return (
 
             <View style={{flex:1}}>
 
                 <Drawer
                     ref={(ref) => { this.drawer = ref; }}
-                    content={<SideBar navigator={this.navigator} loggedIn={loggedIn}/>}
+                    content={<SideBar  navigator={this.navigator} loggedIn={loggedIn}/>}
                     onClose={this.closeDrawer} >
 
                     <Header style={{ backgroundColor: '#000000',paddingTop:22, height:80 }} 
@@ -118,7 +146,7 @@ getEvi=async(item)=>{
                         </Body>
                     </Header>
                
-               
+
                     <Content>
                         <View>
                             <Card>
@@ -169,6 +197,7 @@ getEvi=async(item)=>{
                                     </Body>
                                 </ListItem>
 
+
                                 <ListItem>
                                     <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
                                     <Body>
@@ -176,14 +205,59 @@ getEvi=async(item)=>{
                                         
                                     </Body>
                                 </ListItem>
-
+                                <View>
+                                    {evi.map((data,i)=>
+                                    <Card key={i}>
+                                        <CardItem > 
+                                            <Body>
+                                                <Image source={{uri:data.foto}} style={{width:200,height:200}} />
+                                                <Text>{data.descripcion}</Text>
+                                            </Body>
+                                        </CardItem>
+                                        <CardItem>
+                                            <Body>
+                                                <Text note>{data.fecha} {data.hora}</Text>
+                                            </Body>
+                                        </CardItem>
+                                    </Card>)}
+                                </View>
                                 <ListItem>
+                                    <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
                                     <Body>
-                                        <Text note> {evi} </Text>
-                                        
+                                        <Text style={{fontWeight: 'bold'}}>Checkeos</Text>
                                     </Body>
                                 </ListItem>
-                            
+                                <View>
+                                    {check.map((data, i)=>
+                                    <Card key={i}>
+                                        <CardItem > 
+                                            <Body>
+                                                <MapView 
+                                                    provider={PROVIDER_GOOGLE}
+                                                    pitchEnabled={false}
+                                                    rotateEnabled={false}
+                                                    scrollEnabled={false}
+                                                    style={{width:'100%',height:200}}
+                                                    initialRegion={{latitude:data.altitude,longitude:data.longitude,
+                                                        latitudeDelta:data.latitudeDelta,
+                                                        longitudeDelta:data.longitudeDelta,
+                                                    }}
+                                                >
+                                                    <MapView.Marker
+                                                        coordinate={{latitude:data.altitude,longitude:data.longitude}}
+                                                        tittle="¡Aquí checaste!"
+                                                        description="Ubicación"
+                                                    />
+                                                 </MapView>
+                                            </Body>
+                                        </CardItem>
+                                        <CardItem>
+                                            <Body>
+                                                <Text note>{data.fecha} {data.hora}</Text>
+                                            </Body>
+                                        </CardItem>
+                                    </Card>)}
+                                </View>                            
                                 
                             </Card> 
                         </View>
