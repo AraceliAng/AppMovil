@@ -8,7 +8,9 @@ import Icon from 'react-native-vector-icons/EvilIcons';
 import stylesM from './Styles';
 
 export default class SideBar extends Component {
-     
+    state={
+        user={}
+    }
 
     logOut=()=>{
             firebaseAuth.signOut()
@@ -17,6 +19,15 @@ export default class SideBar extends Component {
         Actions.login()
     }
 
+    // getUSer=async(item)=>{
+    //     try {
+    
+    //         let userIfno = await AsyncStorage.getItem('userInfo');
+    //         let user = JSON.parse(userIfno)
+    //         this.setState({user})
+    //     } catch (error) {   
+    //     }
+    // }
     render() {
 
         return (
@@ -91,6 +102,22 @@ export default class SideBar extends Component {
                             <Text style={{color:'white'}}> Registro de proyectos</Text>
                         </Body>
                     </ListItem>
+
+    {/* {
+        user.rol === 'Admin' ?
+        <ListItem icon onPress={()=> Actions.registryProyect()} >
+                        <Left>
+                            <Icon name="pencil" style={{color:'white', fontSize:30}}/>
+                        </Left>
+
+                        <Body>
+                            <Text style={{color:'white'}}> Registro de proyectos</Text>
+                        </Body>
+                    </ListItem> 
+                    :
+                    null
+        
+    } */}
 
                 </Content>
                 
