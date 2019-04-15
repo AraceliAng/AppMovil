@@ -44,6 +44,7 @@ export default class ComponentLogin extends Component{
     onLoginSuccess(r){
         console.log('Se ha autenticado',r);
         this.saveUid(r.user.uid)
+        //this.getUser(r.user.uid)
         this.setState({ email: "", contraseña: "", error:"", loading:false });
         //Actions.Log();
     Toast.show({ text:'¡Bienvenido!', position:'bottom', type:'success'})
@@ -64,6 +65,22 @@ export default class ComponentLogin extends Component{
         }
       };
     
+      //getUSer
+    //   getUser= async (idUSer) => {
+    //     try {
+        /// hacer peticion de 
+        // firebase.database().ref('empleado/'+userUid+"/").once('value',snapshot =>{ 
+        //     console.log('Esto es una prueba, dento de lo asincrono',snapshot.val()) 
+        //     let user = snapshot.val()
+         //       await AsyncStorage.setItem('userInfo', user);
+         //       await AsyncStorage.setItem('userInfo', JSON.stringify(user));
+   
+    //     } catch (error) {
+    //       // Error saving data
+    //       console.log('Error',error)
+    //     }
+    //   };
+    //
 
 	render(){
         return(
