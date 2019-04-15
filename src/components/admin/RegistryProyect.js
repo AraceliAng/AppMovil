@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { StatusBar,Platform } from 'react-native';
-import { Picker, Toast, Header, Text, Item, Left, Input, Button, Body, Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
+import { List, Toast, Header, Text, Item, Left, Input, Button, Body, Right, Container, Title, Drawer, Card, CardItem, Content, ListItem} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import styles6 from './Styles';
 import SideBar from '../main/SideBar';
 import firebase from '../../services/firebase/Firebase';
+import ModalEmpleados from './ModalEmpleado';
 
 export default class RegistryProyect extends Component{
     constructor(){
@@ -24,7 +25,9 @@ export default class RegistryProyect extends Component{
                 {label:'empleado 3'},
                 {label:'empleado 4'},
             ],
-            selectedEmpleado:'',
+            selectedEmpleado:[],
+            visibleME:false,
+            
         };
     }
    
@@ -81,6 +84,16 @@ export default class RegistryProyect extends Component{
         this.setState({data})
         console.log('lo que escribo',data)
     }
+    openModal=()=>{
+        let {visibleME}=this.state
+        visibleME =! visibleME
+        this.setState({visibleME}) 
+    }
+    saveEmploys=(data)=>{
+        let{selectedEmpleado}=this.state
+        selectedEmpleado=data
+        this.setState({selectedEmpleado})
+    }
 
     render(){
         closeDrawer = () => {
@@ -90,8 +103,8 @@ export default class RegistryProyect extends Component{
         openDrawer = () => {
         this.drawer._root.open()
         };
-
-        let {userLog,loggedIn, empleados}=this.state
+        let {openModal,saveEmploys}=this
+        let {userLog,loggedIn, visibleME,selectedEmpleado}=this.state
         return(
 
             <Container >
@@ -117,7 +130,7 @@ export default class RegistryProyect extends Component{
                         </Body>
 
                     </Header>
-
+                        <ModalEmpleados open={visibleME} close={openModal} saveEmploys={saveEmploys}/>
                     <Content>
 
                         
@@ -182,18 +195,23 @@ export default class RegistryProyect extends Component{
                                 </Body>     
                             </CardItem>
 
-                            <CardItem>
+                            <CardItem  button onPress={openModal}> 
                                 <Body>
-                                <Picker
-                                        note
-                                        mode="dropdown"
-                                        style={{width:'100%'}}
-                                        selectedValue={this.state.selectedEmpleado}
-                                        onValueChange={value=>this.handleChange('empleado',value)}
-                                        >
-                                        {empleados.map((empleado,i)=> <Picker.Item label={empleado.label} value={empleado.label} key={i}/> )}
+                                <Text>
+                                    Seleccionar operadores
+                                </Text>
+                                </Body>     
+                            </CardItem>
+                            <CardItem > 
+                                <Body>
+                                    {selectedEmpleado.map((emp,i)=>
+                                     <ListItem style={{flexDirection:'column'}}>
+                                        <Text>{emp.nombre}</Text>
+                                        <Text note >{emp.numEmpleado}</Text>
+                                     </ListItem>
+                                                                   
+                                        )}
 
-                                    </Picker>
                                 </Body>     
                             </CardItem>
 
@@ -218,5 +236,5 @@ export default class RegistryProyect extends Component{
 
             </Container>
             );
-        }
+        }//como guardar un arreglo en firebase
     }
