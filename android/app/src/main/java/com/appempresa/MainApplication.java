@@ -3,6 +3,7 @@ package com.appempresa;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+// import com.reactlibrary.RNFirebasePhoneAuthPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.taluttasgiran.pickermodule.ReactNativePickerModulePackage;
 import com.imagepicker.ImagePickerPackage;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            // new RNFirebasePhoneAuthPackage(),
             new MapsPackage(),
             new ReactNativePickerModulePackage(),
             new ImagePickerPackage(),
