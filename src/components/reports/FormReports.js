@@ -207,7 +207,7 @@ getCheck=async(item)=>{
                                     <Card key={i}>
                                         <CardItem > 
                                             <Body>
-                                                <Image source={{uri:data.foto}} style={{width:375,height:200}} />
+                                                <Image source={{uri:data.foto}} style={{width:300,height:200}} />
                                                 <Text>{data.descripcion}</Text>
                                             </Body>
                                         </CardItem>
