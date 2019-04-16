@@ -9,7 +9,7 @@ import stylesM from './Styles';
 
 export default class SideBar extends Component {
     state={
-        user={}
+        user:{}
     }
 
     logOut=()=>{
