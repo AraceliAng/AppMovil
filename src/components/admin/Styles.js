@@ -27,9 +27,15 @@ const styles6= StyleSheet.create({
         marginBottom:5
     },
     containerR:{
-        padding:40,
+        padding:-16,
         justifyContent:'center',
         alignItems:'center',
+    },
+    title:{
+        textAlign: "center",
+        color:'white',
+        marginBottom:0,
+        width:100,
     },
 });
 
