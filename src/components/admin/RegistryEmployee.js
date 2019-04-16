@@ -27,22 +27,27 @@ export default class RegistryEmployee extends Component{
         ],
         cargos:[
             {label:'Selecciona el cargo'},
-            {label:'Administrador'},
             {label:'Jefe de área'},
             {label:'Auxiliar de área'},
             {label:'Personal de apoyo'},
             {label:'Prácticante'},
             {label:'Otro'},
         ],
+        roles:[
+            {label:'Selecciona el rol'},
+            {label:'Administrador'},
+            {label:'Operador'},
+        ],
         selectedCargo:'',
-        selectedArea:''
+        selectedArea:'',
+        selectedRol:'',
     };
     
 
     onButtonPress(){
         const{ password, email, data }= this.state;
         
-        if(Object.keys(data).length >= 7){
+        if(Object.keys(data).length >= 8){
             console.log(this.state.password)
             console.log(this.state.email)
             firebase.auth().createUserWithEmailAndPassword(email, password).then(r=>this.onSignupSuccess(r)).catch(e=>this.onSignupFailed(e));
@@ -77,10 +82,11 @@ export default class RegistryEmployee extends Component{
                 email: data.email,
                 nombre: data.nombre,
                 numEmpleado: data.numEmpleado,
-                telefono: data.telefono
+                telefono: data.telefono,
+                rol: data.rol
                 
         });
-        this.setState({data:{},uid:'',nombre:'', numEmpleado:'',password:'',email:'',selectedArea:'',selectedCargo:'',telefono:'', error:'', loading:false})
+        this.setState({data:{},uid:'',nombre:'', numEmpleado:'',password:'',email:'',selectedRol:'',selectedArea:'',selectedCargo:'',telefono:'', error:'', loading:false})
             Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
         
         }catch(error){
@@ -90,7 +96,7 @@ export default class RegistryEmployee extends Component{
     }
     handleChange=(field,value)=>{
         console.log('Antes',field,value)
-        let {data,nombre,numEmpleado,telefono,email,password,selectedCargo,selectedArea} = this.state
+        let {data,nombre,numEmpleado,selectedRol,telefono,email,password,selectedCargo,selectedArea} = this.state
         if(field === 'nombre'){
             nombre = value
             this.setState({nombre})
@@ -117,6 +123,9 @@ export default class RegistryEmployee extends Component{
         if(field === 'telefono'){
             telefono = value
             this.setState({telefono})
+        }if(field === 'rol'){
+            selectedRol = value
+            this.setState({selectedRol})
         }
         data[field]=value
         this.setState({data})
@@ -133,7 +142,7 @@ export default class RegistryEmployee extends Component{
         openDrawer = () => {
         this.drawer._root.open()
         };
-        let {userLog,loggedIn,cargos,areas,nombre,email,numEmpleado,password,telefono}=this.state
+        let {userLog,loggedIn,cargos,areas,roles,nombre,email,numEmpleado,password,telefono}=this.state
         return(
 
             <Container >
@@ -217,6 +226,21 @@ export default class RegistryEmployee extends Component{
                                     {/* <Item regular style={styles6.inputs}>
                                         <Input name='cargo' placeholder='Cargo dentro del proyecto' style={styles6.textoF} onChangeText={value=>this.handleChange('cargo',value)} />
                                     </Item> */}
+                                </Body>     
+                            </CardItem>
+
+                            <CardItem>
+                                <Body>
+                                <Picker
+                                        note
+                                        mode="dropdown"
+                                        style={{width:'100%'}}
+                                        selectedValue={this.state.selectedRol}
+                                        onValueChange={value=>this.handleChange('rol',value)}
+                                        >
+                                        {roles.map((rol,i)=> <Picker.Item label={rol.label} value={rol.label} key={i}/> )}
+
+                                    </Picker>
                                 </Body>     
                             </CardItem>
 
