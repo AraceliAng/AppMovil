@@ -149,7 +149,8 @@ getCheck=async(item)=>{
 
                     <Content>
                         <View>
-                            <Card>
+                           
+                                <Card>
                                 <ListItem>
                                     <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
                                     <Body>
@@ -161,7 +162,6 @@ getCheck=async(item)=>{
                                     <Body>
                                         <Text style={{fontWeight: 'bold'}}>Nombre</Text>
                                         <Text note> 
-                                            {/* Araceli Olguin Angeles */}
                                             {data.nombre}
                                         </Text>
                                     </Body>
@@ -171,7 +171,6 @@ getCheck=async(item)=>{
                                     <Body>
                                         <Text style={{fontWeight: 'bold'}}>Número de empleado</Text>
                                         <Text note> 
-                                            {/* 5044 */}
                                             {data.numEmpleado}
                                         </Text>
                                     </Body>
@@ -181,7 +180,6 @@ getCheck=async(item)=>{
                                     <Body>
                                         <Text style={{fontWeight: 'bold'}}>Área</Text>
                                         <Text note> 
-                                            {/* Sistemas */}
                                             {data.area}
                                         </Text>
                                     </Body>
@@ -191,13 +189,12 @@ getCheck=async(item)=>{
                                     <Body>
                                         <Text style={{fontWeight: 'bold'}}>Cargo</Text>
                                         <Text note> 
-                                            {/* Prácticante */}
                                             {data.cargo}
                                         </Text>
                                     </Body>
                                 </ListItem>
-
-
+                            </Card>
+                            <Card>
                                 <ListItem>
                                     <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
                                     <Body>
@@ -210,7 +207,7 @@ getCheck=async(item)=>{
                                     <Card key={i}>
                                         <CardItem > 
                                             <Body>
-                                                <Image source={{uri:data.foto}} style={{width:200,height:200}} />
+                                                <Image source={{uri:data.foto}} style={{width:375,height:200}} />
                                                 <Text>{data.descripcion}</Text>
                                             </Body>
                                         </CardItem>
@@ -221,10 +218,12 @@ getCheck=async(item)=>{
                                         </CardItem>
                                     </Card>)}
                                 </View>
+                            </Card>
+                            <Card>
                                 <ListItem>
                                     <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
                                     <Body>
-                                        <Text style={{fontWeight: 'bold'}}>Checkeos</Text>
+                                        <Text style={{fontWeight: 'bold'}}>Información de checador</Text>
                                     </Body>
                                 </ListItem>
                                 <View>
@@ -238,13 +237,13 @@ getCheck=async(item)=>{
                                                     rotateEnabled={false}
                                                     scrollEnabled={false}
                                                     style={{width:'100%',height:200}}
-                                                    initialRegion={{latitude:data.altitude,longitude:data.longitude,
+                                                    initialRegion={{latitude:data.latitude,longitude:data.longitude,
                                                         latitudeDelta:data.latitudeDelta,
                                                         longitudeDelta:data.longitudeDelta,
                                                     }}
                                                 >
                                                     <MapView.Marker
-                                                        coordinate={{latitude:data.altitude,longitude:data.longitude}}
+                                                        coordinate={{latitude:data.latitude,longitude:data.longitude}}
                                                         tittle="¡Aquí checaste!"
                                                         description="Ubicación"
                                                     />
@@ -258,8 +257,8 @@ getCheck=async(item)=>{
                                         </CardItem>
                                     </Card>)}
                                 </View>                            
-                                
-                            </Card> 
+                                </Card>
+                           
                         </View>
                         
                     </Content> 
