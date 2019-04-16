@@ -19,14 +19,15 @@ export default class RegistryEmployee extends Component{
         loggedIn:false,
         data:{},
         areas:[
-            {label:'Áreas ...'},
+            {label:'Selecciona el área'},
             {label:'Sistemas'},
             {label:'Diseño'},
             {label:'Pesado'},
             {label:'Mantenimiento'},
         ],
         cargos:[
-            {label:'Cargos ...'},
+            {label:'Selecciona el cargo'},
+            {label:'Administrador'},
             {label:'Jefe de área'},
             {label:'Auxiliar de área'},
             {label:'Personal de apoyo'},
@@ -65,9 +66,11 @@ export default class RegistryEmployee extends Component{
     onSignupSuccess=(userLog)=> {
         var uid = userLog.user.uid;
         let{data}=this.state
+        console.log("uiddddd-----",uid)
         console.log('Usuario: ',userLog)
         try{
             firebase.database().ref('empleado/' + uid +'/').set({
+                uid: uid,
                 area: data.area,
                 cargo: data.cargo,
                 password: data.password,
@@ -77,8 +80,7 @@ export default class RegistryEmployee extends Component{
                 telefono: data.telefono
                 
         });
-        this.setState({data:{},uid:'',password:'',email:'',selectedArea:'',selectedCargo:'',telefono:'', error:'', loading:false})
-            // this.setState({email: '', password: '', error: '', loading: false});
+        this.setState({data:{},uid:'',nombre:'', numEmpleado:'',password:'',email:'',selectedArea:'',selectedCargo:'',telefono:'', error:'', loading:false})
             Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
         
         }catch(error){
@@ -88,7 +90,15 @@ export default class RegistryEmployee extends Component{
     }
     handleChange=(field,value)=>{
         console.log('Antes',field,value)
-        let {data,email,password,selectedCargo,selectedArea} = this.state
+        let {data,nombre,numEmpleado,telefono,email,password,selectedCargo,selectedArea} = this.state
+        if(field === 'nombre'){
+            nombre = value
+            this.setState({nombre})
+        }
+        if(field === 'numEmpleado'){
+            numEmpleado = value
+            this.setState({numEmpleado})
+        }
         if(field === 'email'){
             email = value
             this.setState({email})
@@ -123,7 +133,7 @@ export default class RegistryEmployee extends Component{
         openDrawer = () => {
         this.drawer._root.open()
         };
-        let {userLog,loggedIn,cargos,areas}=this.state
+        let {userLog,loggedIn,cargos,areas,nombre,email,numEmpleado,password,telefono}=this.state
         return(
 
             <Container >
@@ -164,7 +174,7 @@ export default class RegistryEmployee extends Component{
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
-                                        <Input name='nombre' placeholder='Nombre completo' style={styles6.textoF} onChangeText={value=>this.handleChange('nombre',value)} />
+                                        <Input value={nombre} name='nombre' placeholder='Nombre completo' style={styles6.textoF} onChangeText={value=>this.handleChange('nombre',value)} />
                                     </Item>
                                 </Body>     
                             </CardItem>
@@ -172,7 +182,7 @@ export default class RegistryEmployee extends Component{
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
-                                        <Input name='numEmpleado' keyboardType='number-pad' placeholder='Número de empleado' style={styles6.textoF} onChangeText={value=>this.handleChange('numEmpleado',value)} />
+                                        <Input value={numEmpleado} name='numEmpleado' keyboardType='number-pad' placeholder='Número de empleado' style={styles6.textoF} onChangeText={value=>this.handleChange('numEmpleado',value)} />
                                     </Item>
                                 </Body>     
                             </CardItem>
@@ -213,7 +223,7 @@ export default class RegistryEmployee extends Component{
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
-                                        <Input name='telefono' keyboardType='phone-pad' placeholder='Número de teléfono' style={styles6.textoF} onChangeText={value=>this.handleChange('telefono',value)} />
+                                        <Input value={telefono} name='telefono' keyboardType='phone-pad' placeholder='Número de teléfono' style={styles6.textoF} onChangeText={value=>this.handleChange('telefono',value)} />
                                     </Item>
                                 </Body> 
                             </CardItem>    
@@ -221,7 +231,7 @@ export default class RegistryEmployee extends Component{
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
-                                        <Input name='password' secureTextEntry={true} placeholder='Password' style={styles6.textoF} onChangeText={value=>this.handleChange('password',value)} />
+                                        <Input value={password} name='password' secureTextEntry={true} placeholder='Password' style={styles6.textoF} onChangeText={value=>this.handleChange('password',value)} />
                                     </Item>
                                 </Body> 
                             </CardItem>      
@@ -229,7 +239,7 @@ export default class RegistryEmployee extends Component{
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
-                                        <Input name='email' keyboardType='email-address' placeholder='Correo electrónico' style={styles6.textoF} onChangeText={value=>this.handleChange('email',value)} />
+                                        <Input value={email} name='email' keyboardType='email-address' placeholder='Correo electrónico' style={styles6.textoF} onChangeText={value=>this.handleChange('email',value)} />
                                     </Item>
                                 </Body>     
                             </CardItem>  
