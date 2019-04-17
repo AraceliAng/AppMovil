@@ -27,10 +27,10 @@ export default class ProfileBanner extends Component {
                 console.log("Existe un usuario",userUid)
                 this.setState({token:userUid})
                 firebase.database().ref('empleado/'+userUid+"/").once('value',snapshot =>{ 
-                    console.log('Esto es una prueba, dento de lo asincrono',snapshot.val()) 
+                    console.log('Perfil, dentro de lo asincrono',snapshot.val()) 
                     let user = snapshot.val()
                     this.setState({data:user})
-                    console.log('Es una prueba dento de lo asincrono',user) 
+                    console.log('Perfil, Es una prueba dento de lo asincrono',user) 
                 
                 }); 
               
@@ -150,16 +150,14 @@ export default class ProfileBanner extends Component {
                         <Text note> {data.telefono}</Text>
                         </Body>
                     </ListItem>
-                </Card>
 
-                {/* <Card>
                     <ListItem>
                         <Body>
-                            <Text style={{fontWeight: 'bold'}}>Contraseña</Text>
-                            <Text note> {data.password}</Text>
+                            <Text style={{fontWeight: 'bold'}}>Rol</Text>
+                            <Text note> {data.rol}</Text>
                         </Body>
                     </ListItem>
-                </Card> */}
+                </Card>
             </View>
                     </Content> 
 
