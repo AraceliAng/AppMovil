@@ -91,14 +91,11 @@ export default class ComponentLogin extends Component{
                         <View>
                             <Form style={styles3.containerF}>
                                 <Item regular style={styles3.inputs}>
-                                    {/* <Icon active name='phone' size={15} style={{marginLeft:12}}/> */}
                                     <Icon active name='user' size={15} style={{marginLeft:12}}/>
                                     <Input 
                                         name='correo'
-                                        // placeholder='Número de teléfono'
                                         placeholder='Correo electrónico'
                                         keyboardType='email-address'
-                                        // keyboardType='phone-pad'
                                         returnKeyType='next'
                                         value={this.state.correo}
                                         autoCapitalize='none'
