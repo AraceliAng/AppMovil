@@ -13,10 +13,11 @@ export default class SideBar extends Component {
     }
 
     logOut=()=>{
-            firebaseAuth.signOut()
+            firebase.auth().signOut()
         .then(r=>Toast.show({text: 'Hasta pronto', position: 'bottom', type: 'success'}))
         AsyncStorage.removeItem("userId");
-        Actions.login()
+        AsyncStorage.removeItem("token");
+        //Actions.login()
     }
 
     // getUSer=async(item)=>{
@@ -104,12 +105,11 @@ export default class SideBar extends Component {
                     </ListItem>
 
     {/* {
-        user.rol === 'Admin' ?
+        user.rol === 'Administrador' ?
         <ListItem icon onPress={()=> Actions.registryProyect()} >
                         <Left>
                             <Icon name="pencil" style={{color:'white', fontSize:30}}/>
                         </Left>
-
                         <Body>
                             <Text style={{color:'white'}}> Registro de proyectos</Text>
                         </Body>
@@ -131,4 +131,3 @@ export default class SideBar extends Component {
         );
     }
 }
-
