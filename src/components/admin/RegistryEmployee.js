@@ -24,6 +24,9 @@ export default class RegistryEmployee extends Component{
             {label:'Diseño'},
             {label:'Pesado'},
             {label:'Mantenimiento'},
+            {label:'Calidad'},
+            {label:'Liquidaciones'},
+            {label:'Seguridad'},
         ],
         cargos:[
             {label:'Selecciona el cargo'},
