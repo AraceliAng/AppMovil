@@ -66,34 +66,35 @@ export default class FormEvidence extends Component{
             userLog:{},
             loggedIn:false,
             source:'',
+            token:'',
             
         }
       }
 
-      _retrieveData = async () => {
-        try {
-            const userLocal = await AsyncStorage.getItem('userLog');
-            let userLog= JSON.parse(userLocal)
-            if(userLog){
-                console.log("hay usuario",userLog)
-                this.setState({userLog:userLog,loggedIn:true})
-            } else{
-                console.log("no hay nada")
-            }
-        } catch (error) {   
-        }
-    }
+    //   _retrieveData = async () => {
+    //     try {
+    //         const userLocal = await AsyncStorage.getItem('userLog');
+    //         let userLog= JSON.parse(userLocal)
+    //         if(userLog){
+    //             console.log("hay usuario",userLog)
+    //             this.setState({userLog:userLog,loggedIn:true})
+    //         } else{
+    //             console.log("no hay nada")
+    //         }
+    //     } catch (error) {   
+    //     }
+    // }
 
-    async componentWillMount(){
-        try{
-            let user= await firebase.auth().currentUser;
-            this.setState({                                                                                                                                                                                 
-                uid: user.uid
-            })
-        }catch(error){
-            console.log("no se tiene usuario", error)
-        }
-    }
+    // async componentWillMount(){
+    //     try{
+    //         let user= await firebase.auth().currentUser;
+    //         this.setState({                                                                                                                                                                                 
+    //             uid: user.uid
+    //         })
+    //     }catch(error){
+    //         console.log("no se tiene usuario", error)
+    //     }
+    // }
 
 // aquí empieza el codigo de foto e imagenes
     myfun=()=>{
@@ -129,34 +130,41 @@ export default class FormEvidence extends Component{
         console.log('lo que escribo',data)
     }
   
-    saveForm =()=>{
-        if(this.state.uid){
-            try{
-               let {data,source}=this.state 
-                console.log("-----------",data)
-                 source ?
-                    uploadImage(this.state.source, `${this.state.desc}.jpg`)
-                        .then((responseData) =>{
-                            console.log("que es---------", responseData)
-                            data['url']=responseData
-                            Helpers.setEvidence(this.state.uid, data)
-                            this.setState({data:{},desc:'',source:'',avatarSource:''})
-                            Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
-                        })
-                        .catch((error)=>{
+    saveForm =async(userID)=>{
+        const userUid = await AsyncStorage.getItem('userID');
+        if(userUid){
+            console.log(" useruid...................´´´´´.")
+                    // if(this.state.uid){
+                        try{
+                        let {data,source}=this.state 
+                            console.log("-----------",data)
+                            source ?
+                                uploadImage(this.state.source, `${this.state.desc}.jpg`)
+                                    .then((responseData) =>{
+                                        console.log("que es---------", responseData)
+                                        data['url']=responseData
+                                        Helpers.setEvidence(userUid, data)
+                                        this.setState({data:{},desc:'',responseData:'',response:"",pic:'', uri:"",source:'',avatarSource:''})
+                                        Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
+                                    })
+                                    .catch((error)=>{
+                                        Toast.show({text: 'Error, no se puede agregar', position: 'bottom', buttonText: 'OK', type: 'danger'})
+                                        console.log('No se agrego nada', error)
+                                    })
+                                    :null
+                            console.log("Se agrego con exito")
+                            
+                        }catch(error){
+                            console.log('Fatal error', error)
                             Toast.show({text: 'Error, no se puede agregar', position: 'bottom', buttonText: 'OK', type: 'danger'})
-                            console.log('No se agrego nada', error)
-                        })
-                         :null
-                console.log("Se agrego con exito")
-                
-            }catch(error){
-                console.log('Fatal error', error)
-                Toast.show({text: 'Error, no se puede agregar', position: 'bottom', buttonText: 'OK', type: 'danger'})
-            }
-        }else{
-            console.log('No hay uid')
-                Toast.show({text: 'Error, no hay uid', position: 'bottom', buttonText: 'OK', type: 'danger'})
+                        }
+                    // }else{
+                    //     console.log('No hay uid')
+                    //         Toast.show({text: 'Error, no hay uid', position: 'bottom', buttonText: 'OK', type: 'danger'})
+                    // }
+        }
+        else{
+            console.log("no hay nada de useruid.............")
         }
     }
 
