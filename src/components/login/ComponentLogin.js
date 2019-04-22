@@ -37,16 +37,24 @@ export default class ComponentLogin extends Component{
         .catch(this.onLoginFailed);
     }
 
-    onLoginFailed(){
+    onLoginFailed(e){
+        console.log(e)
         this.setState({error: 'Autenticación Fallida', loading: false })
         Toast.show({text: 'Usuario/contraseña inválidos', position: 'bottom', buttonText: 'OK', type: 'danger'})
     }
     onLoginSuccess(r){
         console.log('Se ha autenticado',r);
+        firebase.database().ref('empleado/'+r.user.uid+"/").once('value',snapshot =>{ 
+            console.log('Esto es una prueba, dento de lo asincrono',snapshot.val()) 
+            let user = snapshot.val()
+            this.getUser(user)
+            Actions.log();
+
+            console.log('uuuuuuuuuuuserrrrrrrrrr',user) 
+        });
         this.saveUid(r.user.uid)
-        //this.getUser(r.user.uid)
+        
         this.setState({ email: "", contraseña: "", error:"", loading:false });
-        //Actions.Log();
     Toast.show({ text:'¡Bienvenido!', position:'bottom', type:'success'})
     }
     
@@ -66,21 +74,27 @@ export default class ComponentLogin extends Component{
       };
     
       //getUSer
-    //   getUser= async (idUSer) => {
-    //     try {
-        /// hacer peticion de 
-        // firebase.database().ref('empleado/'+userUid+"/").once('value',snapshot =>{ 
-        //     console.log('Esto es una prueba, dento de lo asincrono',snapshot.val()) 
-        //     let user = snapshot.val()
-         //       await AsyncStorage.setItem('userInfo', user);
-         //       await AsyncStorage.setItem('userInfo', JSON.stringify(user));
+      getUser= async (user) => {
+        try {
+        // hacer peticion de 
+                //await AsyncStorage.setItem('userInfo', user);
+                console.log('usuario2312321312312',user)
+               await AsyncStorage.setItem('userInfo', JSON.stringify(user));
+        } catch (error) {
+          // Error saving data
+          console.log('Error',error)
+        }
+      };
+    
+    //con esto vas a ejecutar la funcion cuando entres a la pantalla
+    componentWillMount(){
+        this.getUser(this.props)
+       }
    
-    //     } catch (error) {
-    //       // Error saving data
-    //       console.log('Error',error)
-    //     }
-    //   };
-    //
+       //con esto es cuando haya un cambio
+       componentWillReciveProps(nextPros){
+           this.getUser(nextPros)
+       }   
 
 	render(){
         return(
