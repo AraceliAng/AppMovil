@@ -32,14 +32,13 @@ export default class RegistryProyect extends Component{
     }
    
     onButtonPress=()=>{
-        const{  data }= this.state;
-        if(Object.keys(data).length >= 4){
+        const{  data, selectedEmpleado }= this.state;
+        if(Object.keys(data).length >= 3){
             firebase.database().ref('/proyecto/').push({
                 nomProyecto: data.nomProyecto,
                 destino: data.destino,
                 diasEstimados: data.diasEstimados,
-                vehiculoAsig: data.vehiculoAsig,
-                empleado:data.empleado
+                empleado:selectedEmpleado
             })
             Toast.show({ 
                 text: 'Datos agregados correctamente ',
@@ -180,19 +179,6 @@ export default class RegistryProyect extends Component{
                                         />
                                     </Item>
                                 </Body>  
-                            </CardItem>
-
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        <Input 
-                                            name='vehiculoAsig' 
-                                            placeholder='Vehículo asignado' 
-                                            style={styles6.textoF} 
-                                            onChangeText={value=>this.handleChange('vehiculoAsig',value)}
-                                        />
-                                    </Item>
-                                </Body>     
                             </CardItem>
 
                             <CardItem  button onPress={openModal}> 
