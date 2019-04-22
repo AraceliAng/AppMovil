@@ -24,7 +24,7 @@ export default class SideBar extends Component {
         this.getUSer(this.props)
     }
     componentWillReceiveProps(nextProps){
-        console.log('me ejecuto')
+        //console.log('me ejecuto')
         this.getUSer(nextProps)
     }
 
@@ -39,7 +39,7 @@ export default class SideBar extends Component {
     }
     render() {
         let {user}= this.state
-        console.log('user info----------------------',user)
+        //console.log('user info----------------------',user)
         return (
             <Container style={{backgroundColor:"rgba(0,0,0,0.8)",flex:1}}>
 
