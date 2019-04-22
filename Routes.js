@@ -23,9 +23,9 @@ const Routes = () => {
 {/*se declara una escena con un key que es igual al nombre de la vista 
     ese nombre nos servira para poder navegar con el metodo Actions.nombredevista()
 */ }
-           
+                     <Scene key="log"                header={null} component={Log} initial/>
                     <Scene key="login"              header={null} component={ComponentLogin} />
-                    <Scene key="log"                header={null} component={Log} initial/>
+                    
                     <Scene key="profile"            header={null} component={ProfileBanner}/>
                     <Scene key="location"           header={null} component={FormLocation}/>
                     <Scene key="evidence"           header={null} component={FormEvidence}/>
