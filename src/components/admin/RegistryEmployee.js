@@ -71,11 +71,11 @@ export default class RegistryEmployee extends Component{
         Toast.show({ text: 'Error al ingresar los datos',position: 'bottom', buttonText: 'OK', type: 'danger'})
     }
 
-    onSignupSuccess=(userID)=> {
-        var uid = userID.user.uid;
+    onSignupSuccess=(userLog)=> {
+        var uid = userLog.user.uid;
         let{data}=this.state
         console.log("uiddddd-----",uid)
-        console.log('Usuario: ',userID)
+        console.log('Usuario: ',userLog)
         try{
             firebase.database().ref('empleado/' + uid +'/').set({
                 uid: uid,
@@ -89,7 +89,7 @@ export default class RegistryEmployee extends Component{
                 rol: data.rol
                 
         });
-        this.setState({data:{},uid:'',userID:'', user:'',nombre:'', numEmpleado:'',password:'',email:'',selectedRol:'',selectedArea:'',selectedCargo:'',telefono:'', error:'', loading:false})
+        this.setState({data:{},uid:'',userLog:'', user:'',nombre:'', numEmpleado:'',password:'',email:'',selectedRol:'',selectedArea:'',selectedCargo:'',telefono:'', error:'', loading:false})
             Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
         
         }catch(error){
