@@ -17,20 +17,29 @@ export default class SideBar extends Component {
         .then(r=>Toast.show({text: 'Hasta pronto', position: 'bottom', type: 'success'}))
         AsyncStorage.removeItem("userId");
         AsyncStorage.removeItem("token");
-        //Actions.login()
+        AsyncStorage.removeItem("userInfo");
+        Actions.login()
+    }
+    componentWillMount(){
+        this.getUSer(this.props)
+    }
+    componentWillReceiveProps(nextProps){
+        console.log('me ejecuto')
+        this.getUSer(nextProps)
     }
 
-    // getUSer=async(item)=>{
-    //     try {
+    getUSer=async(item)=>{
+        try {
     
-    //         let userIfno = await AsyncStorage.getItem('userInfo');
-    //         let user = JSON.parse(userIfno)
-    //         this.setState({user})
-    //     } catch (error) {   
-    //     }
-    // }
+            let userIfno = await AsyncStorage.getItem('userInfo');
+            let user = JSON.parse(userIfno)
+            this.setState({user})
+        } catch (error) {   
+        }
+    }
     render() {
-
+        let {user}= this.state
+        console.log('user info----------------------',user)
         return (
             <Container style={{backgroundColor:"rgba(0,0,0,0.8)",flex:1}}>
 
@@ -83,7 +92,9 @@ export default class SideBar extends Component {
                             <Text style={{color:'white'}}>Reporte</Text>
                         </Body>
                     </ListItem>
-
+                    {
+        user.rol === "Administrador" ?
+                    <View>
                     <ListItem icon onPress={()=> Actions.registryEmployee()} >
                         <Left>
                             <Icon name="pencil" style={{color:'white', fontSize:30}}/>
@@ -94,30 +105,20 @@ export default class SideBar extends Component {
                         </Body>
                     </ListItem>
 
+   
                     <ListItem icon onPress={()=> Actions.registryProyect()} >
                         <Left>
                             <Icon name="pencil" style={{color:'white', fontSize:30}}/>
                         </Left>
-
                         <Body>
                             <Text style={{color:'white'}}> Registro de proyectos</Text>
                         </Body>
                     </ListItem>
-
-    {/* {
-        user.rol === 'Administrador' ?
-        <ListItem icon onPress={()=> Actions.registryProyect()} >
-                        <Left>
-                            <Icon name="pencil" style={{color:'white', fontSize:30}}/>
-                        </Left>
-                        <Body>
-                            <Text style={{color:'white'}}> Registro de proyectos</Text>
-                        </Body>
-                    </ListItem> 
+                    </View> 
                     :
                     null
         
-    } */}
+    }
 
                 </Content>
                 
