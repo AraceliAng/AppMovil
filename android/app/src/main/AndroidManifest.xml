@@ -28,6 +28,13 @@
       <meta-data
         android:name="com.google.android.geo.API_KEY"
         android:value="AIzaSyBNZBL0qaPxA3KhNfd965YgCHdVoYoUaA8"/>
+
+
+<!-- mucino -->
+        <!-- <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyAXtlzhKjc93_oyhIGzwpIKmpDTFnzGhlc"/> -->
+<!-- aqui termina mucino -->
     </application>
 
 </manifest>
