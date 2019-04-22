@@ -25,15 +25,15 @@
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
       <!-- AQUI VA LA API KEY DE GEOLOCALIZACIÓN -->
-      <meta-data
+      <!-- <meta-data
         android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyBNZBL0qaPxA3KhNfd965YgCHdVoYoUaA8"/>
+        android:value="AIzaSyBNZBL0qaPxA3KhNfd965YgCHdVoYoUaA8"/> -->
 
 
 <!-- mucino -->
-        <!-- <meta-data
+        <meta-data
         android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyAXtlzhKjc93_oyhIGzwpIKmpDTFnzGhlc"/> -->
+        android:value="AIzaSyAoPwTNMZiG3YC9BxYM0uuu-rmmp-8AM8I"/>
 <!-- aqui termina mucino -->
     </application>
 

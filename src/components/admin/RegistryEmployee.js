@@ -71,11 +71,11 @@ export default class RegistryEmployee extends Component{
         Toast.show({ text: 'Error al ingresar los datos',position: 'bottom', buttonText: 'OK', type: 'danger'})
     }
 
-    onSignupSuccess=(userLog)=> {
-        var uid = userLog.user.uid;
+    onSignupSuccess=(userID)=> {
+        var uid = userID.user.uid;
         let{data}=this.state
         console.log("uiddddd-----",uid)
-        console.log('Usuario: ',userLog)
+        console.log('Usuario: ',userID)
         try{
             firebase.database().ref('empleado/' + uid +'/').set({
                 uid: uid,
@@ -89,7 +89,7 @@ export default class RegistryEmployee extends Component{
                 rol: data.rol
                 
         });
-        this.setState({data:{},uid:'',nombre:'', numEmpleado:'',password:'',email:'',selectedRol:'',selectedArea:'',selectedCargo:'',telefono:'', error:'', loading:false})
+        this.setState({data:{},uid:'',userID:'', user:'',nombre:'', numEmpleado:'',password:'',email:'',selectedRol:'',selectedArea:'',selectedCargo:'',telefono:'', error:'', loading:false})
             Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
         
         }catch(error){
@@ -226,15 +226,12 @@ export default class RegistryEmployee extends Component{
                                         {cargos.map((cargo,i)=> <Picker.Item label={cargo.label} value={cargo.label} key={i}/> )}
 
                                     </Picker>
-                                    {/* <Item regular style={styles6.inputs}>
-                                        <Input name='cargo' placeholder='Cargo dentro del proyecto' style={styles6.textoF} onChangeText={value=>this.handleChange('cargo',value)} />
-                                    </Item> */}
                                 </Body>     
                             </CardItem>
 
                             <CardItem>
                                 <Body>
-                                <Picker
+                                    <Picker
                                         note
                                         mode="dropdown"
                                         style={{width:'100%'}}
@@ -254,6 +251,14 @@ export default class RegistryEmployee extends Component{
                                     </Item>
                                 </Body> 
                             </CardItem>    
+
+                            <CardItem>
+                                <Body>
+                                    <Item regular style={styles6.inputs}>
+                                        <Input value={email} name='email' keyboardType='email-address' placeholder='Correo electrónico' style={styles6.textoF} onChangeText={value=>this.handleChange('email',value)} />
+                                    </Item>
+                                </Body>     
+                            </CardItem>  
                             
                             <CardItem>
                                 <Body>
@@ -262,15 +267,6 @@ export default class RegistryEmployee extends Component{
                                     </Item>
                                 </Body> 
                             </CardItem>      
-                            
-                            <CardItem>
-                                <Body>
-                                    <Item regular style={styles6.inputs}>
-                                        <Input value={email} name='email' keyboardType='email-address' placeholder='Correo electrónico' style={styles6.textoF} onChangeText={value=>this.handleChange('email',value)} />
-                                    </Item>
-                                </Body>     
-                            </CardItem>  
-
 
                             <CardItem>
                                 <Button bordered dark style={styles6.boton} onPress={this.onButtonPress.bind(this)}>

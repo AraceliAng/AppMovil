@@ -18,13 +18,6 @@ export default class RegistryProyect extends Component{
             userLog:{},
             loggedIn:false,
             data:[],
-            empleados:[
-                {label:'Empleado...'},
-                {label:'empleado 1'},
-                {label:'empleado 2'},
-                {label:'empleado 3'},
-                {label:'empleado 4'},
-            ],
             selectedEmpleado:[],
             visibleME:false,
             
@@ -39,13 +32,14 @@ export default class RegistryProyect extends Component{
                 destino: data.destino,
                 diasEstimados: data.diasEstimados,
                 empleado:selectedEmpleado
-            })
+            });
+            this.setState({data:[],nomProyecto:'', destino:'',diasEstimados:'',selectedEmpleado:[], loading:false})
             Toast.show({ 
                 text: 'Datos agregados correctamente ',
                 position: 'bottom',
                 buttonText: 'OK',
                 type: 'success'
-                })
+                });
         }
         else {
             Toast.show({ 
@@ -59,7 +53,7 @@ export default class RegistryProyect extends Component{
     
     handleChange=(field,value)=>{
         console.log('Antes',field,value)
-        let {data,nomProyecto,destino,vehiculoAsig,diasEstimados, selectedEmpleado} = this.state
+        let {data,nomProyecto,destino,diasEstimados, selectedEmpleado} = this.state
         if(field === 'nomProyecto'){
             nomProyecto = value
             this.setState({nomProyecto})
@@ -72,10 +66,7 @@ export default class RegistryProyect extends Component{
             diasEstimados = value
             this.setState({diasEstimados})
         }
-        if(field === 'vehiculoAsig'){
-            vehiculoAsig = value
-            this.setState({vehiculoAsig})
-        }if(field === 'empleado'){
+        if(field === 'empleado'){
             selectedEmpleado = value
             this.setState({selectedEmpleado})
         }
@@ -103,7 +94,7 @@ export default class RegistryProyect extends Component{
         this.drawer._root.open()
         };
         let {openModal,saveEmploys}=this
-        let {userLog,loggedIn, visibleME,selectedEmpleado}=this.state
+        let {userLog,loggedIn, visibleME,selectedEmpleado,nomProyecto,destino,diasEstimados}=this.state
         return(
 
             <Container >
@@ -144,14 +135,17 @@ export default class RegistryProyect extends Component{
                             <CardItem>
                                 <Body>
                                     <Item regular style={styles6.inputs}>
+                                    
                                     <Input 
                                             name='nomProyecto' 
+                                            value={nomProyecto}
                                             placeholder='Nombre del proyecto'
                                             style={styles6.textoF}  
                                             onChangeText={value=>this.handleChange('nomProyecto',value)}
                                         />
                                     </Item>
-                                </Body>     
+                                </Body>    
+                               
                             </CardItem>
 
                             <CardItem>
@@ -159,6 +153,7 @@ export default class RegistryProyect extends Component{
                                     <Item regular style={styles6.inputs}>
                                         <Input 
                                             name='destino' 
+                                            value={destino}
                                             placeholder='Destino' 
                                             style={styles6.textoF} 
                                             onChangeText={value=>this.handleChange('destino',value)} 
@@ -172,6 +167,7 @@ export default class RegistryProyect extends Component{
                                     <Item regular style={styles6.inputs}>
                                         <Input 
                                             name='diasEstimados' 
+                                            value={diasEstimados}
                                             keyboardType='number-pad'
                                             placeholder='Días estimados' 
                                             style={styles6.textoF} 
@@ -181,13 +177,15 @@ export default class RegistryProyect extends Component{
                                 </Body>  
                             </CardItem>
 
-                            <CardItem  button onPress={openModal}> 
+                            <CardItem bordered button onPress={openModal}> 
                                 <Body>
-                                <Text>
-                                    Seleccionar operadores
-                                </Text>
+                                    <Text>
+                                        Seleccionar operadores
+                                        <Icon active name='chevron-small-down' size={15} style={{marginLeft:12}}/>
+                                    </Text>
                                 </Body>     
                             </CardItem>
+
                             <CardItem > 
                                 <Body>
                                     {selectedEmpleado.map((emp,i)=>
@@ -222,5 +220,5 @@ export default class RegistryProyect extends Component{
 
             </Container>
             );
-        }//como guardar un arreglo en firebase
+        }
     }

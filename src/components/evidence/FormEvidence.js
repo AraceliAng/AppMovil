@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, StatusBar,Platform} from 'react-native';
+import { Image, StatusBar,Platform, AsyncStorage} from 'react-native';
 import { Toast, Header, Text, Item, Left, Input, Button, Body,Right, Container, Title, Drawer, Card, CardItem, Content} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import ImagePicker from 'react-native-image-picker';

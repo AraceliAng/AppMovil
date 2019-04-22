@@ -29,7 +29,7 @@ export default class FormLocation extends Component{
             token:""
         }   
   }
-    onButtonPress=async (idUSer) =>{
+    onButtonPress=async (userID) =>{
         let{region,data}=this.state
         const userUid = await AsyncStorage.getItem('userID');
         if(userUid){
