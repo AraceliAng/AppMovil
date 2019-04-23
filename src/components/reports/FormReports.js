@@ -46,14 +46,11 @@ getEvi=async(item)=>{
         const userUid = await AsyncStorage.getItem('userID');
         if(userUid){
            const evi = firebase.database().ref('evidencia/'+userUid+"/").once('value',snapshot =>{ 
-                console.log("que es D:  ...",snapshot.val())
                 if(snapshot.val() !== null){
                     let evi = Object.values(snapshot.val())
                     this.setState({evi})
                     }
           }); 
-            
-
             //const evid = Object .keys (evi) .map (i => evi [i])  
             //forEach filter indexOf ...
             // for in exmplae => for llave in llavecit
@@ -68,15 +65,12 @@ getEvi=async(item)=>{
 //muestra la informacion del checador, de acuerdo al usuario logueado
 getCheck=async(item)=>{
     try {
-
         const userUid = await AsyncStorage.getItem('userID');
         if(userUid){
            const check = firebase.database().ref('checador/'+userUid+"/").once('value',snapshot =>{ 
-                // let check = Object.values(snapshot.val())
-                // this.setState({check})
                 if(snapshot.val() !== null){
-                    let evi = Object.values(snapshot.val())
-                    this.setState({evi})
+                    let check = Object.values(snapshot.val())
+                    this.setState({check})
                 }
             }); 
             
