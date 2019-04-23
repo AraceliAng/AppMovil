@@ -26,17 +26,12 @@ export default class FormReports extends Component {
         try {
             const userUid = await AsyncStorage.getItem('userID');
             if(userUid){
-                console.log("Existe un usuario",userUid)
                 this.setState({token:userUid})
                 firebase.database().ref('empleado/'+userUid+"/").once('value',snapshot =>{ 
-                    console.log('Esto es una prueba, dentro de lo asincrono',snapshot.val()) 
                     let user = snapshot.val()
                     this.setState({data:user})
-                    console.log('Es una prueba dentro de lo asincrono',user) 
-                });         
-               
+                });    
             } else{
-                console.log("no hay nada")
             }
         } catch (error) {   
         }
@@ -44,52 +39,49 @@ export default class FormReports extends Component {
 
    
 
-
+//muestra la informacion de evidencias, de acuerdo al usuario logueado
 getEvi=async(item)=>{
     try {
 
         const userUid = await AsyncStorage.getItem('userID');
         if(userUid){
-            console.log("Existe un usuario envi",userUid)
-            
            const evi = firebase.database().ref('evidencia/'+userUid+"/").once('value',snapshot =>{ 
-                console.log('---------------------------------------------------s',snapshot.val()) 
-                console.log('arreglo',Object.values(snapshot.val()))
-                let evi = Object.values(snapshot.val())
-                this.setState({evi})
-            }); 
+                console.log("que es D:  ...",snapshot.val())
+                if(snapshot.val() !== null){
+                    let evi = Object.values(snapshot.val())
+                    this.setState({evi})
+                    }
+          }); 
+            
+
             //const evid = Object .keys (evi) .map (i => evi [i])  
             //forEach filter indexOf ...
-            // for in exmplae => for dylan in llavecit
+            // for in exmplae => for llave in llavecit
             //console.log(evid,"evddddddddd")      
            
         } else{
-            console.log("no hay nada")
         }
     } catch (error) {   
     }
 }
 
+//muestra la informacion del checador, de acuerdo al usuario logueado
 getCheck=async(item)=>{
     try {
 
         const userUid = await AsyncStorage.getItem('userID');
         if(userUid){
-            console.log("Existe un usuario envi",userUid)
-            
            const check = firebase.database().ref('checador/'+userUid+"/").once('value',snapshot =>{ 
-                console.log('---------------checador------------------------------------s',snapshot.val()) 
-                console.log('arreglo checador',Object.values(snapshot.val()))
-                let check = Object.values(snapshot.val())
-                this.setState({check})
+                // let check = Object.values(snapshot.val())
+                // this.setState({check})
+                if(snapshot.val() !== null){
+                    let evi = Object.values(snapshot.val())
+                    this.setState({evi})
+                }
             }); 
-            //const evid = Object .keys (evi) .map (i => evi [i])  
-            //forEach filter indexOf ...
-            // for in exmplae => for dylan in llavecit
-            //console.log(evid,"evddddddddd")      
-           
+            
         } else{
-            console.log("no hay nada")
+
         }
     } catch (error) {   
     }
@@ -110,6 +102,7 @@ getCheck=async(item)=>{
     }   
     
     render() {
+        //abrir y cerrar el menu
         closeDrawer = () => {
             this.drawer._root.close()
         };
@@ -203,11 +196,11 @@ getCheck=async(item)=>{
                                     </Body>
                                 </ListItem>
                                 <View>
-                                {evi=== undefined ?
+                                {evi.length <= 0 ?
                                      <ListItem>
-                                     <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
+                                     
                                      <Body>
-                                         <Text style={{fontWeight: 'bold'}}>Aún no hay evidencias</Text>
+                                         <Text note>Aún no hay evidencias</Text>
                                          
                                      </Body>
                                         </ListItem>
@@ -236,11 +229,11 @@ getCheck=async(item)=>{
                                     </Body>
                                 </ListItem>
                                 <View>
-                                {check === undefined ? 
+                                {check.length <= 0 ? 
                                      <ListItem>
-                                     <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
+                                     
                                      <Body>
-                                         <Text style={{fontWeight: 'bold'}}>Aun no hay checks</Text>
+                                         <Text note>Aún no hay checks</Text>
                                          
                                      </Body>
                                  </ListItem>

@@ -22,7 +22,6 @@ export default class FormLocation extends Component{
                 longitudeDelta:null,
             },
             data:{
-                  //date:new Date ()
                   date : moment(new Date()).format("YYYY/MM/DD"),
                   hours : moment(new Date()).format('HH:mm:ss')
             },
@@ -33,15 +32,11 @@ export default class FormLocation extends Component{
         let{region,data}=this.state
         const userUid = await AsyncStorage.getItem('userID');
         if(userUid){
-            console.log("Existe un usuario",userUid)
             this.setState({token:userUid})
             try{
                 getNamePosition(region).then(res=>{
-                    console.log(res)
                     if(res.data.status == "OK"){
                         if(Object.keys(region && data)){
-                            console.log(this.state.region)
-                            console.log(this.state.data)
                             firebase.database().ref('/checador/'+userUid+"/").push({
                                 direccion: res.data.results[0].formated_address, // es para convertir las coordenadas a dirección                       
                                 latitude: region.latitude,
@@ -58,7 +53,6 @@ export default class FormLocation extends Component{
                                 type: 'success'
                                 })
                         }else{
-                            console.log("Error al guardar la ubicación")
                             Toast.show({ 
                                 text: "Error al guardar la ubicación",
                                 position: 'bottom',
@@ -68,8 +62,6 @@ export default class FormLocation extends Component{
                         }
                     }else{// empieza if en caso de que no haya la conversion de las coordenadas, solo va a guardar las coordenadas
                         if(Object.keys(region && data)){
-                            console.log(this.state.region)
-                            console.log(this.state.data)
                             firebase.database().ref("/checador/"+userUid+"/").push({
                                                 
                                 latitude: region.latitude,
@@ -86,7 +78,6 @@ export default class FormLocation extends Component{
                                 type: 'success'
                                 })
                         }else{
-                            console.log("Error al guardar la ubicación")
                             Toast.show({ 
                                 text: "Error al guardar la ubicación",
                                 position: 'bottom',
@@ -97,7 +88,7 @@ export default class FormLocation extends Component{
                     }
                }).catch(e=>{console.log("error",e)})
             }catch(error){
-                console.log("Fatal error")
+                
                 Toast.show({ 
                     text: "No existe ninguna ubicación",
                     position: 'bottom',
@@ -106,7 +97,6 @@ export default class FormLocation extends Component{
                     })
             }
     }else{
-        console.log("Fatal error 222222")
     }
     }
 
