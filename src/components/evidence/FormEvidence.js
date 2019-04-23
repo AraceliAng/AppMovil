@@ -144,7 +144,10 @@ export default class FormEvidence extends Component{
                                         console.log("que es---------", responseData)
                                         data['url']=responseData
                                         Helpers.setEvidence(userUid, data)
-                                        this.setState({data:{},desc:'',responseData:'',response:"",pic:'', uri:"",source:'',avatarSource:''})
+                                        this.setState({data:{ date : moment(new Date()).format("YYYY/MM/DD"),
+                                                              hours : moment(new Date()).format('HH:mm:ss'),
+                                                              desc:''},
+                                                              responseData:'',desc:'',response:"",pic:'', uri:"",source:'',avatarSource:''})
                                         Toast.show({text: 'Se ha agregado con éxito', position: 'bottom', type: 'success'})
                                     })
                                     .catch((error)=>{
