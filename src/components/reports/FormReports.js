@@ -49,8 +49,9 @@ getEvi=async(item)=>{
                 if(snapshot.val() !== null){
                     let evi = Object.values(snapshot.val())
                     this.setState({evi})
-                    }
-          }); 
+                }   
+                
+            }); 
             //const evid = Object .keys (evi) .map (i => evi [i])  
             //forEach filter indexOf ...
             // for in exmplae => for llave in llavecit
@@ -65,6 +66,7 @@ getEvi=async(item)=>{
 //muestra la informacion del checador, de acuerdo al usuario logueado
 getCheck=async(item)=>{
     try {
+
         const userUid = await AsyncStorage.getItem('userID');
         if(userUid){
            const check = firebase.database().ref('checador/'+userUid+"/").once('value',snapshot =>{ 
@@ -72,10 +74,11 @@ getCheck=async(item)=>{
                     let check = Object.values(snapshot.val())
                     this.setState({check})
                 }
+                
             }); 
             
         } else{
-
+            
         }
     } catch (error) {   
     }
