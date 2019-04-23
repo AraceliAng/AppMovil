@@ -203,7 +203,16 @@ getCheck=async(item)=>{
                                     </Body>
                                 </ListItem>
                                 <View>
-                                    {evi.map((data,i)=>
+                                {evi=== undefined ?
+                                     <ListItem>
+                                     <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
+                                     <Body>
+                                         <Text style={{fontWeight: 'bold'}}>Aún no hay evidencias</Text>
+                                         
+                                     </Body>
+                                        </ListItem>
+                                    :
+                                     evi.map((data,i)=>
                                     <Card key={i}>
                                         <CardItem > 
                                             <Body>
@@ -227,7 +236,16 @@ getCheck=async(item)=>{
                                     </Body>
                                 </ListItem>
                                 <View>
-                                    {check.map((data, i)=>
+                                {check === undefined ? 
+                                     <ListItem>
+                                     <Icon name="clipboard" style={{marginRight: 30, fontSize: 20}} />
+                                     <Body>
+                                         <Text style={{fontWeight: 'bold'}}>Aun no hay checks</Text>
+                                         
+                                     </Body>
+                                 </ListItem>
+                                    :
+                                    check.map((data, i)=>
                                     <Card key={i}>
                                         <CardItem > 
                                             <Body>
