@@ -9,7 +9,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "firebase": "^5.8.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "moment-timezone": "^0.5.23",
     "native-base": "^2.10.0",
     "polyfills": "^2.1.1",
